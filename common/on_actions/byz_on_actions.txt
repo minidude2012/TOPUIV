@@ -1,0 +1,302 @@
+# #Byz_roman_monarchy_porphyrogennetos event
+# #Commented for now due to not working?
+# on_new_heir = {
+	# events = {
+		# roman_monarchy.2
+	# }
+# }
+
+#Byz_estates
+on_five_year_pulse_2 = {
+	random_events = {
+		# Strategoi
+		100 = strategoi_estate_events.1
+		100 = strategoi_estate_events.2
+		100 = strategoi_estate_events.3
+		100 = strategoi_estate_events.4 #Bonus
+		100 = strategoi_estate_events.5
+		100 = strategoi_estate_events.6
+		100 = strategoi_estate_events.7
+		100 = strategoi_estate_events.8
+		100 = strategoi_estate_events.9
+		100 = strategoi_estate_events.10 
+		100 = strategoi_estate_events.11 
+		400 = strategoi_estate_events.12 #Demands
+		100 = strategoi_estate_events.13
+		100 = strategoi_estate_events.14 
+		
+		#Had to add vanilla here since I noticed they didn't fire. Very interesting how that works, that I replace whatever was in the taken on_action. I'll do this on the others as well.
+		
+		# Burghers	
+		100 = burghers_estate_events.1
+		100 = burghers_estate_events.2
+		100 = burghers_estate_events.3
+		100 = burghers_estate_events.4
+		100 = burghers_estate_events.5
+		100 = burghers_estate_events.6
+		100 = burghers_estate_events.7
+		100 = burghers_estate_events.8
+		100 = burghers_estate_events.9
+		400 = burghers_estate_events.10 #Demands
+		100 = burghers_estate_events.11 #Bonus
+		100 = burghers_estate_events.12
+		100 = burghers_estate_events.13
+		400 = burghers_estate_events.14 #Demands
+		100 = burghers_estate_events.15 #Disloyal
+		# Nobles
+		100 = nobles_estate_events.1 #Demands
+		100 = nobles_estate_events.2
+		100 = nobles_estate_events.3
+		100 = nobles_estate_events.4
+		400 = nobles_estate_events.5 #Demands
+		100 = nobles_estate_events.6
+		100 = nobles_estate_events.7
+		400 = nobles_estate_events.8 #Disloyal
+		400 = nobles_estate_events.9 #Disloyal
+		50 = nobles_estate_events.10
+		100 = nobles_estate_events.11 #Bonus
+		# Clergy
+		100 = church_estate_events.1
+			#Regional Variations:
+			100 = church_estate_events.101 
+			100 = church_estate_events.102
+			100 = church_estate_events.103
+			100 = church_estate_events.104
+			100 = church_estate_events.105
+		100 = church_estate_events.2
+		100 = church_estate_events.3
+		100 = church_estate_events.4
+		400 = church_estate_events.5 #Disloyal
+		400 = church_estate_events.6 #Demands
+		100 = church_estate_events.7 #Bonus
+		100 = church_estate_events.8
+		100 = church_estate_events.9
+		100 = church_estate_events.10
+		# Dhimmi
+		100 = dhimmi_estate_events.1
+		400 = dhimmi_estate_events.2 #Demands
+		100 = dhimmi_estate_events.3
+		100 = dhimmi_estate_events.4
+		100 = dhimmi_estate_events.5
+		100 = dhimmi_estate_events.6
+		400 = dhimmi_estate_events.7 #Disloyal
+		100 = dhimmi_estate_events.8
+		# Cossacks
+		100 = cossack_estate_events.1
+		#100 = cossack_estate_events.2 (triggers in neighbor country)
+		100 = cossack_estate_events.6
+		100 = cossack_estate_events.7
+		100 = cossack_estate_events.8
+		100 = cossack_estate_events.9
+		100 = cossack_estate_events.10
+		100 = cossack_estate_events.11
+		400 = cossack_estate_events.12 #Disloyal
+		100 = cossack_estate_events.13
+		400 = cossack_estate_events.14 #Demands
+		# Tribes
+		100 = tribal_estate_events.1
+		100 = tribal_estate_events.2
+		100 = tribal_estate_events.3
+		100 = tribal_estate_events.4
+		100 = tribal_estate_events.5
+		100 = tribal_estate_events.6
+		100 = tribal_estate_events.7
+		100 = tribal_estate_events.8
+		100 = tribal_estate_events.9
+		150 = tribal_estate_events.11 #Demands
+		150 = tribal_estate_events.12 #Demands
+		150 = tribal_estate_events.13 #Demands
+		150 = tribal_estate_events.14 #Demands
+		
+		1000 = 0    
+		
+	}
+}
+
+on_revoke_estate_land = {
+	#Changing themes is not something you do just like that, assuming the themes are influential enough.
+	if = {
+		limit = {
+			has_estate = estate_strategoi
+			owner = {
+				#Either 50 strategoi influence or them being pissed during revocation.
+				OR = {
+					estate_influence = {
+						estate = estate_strategoi
+						influence = 50
+					}
+					NOT = {
+						estate_loyalty = {
+							estate = estate_strategoi
+							loyalty = 40
+						}
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = pretender_rebels
+			size = 2
+		}
+		
+		if = {
+			limit = {
+				owner = {
+					#If the strategoi also have 75 influence during revocation:
+					estate_influence = {
+						estate = estate_strategoi
+						influence = 75
+					}
+				}
+			}
+			owner = {
+				every_owned_province = {
+					limit = {
+						has_estate = estate_strategoi
+					}
+					random = {
+						chance = 20
+						spawn_rebels = {
+							type = pretender_rebels
+							size = 1
+						}
+					}
+					
+				}
+			}
+		}
+		
+		
+		province_event = { id = strategoi_estate_events.42 }
+	}
+	
+	#Had to add vanilla effects here since I noticed a pissed nobility not spawning rebels upon revoking land.
+	if = {
+		limit = {
+			has_estate = estate_cossacks
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_cossacks
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = cossack_rebels
+			size = 1
+		}
+		province_event = { id = cossack_estate_events.15 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_dhimmi
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_dhimmi
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = religious_rebels
+			size = 1
+		}
+		province_event = { id = dhimmi_estate_events.9 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_church
+			has_owner_religion = yes
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_church
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = religious_rebels
+			size = 1
+		}
+		province_event = { id = church_estate_events.11 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_church
+			has_owner_religion = no
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_church
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = particularist_rebels
+			size = 1
+		}
+		province_event = { id = church_estate_events.11 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_nobles
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_nobles
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = noble_rebels
+			size = 1
+		}
+		province_event = { id = nobles_estate_events.12 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_burghers
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_burghers
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = particularist_rebels
+			size = 1
+		}
+		province_event = { id = burghers_estate_events.16 }
+	}
+	if = {
+		limit = {
+			has_estate = estate_nomadic_tribes
+			owner = {
+				NOT = {
+					estate_loyalty = {
+						estate = estate_nomadic_tribes
+						loyalty = 40
+					}
+				}
+			}
+		}
+		spawn_rebels = {
+			type = tribal_rebels
+			size = 1
+		}
+		province_event = { id = tribal_estate_events.10 }
+	}
+}

@@ -1,0 +1,402 @@
+########################################
+# AOE Chinese Events
+########################################
+
+add_namespace = pu1800_chi
+#Revolt of the Shun
+country_event = {
+	id = pu1800_chi.1
+	title = "pu1800_chi.1.t"
+	desc = "pu1800_chi.1.d"
+	picture = IMPERIAL_SEAL_eventPicture
+	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		tag = MNG
+		ai = yes
+		was_player = no
+		is_year = 1550
+		OR = {
+			is_emperor_of_china = yes
+			government = celestial_empire
+		}
+		OR = {
+			exists = MJZ
+			exists = MCH
+			exists = QNG
+		}
+	}
+	mean_time_to_happen = {
+		months = 1200
+		modifier = {
+			factor = 0.8
+			NOT = { imperial_mandate = 90 }
+		}
+		modifier = {
+			factor = 0.8
+			NOT = { imperial_mandate = 80 }
+		}
+		modifier = {
+			factor = 0.8
+			NOT = { imperial_mandate = 70 }
+		}
+		modifier = {
+			factor = 0.8
+			NOT = { imperial_mandate = 60 }
+		}
+		modifier = {
+			factor = 0.675
+			NOT = { imperial_mandate = 50 }
+		}
+		modifier = {
+			factor = 0.3
+			NOT = { imperial_mandate = 40 }
+		}
+		modifier = {
+			factor = 0.2
+			NOT = { imperial_mandate = 30 }
+		}
+		modifier = {
+			factor = 0.1
+			NOT = { imperial_mandate = 20 }
+		}
+		modifier = {
+			factor = 0.01
+			NOT = { imperial_mandate = 10 }
+		}
+		modifier = {
+			factor = 0.0001
+			is_year = 1645
+		}
+	}
+	
+	immediate = {
+		every_owned_province = {
+			limit = {
+				OR = {
+					region = north_china_region
+					region = manchuria_region
+					region = mongolia_region
+				}
+			}
+			add_core = CSH
+		}
+		release = CSH
+		CSH = {
+			define_ruler = {
+			  name = "Zicheng"
+			  dynasty = "Li"
+			  age = 38
+			  claim = 25
+			  regency = no
+			  female = no
+			  adm = 2
+			  dip = 1
+			  mil = 0
+			}
+			set_capital = 1816
+		}
+		set_emperor_of_china = CSH
+		set_mandate = 50
+		CSH = {
+			capital_scope = {
+				build_to_forcelimit = {
+					infantry = 0.7
+					cavalry = 0.1
+					artillery = 0.2
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "pu1800_chi.1.a"
+		add_prestige = -50
+		add_legitimacy = -50
+		kill_ruler = yes
+		declare_war_with_cb = {
+			who = CSH
+			casus_belli = cb_unification
+		}
+		hidden_effect = {
+			set_global_flag = shun_revolt_occured
+		}
+	}
+	
+}
+#Qing conquest of China
+country_event = {
+	id = pu1800_chi.2
+	title = "pu1800_chi.2.t"
+	desc = "pu1800_chi.2.d"
+	picture = IMPERIAL_SEAL_eventPicture
+	
+	fire_only_once = yes
+	
+	trigger = {
+		OR = {
+			tag = QNG
+			tag = MCH
+			AND = {
+				tag = MJZ
+				NOT = {
+					exists = QNG
+					exists = MCH
+				}
+			}
+		}
+		OR = {
+			AND = {
+				exists = MNG
+				exists = CSH
+			}
+			AND = {
+				exists = CSH
+				NOT = { exists = MNG }
+			}
+		}
+		NOT = { government = republic }
+		has_global_flag = shun_revolt_occured
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					tag = MJZ
+					tag = MCH
+				}
+				ai = yes
+				was_player = no
+			}
+			change_tag = QNG
+			set_government_rank = 3
+			ilan_hala_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			central_jilin_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			ningguta_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			jilin_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			liaoning_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			central_heilongjiang_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = MCH
+			}
+			heilongjiang_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = MCH
+			}
+			east_heilongjiang_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = MCH
+			}
+			south_china_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = QNG
+			}
+			xinan_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = QNG
+			}
+			north_china_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = QNG
+			}
+			every_province = {
+				limit = {
+					region = manchuria_region
+					owner = {
+						ai = yes
+						was_player = no
+					}
+					NOT = { owned_by = ROOT }
+					NOT = {
+						owned_by = RUS
+						owned_by = CSH
+						owned_by = MNG
+					}
+				}
+				cede_province = ROOT
+				add_core = ROOT
+			}
+			every_province = {
+				limit = {
+					qing_china_region_trigger = yes
+				}
+				add_permanent_claim = QNG
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 3650
+			}
+			if = {
+				limit = {
+					government = steppe_horde
+				}
+				change_government = despotic_monarchy
+			}
+			if = {
+				limit = {
+					technology_group = nomad_group
+				}
+				change_technology_group = chinese
+				change_unit_type = chinese
+			}
+			if = {
+				limit = {
+					NOT = { religion = confucianism }
+				}
+				change_religion = confucianism
+				add_harmonized_religion = tengri_pagan_reformed
+			}
+			add_prestige = 50
+			set_country_flag = manchu_dynasty_formed
+			set_country_flag = formed_manchu_flag
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+		}
+		add_country_modifier = {
+		  name = "defection_to_qng"
+		  duration = -1
+		  desc = "defection_to_qng_desc"
+		}
+	}
+	
+	option = {
+		name = "pu1800_chi.2.a"
+		add_manpower = 150
+		add_treasury = 1000
+		add_prestige = 100
+		add_legitimacy = 100
+		declare_war_with_cb = {
+			who = CSH
+			casus_belli = cb_manchu_conquest
+		}
+		declare_war_with_cb = {
+			who = MNG
+			casus_belli = cb_manchu_conquest
+		}
+		MNG = {
+			add_manpower = -150
+			add_treasury = -1000
+			add_country_modifier = {
+			  name = "disorganized_army"
+			  duration = -1
+			  desc = "disorganized_army_desc"
+			}
+		}
+		hidden_effect = {
+			set_global_flag = qing_intervention_china
+			capital_scope = {
+				build_to_forcelimit = {
+					infantry = 0.55
+					cavalry = 0.05
+					artillery = 0.4
+				}
+			}
+		}
+		ai_chance = { factor = 100 }
+	}
+	option = {
+		name = "pu1800_chi.2.b"
+		add_prestige = -25
+		hidden_effect = {
+			remove_country_modifier = defection_to_qng
+		}
+		ai_chance = { factor = 0 }
+	}
+	
+}
+#The Lanfang Republic
+country_event = {
+	id = pu1800_chi.3
+	title = "pu1800_chi.3.t"
+	desc = "pu1800_chi.3.d"
+	picture = IMPERIAL_SEAL_eventPicture
+	
+	fire_only_once = yes
+	
+	trigger = {
+		is_emperor_of_china = yes
+		is_year = 1750
+		640 = {
+			OR = {
+				owner = {
+					ai = yes
+					was_player = no
+				}
+				is_empty = yes
+			}
+		}
+	}
+	mean_time_to_happen = {
+		months = 100
+	}
+	
+	option = {
+		name = "pu1800_chi.3.a"
+		640 = {
+			cede_province = ROOT
+			add_core = LFA
+		}
+		release = LFA
+		LFA = {
+			change_government = constitutional_republic
+			define_ruler = {
+				name = "Fangbo"
+			    dynasty = "Luo"
+				age = 38
+				claim = 25
+				regency = no
+				female = no
+				adm = 4
+				dip = 2
+				mil = 3
+			}
+		}
+		vassalize = LFA
+	}
+	
+}

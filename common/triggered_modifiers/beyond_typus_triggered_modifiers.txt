@@ -1,0 +1,31 @@
+# Triggered modifiers are here.
+# these are checked for each countries once/month and then applied.
+#
+# Effects are fully scriptable here.
+
+
+###########################################
+# New BT Triggered Modifiers - Vassal upkeep bonus I (JP's idea, and a good one at that)
+###########################################
+bt_triggered_modifier_a_big_family = {
+	potential = {
+		num_of_subjects = 1
+	}
+	trigger = {
+		num_of_subjects = 3
+	}
+	diplomatic_upkeep = 1
+}
+
+###########################################
+# New BT Triggered Modifiers - Vassal upkeep bonus II (JP's idea, and a good one at that)
+###########################################
+bt_triggered_modifier_hegemoniacle = {
+	potential = {
+		num_of_subjects = 3
+	}
+	trigger = {
+		num_of_subjects = 5
+	}
+	diplomatic_upkeep = 1
+}

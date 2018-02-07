@@ -1,0 +1,36 @@
+########################################
+# Major Flavor Events  #
+########################################
+
+namespace = pu1800_eng
+normal_or_historical_nations = yes
+
+country_event = { #Annexation of Vassals, yes or no?
+	id = pu1800_eng.1
+	title = pu1800_eng.1.t
+	desc = pu1800_eng.1.d
+	picture = ADVISOR_eventPicture
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = ENG
+		ENG = { ai = no }
+	}
+	
+	mean_time_to_happen = {
+		days = 15
+	}
+	option = {
+		name = pu1800_eng.1.a
+		inherit = WMC
+		inherit = WLS
+		inherit = IOM
+		inherit = JER
+	}
+	
+	option = {
+		name = pu1800_eng.1.b
+	}
+}	
+

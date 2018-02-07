@@ -1,0 +1,85 @@
+country_decisions = {
+
+	emilian_nation = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			NOT = { has_country_flag = formed_emilia_flag_btp }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { tag = EMR }
+			NOT = { tag = PAP }
+			NOT = { tag = HLR }
+			NOT = { tag = ITL }
+			NOT = { tag = ITA }
+			NOT = { tag = SPI }
+			NOT = { tag = TUS }
+			NOT = { tag = LMV }
+			OR = { 
+				primary_culture = romagnan
+				tag = URB
+			}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					num_of_cities = 2
+				}
+			}
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = EMR }
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			OR = { 
+				primary_culture = romagnan
+				tag = URB
+			}
+			owns_core_province = 105	# Parma
+			owns_core_province = 106	# Modena
+			owns_core_province = 109	# Mantua
+			owns_core_province = 113	# Ferrara
+			owns_core_province = 114	# Romagna
+			owns_core_province = 3041	# Bologna
+		}
+		effect = {
+			change_tag = EMR
+			add_prestige = 10
+			set_capital = 3041
+			if = {
+				limit = {
+					government = republic
+				}
+				change_government = despotic_monarchy
+			}
+			if = {
+				limit = {
+					NOT = {
+						primary_culture = romagnan
+					}
+				}
+				change_primary_culture = romagnan
+			}
+			set_country_flag = formed_emilia_flag_btp
+		}
+		ai_will_do = {
+			factor = 1
+			#modifier = {
+			#	factor = 0
+			#	government = republic
+			#}
+		}
+	}
+
+}

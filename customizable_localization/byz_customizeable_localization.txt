@@ -1,0 +1,221 @@
+# #Our [Root.GeAdvisorType] is suggesting we take it to the enemy
+# defined_text = {
+    # name = GetAdvisorType
+	
+    # text = {
+        # localisation_key = string_arist
+        # trigger = {
+			# advisor = artist
+        # }
+    # }
+   # text = {
+        # localisation_key = string_inquisitor
+        # trigger = {
+			# advisor = inquisitor
+        # }
+    # }
+	# text = {
+        # localisation_key = string_master_of_mint
+        # trigger = {
+			# advisor = master_of_mint
+        # }
+    # }
+	# text = {
+        # localisation_key = string_natural_scientist
+        # trigger = {
+			# advisor = natural_scientist
+        # }
+    # }
+	# text = {
+        # localisation_key = string_philosopher
+        # trigger = {
+			# advisor = philosopher
+        # }
+    # }
+	# text = {
+        # localisation_key = string_theologian
+        # trigger = {
+			# advisor = theologian
+        # }
+    # }
+	# text = {
+        # localisation_key = string_treasurer
+        # trigger = {
+			# advisor = treasurer
+        # }
+    # }			
+	# text = {
+        # localisation_key = string_colonial_governor
+        # trigger = {
+			# advisor = colonial_governor
+        # }
+    # }
+	# text = {
+        # localisation_key = string_diplomat
+        # trigger = {
+			# advisor = diplomat
+        # }
+    # }
+	# text = {
+        # localisation_key = string_naval_reformer
+        # trigger = {
+			# advisor = naval_reformer
+        # }
+    # }
+	# text = {
+        # localisation_key = string_navigator
+        # trigger = {
+			# advisor = navigator
+        # }
+    # }
+	# text = {
+        # localisation_key = string_spymaster
+        # trigger = {
+			# advisor = spymaster
+        # }
+    # }
+	# text = {
+        # localisation_key = string_statesman
+        # trigger = {
+			# advisor = statesman
+        # }
+    # }
+	# text = {
+        # localisation_key = string_trader
+        # trigger = {
+			# advisor = trader
+        # }
+    # }
+	# text = {
+        # localisation_key = string_army_organizer
+        # trigger = {
+			# advisor = army_organizer
+        # }
+    # }
+	# text = {
+        # localisation_key = string_army_reformer
+        # trigger = {
+			# advisor = army_reformer
+        # }
+    # }
+	# text = {
+        # localisation_key = string_commandant
+        # trigger = {
+			# advisor = commandant
+        # }
+    # }
+	# text = {
+        # localisation_key = string_grand_captain
+        # trigger = {
+			# advisor = grand_captain
+        # }
+    # }
+	# text = {
+        # localisation_key = string_master_recruiter
+        # trigger = {
+			# advisor = master_recruiter
+        # }
+    # }
+	# text = {
+        # localisation_key = string_military_engineer
+        # trigger = {
+			# advisor = military_engineer
+        # }
+    # }
+	# text = {
+        # localisation_key = string_quartermaster
+        # trigger = {
+			# advisor = quartermaster
+        # }
+    # }
+# }
+
+defined_text = { #Because I initially thought I could refer to the Strategoi as [estate_strategoi.GetName], which simply is not possible.
+    name = GetGeneralsName
+
+    text = { #Because there is currently no specific such
+        localisation_key = estate_strategoi
+        trigger = {
+			has_estate = estate_strategoi
+        }
+    }
+}
+#Use: [Root.ThemataRegionToSplit]
+#Ex: The Themes will split in Hellas
+defined_text = {
+    name = ThemataRegionToSplit
+
+    text = { 
+        localisation_key = string_graecia
+        trigger = {
+			has_country_flag = themata_hellas_split
+        }
+    }
+	text = { 
+        localisation_key = string_mainland_anatolia
+        trigger = {
+			has_country_flag = themata_anatolias_split
+        }
+    }
+	text = { 
+        localisation_key = string_aegean_islands
+        trigger = {
+			has_country_flag = themata_archipelagous_split
+        }
+    }
+	text = { 
+        localisation_key = string_boulgaria
+        trigger = {
+			has_country_flag = themata_boulgarias_split
+        }
+    }
+	text = { 
+        localisation_key = string_syrmia
+        trigger = {
+			has_country_flag = themata_illyrias_split
+        }
+    }
+	text = { 
+        localisation_key = string_cherson
+        trigger = {
+			has_country_flag = themata_chersou_split
+        }
+    }
+	text = { 
+        localisation_key = string_hellas_megas
+        trigger = {
+			has_country_flag = themata_megales_hellados_split
+        }
+    }
+	text = { 
+        localisation_key = string_levant
+        trigger = {
+			has_country_flag = themata_levantes_split
+        }
+    }
+	text = { 
+        localisation_key = string_egypt
+        trigger = {
+			has_country_flag = themata_aigyptou_split
+        }
+    }
+	text = { 
+        localisation_key = string_armenia_major
+        trigger = {
+			has_country_flag = themata_armenias_split
+        }
+    }
+	text = { 
+        localisation_key = string_georgia
+        trigger = {
+			has_country_flag = themata_georgianoi_split
+        }
+    }
+	text = { 
+        localisation_key = string_mesopotamia
+        trigger = {
+			has_country_flag = themata_mesopotamias_split
+        }
+    }
+}
+

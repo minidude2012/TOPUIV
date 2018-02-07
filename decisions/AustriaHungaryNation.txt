@@ -1,0 +1,79 @@
+country_decisions = {
+
+	austria_hungary_nation = {
+		major = yes
+		potential = {
+			NOT = { tag = AUH }
+			NOT = { tag = HRE }
+			OR = {
+				TAG = HAB
+			}
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					OR = {
+						AND = {
+							tag = HAB
+							HUN = {	junior_union_with = HAB	}
+						}
+						AND = {
+							tag = HAB
+							HUN = {	vassal_of = HAB	}
+						}
+					}
+				}
+			}
+		}
+		allow = {
+			adm_tech = 15
+			is_subject = no
+			is_at_war = no
+			NOT = { exists = AUH }
+			OR = {
+					AND = {
+						tag = HAB
+						HUN = {	junior_union_with = HAB	}
+					}
+					AND = {
+						tag = HAB
+						HUN = {	vassal_of = HAB	}
+					}
+				}
+		}
+	 	effect = {
+			set_capital = 134 # Wien
+			ai_will_do = {
+				factor = 400
+			}
+			if = {
+				limit = { NOT = { government_rank = 1} }
+				set_government_rank = 1
+			}
+			if = {
+				limit = {
+					tag = HAB
+					HUN = {
+						ai = yes
+					}
+				}
+				inherit = HUN
+			}
+			change_tag = AUH
+			change_government = constitutional_monarchy
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+					OR = {
+						ai = no
+						AND = {
+							ai = yes
+							has_idea_group = default_ideas
+						}
+					}
+				}
+		}
+	}
+
+			

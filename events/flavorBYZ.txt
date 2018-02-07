@@ -1,0 +1,1283 @@
+#Written by Dub
+#I split it all up from a single event namespace in order to more easily rearrange things so that they fit in order. This is why some numbers are missing and such. //Dub
+#I think it's funny to look at it now, considering I removed most things I once had in this mod since I deemed them too "not EU4". Probably wrote a good 50 or so other events that are now put elsewhere. Oh well.
+namespace = flavor_BYZ
+
+
+country_event = { #1 Mending the East-Oriental schism
+	id = flavor_BYZ.1
+	title = "flavor_BYZ.1.t" 
+	desc = "flavor_BYZ.1.d"
+	picture = ORTHODOX_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		religion = orthodox
+		#Armenian apostolic church:
+		151 = { #Should be orthodox anyway, but Constantinople is pretty darn importante
+			owned_by = ROOT
+			religion = orthodox
+		}
+		419 = { #Mother See of Holy Etchmiadzin
+			owned_by = ROOT
+			religion = orthodox
+		}
+		5154 = { #Holy See of Cilicia
+			owned_by = ROOT
+			religion = orthodox
+		}
+		2313 = { #Syrian orthodox Church. I'm skipping indian because... well, it feels illogical
+			owned_by = ROOT
+			religion = orthodox
+		}
+		379 = { #Jerusalem too was important, especially to the Armenian apostolics
+			owned_by = ROOT
+			religion = orthodox			
+		}
+		358 = { #Coptic Orthodox Church of Alexandria. Ethiopia/Eritrea belonged to this one until the 1990s
+			owned_by = ROOT
+			religion = orthodox
+		}
+	}
+	
+	option = { #The wound has finally been healed!
+		name = "flavor_BYZ.1.a"
+		add_prestige = 25
+		add_legitimacy = 25
+	}
+}
+
+country_event = { #2 The Genoese merchants
+	id = flavor_BYZ.2
+	title = "flavor_BYZ.2.t" 
+	desc = "flavor_BYZ.2.d"
+	picture = BURGHER_ESTATE_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = BYZ
+		has_country_modifier = the_theme_system
+		exists = GEN
+		GEN = { 
+			capital_scope = {
+				region = italy_region
+			}
+			ai = yes
+		}
+		capital_scope = {
+			is_strongest_trade_power = ROOT
+		}
+		NOT = {
+			military_strength = {
+				who = GEN
+				value = 3.0
+			}
+		}
+		has_opinion = {
+			who = GEN
+			value = 50
+		}
+		any_province = {
+			OR = {
+				region = balkan_region
+				region = anatolia_region
+				area = erzurum_area
+				area = crimea_area
+				province_id = 286
+			}
+			owned_by = GEN
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 60
+	}
+	
+	option = { #Sign the treaty!
+		name = "flavor_BYZ.2.a"
+		capital_scope = {
+            add_trade_modifier = {
+                who = GEN
+                duration = -1
+                power = 200
+                key = granted_black_sea_trade_privileges
+            }
+        }
+		add_mercantilism = 1
+		add_country_modifier = {
+			name = "byz_genoese_merchants"
+			duration = -1
+		}
+		GEN = {
+			add_opinion = { who = BYZ modifier = byz_granted_trade }
+		}
+		every_province = {
+			limit = {
+				owned_by = GEN
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+					area = erzurum_area
+					area = crimea_area
+					province_id = 286
+				}
+			}
+			remove_core = GEN
+			add_core = BYZ
+			cede_province = BYZ
+		}
+		set_global_flag = byz_granted_genoese_trade_privileges_black_sea
+		
+		ai_chance = {
+			factor = 33
+		} #The Byzantines did not look down all too much on the Genoese, actually
+	}
+	option = { #Deny the Genoese
+		name = "flavor_BYZ.2.b"
+		GEN = {
+			add_opinion = { who = BYZ modifier = byz_denied_trade }
+		}
+		set_global_flag = byz_denied_genoese_trade_privilegies_black_sea
+		
+		ai_chance = {
+			factor = 66
+			modifier = {
+				factor = 2
+				NOT = { trade_income_percentage = 0.25 }
+			} #Low trade income may influence the Basileus
+			modifier = {
+				factor = 4
+				NOT = { trade_income_percentage = 0.15 }
+			} #Low trade income may influence the Basileus
+			modifier = {
+				factor = 6
+				NOT = { trade_income_percentage = 0.05 }
+			} #Low trade income may influence the Basileus
+		}
+	}
+}
+
+country_event = { #3 The Cimmerian Bosporus
+	id = flavor_BYZ.3
+	title = "flavor_BYZ.3.t" 
+	desc = "flavor_BYZ.3.d"
+	picture = SHIP_SAILING_eventPicture
+		
+	immediate = {
+		save_event_target_as = cimmerian_bosporus_owner
+		set_country_flag = had_cimmerian_bosporus_event
+	}
+	
+	trigger = {
+		owns = 3245
+		owns = 2447
+		1322 = {
+			is_strongest_trade_power = ROOT
+		}
+		NOT = { has_country_flag = had_cimmerian_bosporus_event }
+	}
+	
+	mean_time_to_happen = {
+		months = 6
+	}
+	
+	option = { #Let's use this to our advantage!
+		name = "flavor_BYZ.3.a"
+		2447 = {
+			add_permanent_province_modifier = {
+				name = "cimmerian_bosporus_sound_toll"
+				duration = -1
+			}
+		}
+		1322 = {
+			every_trade_node_member_country = {
+				add_opinion = { 
+					who = event_target:cimmerian_bosporus_owner
+					modifier = byz_established_sound_toll 
+				}
+			}
+		}
+		add_mercantilism = 1
+		
+		ai_chance = {
+			factor = 90
+		}
+	}
+	option = { #Let's not
+		name = "flavor_BYZ.3.b"
+		add_prestige = -5
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = { #4 The reintroduction of the Cataphract
+	id = flavor_BYZ.4
+	title = "flavor_BYZ.4.t"
+	desc = "flavor_BYZ.4.d"
+	picture = CATAPHRACT_BATTLE_eventPicture
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		OR = {
+			MIL = 5
+			consort_mil = 5
+		}
+		army_tradition = 75
+		cavalry_fraction = 0.1 #It's really funny actually, because I would hope this fraction would exclude the amount of artillery you have, meaning I could put something like 0.3. 
+		#Basically there'd be no way to get this event late-game then if you don't use a LOT of cavalry. Example army stacks of 20/6/20, which are cav-heavy already, wouldn't do as that would be less than 15% (6/46)
+	}
+
+	mean_time_to_happen = {
+		years = 50
+		modifier = {
+			factor = 0.75
+			MIL = 6
+		}
+	}
+
+
+	option = {	#Bring back the Cataphract!
+		name = "flavor_BYZ.4.a"
+		ai_chance = { factor = 80 }
+		add_country_modifier = {
+			name = byz_cataphracts
+			duration = -1
+		}
+	}
+	option = {	#Focus efforts on the rest of the army instead
+		name = "flavor_BYZ.4.b"
+		ai_chance = { factor = 20 }
+		add_mil_power = 100
+	}
+}
+
+province_event = { #5 The Restoration of Constantinopolitan Manufactories
+	id = flavor_BYZ.5
+	title = "flavor_BYZ.5.t"
+	desc = "flavor_BYZ.5.d"
+	picture = CONSTANTINOPLE_eventPicture
+
+	fire_only_once = yes
+
+	major = yes
+	
+	trigger = {
+		has_global_flag = constantinople_restored
+		province_id = 151
+		religion = orthodox
+		culture = greek
+		OR = {
+			owned_by = BYZ
+			AND = {
+				owned_by = ROM
+				ROM = {
+					culture_group = byzantine
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 10
+	}
+
+
+	option = {	#Favor the glassmakers!
+		name = "flavor_BYZ.5.a"
+		ai_chance = { factor = 75 }
+		
+		if = {
+			limit = {
+				NOT = {
+					renaissance = 100
+				}
+			}
+			add_institution_embracement = {
+				which = renaissance
+				value = 100
+			}
+			
+		}
+		change_trade_goods = glass
+		change_price = {
+			trade_goods = glass
+			key = byz_byzantine_glass
+			value = 0.15
+			duration = -1
+		}
+		
+	}
+	option = {	#Let's reintroduce the Byzantine Silk!
+		name = "flavor_BYZ.5.b"
+		ai_chance = { factor = 25 }
+		
+		
+		if = {
+			limit = {
+				NOT = {
+					renaissance = 100
+				}
+			}
+			add_institution_embracement = {
+				which = renaissance
+				value = 100
+			}
+			
+		}
+		change_trade_goods = silk
+		change_price = {
+			trade_goods = silk
+			key = byz_byzantine_silk
+			value = 0.1
+			duration = -1
+		}
+		#To allow the re-establishment of Tyrian Purple production event in Colophon, which lies in the Smyrna province.
+		set_global_flag = byz_byzantine_silk_restored
+	}
+}
+
+country_event = { #6 Rebuilding the Great Palace
+	id = flavor_BYZ.6
+	title = "flavor_BYZ.6.t"
+	desc = "flavor_BYZ.6.d"
+	picture = CONSTANTINOPLE_eventPicture
+
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = constantinople_restored
+		151 = {
+			is_capital = yes
+			OR = {
+				owned_by = ROM
+				owned_by = BYZ
+			}
+		}
+		is_year = 1500
+	}
+
+	mean_time_to_happen = {
+		years = 100
+		modifier = {
+			factor = 0.9
+			is_at_war = no
+		}
+		modifier = {
+			factor = 0.8
+			ADM = 5
+		}
+		modifier = {
+			factor = 0.8
+			ADM = 6
+		}
+	}
+
+
+	option = {	#Rebuild the Great Palace!
+		name = "flavor_BYZ.6.a"
+		ai_chance = { factor = 75 }
+		
+		add_years_of_income = -1.0
+		add_prestige = 20
+		add_legitimacy = 20
+		151 = {
+			add_base_tax = 2
+			add_base_production = 2
+		}
+	}
+	option = {	#Continue using the Blachernae palace
+		name = "flavor_BYZ.6.b"
+		ai_chance = { factor = 25 }
+		
+		add_prestige = -5
+	}
+}
+
+country_event = { #7 The Loss of Constantinople
+	id = flavor_BYZ.7
+	title = "flavor_BYZ.7.t"
+	desc = "flavor_BYZ.7.d"
+	picture = COUNTRY_COLLAPSE_eventPicture
+
+	major = yes
+	
+	fire_only_once = yes
+
+	trigger = {
+		tag = BYZ
+		151 = {
+			NOT = { owned_by = ROOT }
+		}
+		NOT = { is_year = 1500 }
+	}
+
+	mean_time_to_happen = {
+		days = 7
+	}
+
+
+	option = {	#We'll rule from Mystras instead, waiting for our time to strike... or our doom.
+		name = "flavor_BYZ.7.a"
+		trigger = {
+			owns = 145
+		}
+		
+		change_government = despotic_monarchy
+		set_government_rank = 1
+		add_prestige = -100
+		change_tag = MOE
+		set_capital = 145
+		every_country = {
+			limit = {
+				vassal_of = ROOT
+			}
+			grant_independence = yes
+			create_alliance = ROOT #To simulate some sort of common enemy in the Ottomans
+		}
+	}
+	
+	option = {	#We'll rule from [Root.Capital.GetName] instead, waiting for our time to strike... or our doom.
+		name = "flavor_BYZ.7.b"
+		trigger = { #In case Ottomans took Mystras as well
+			NOT = {
+				owns = 145
+			}
+		}
+		
+		change_government = despotic_monarchy
+		set_government_rank = 1
+		add_prestige = -100
+		change_tag = MOE
+		every_country = {
+			limit = {
+				vassal_of = ROOT
+			}
+			grant_independence = yes
+			create_alliance = ROOT #To simulate some sort of common enemy in the Ottomans
+		}
+	}
+}
+
+province_event = { #8 Reestablishing the Tyrian Purple
+	id = flavor_BYZ.8
+	title = "flavor_BYZ.8.t"
+	desc = "flavor_BYZ.8.d"
+	picture = TRADEGOODS_eventPicture
+
+	fire_only_once = yes
+
+	major = yes
+	
+	trigger = {
+		has_global_flag = byz_byzantine_silk_restored
+		province_id = 318 #Smyrna
+		religion = orthodox
+		OR = {
+			owned_by = BYZ
+			AND = {
+				owned_by = ROM
+				ROM = {
+					culture_group = byzantine
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 5
+	}
+	
+	option = {	#Settle the land to bring back the Tyrian Purple!
+		name = "flavor_BYZ.8.a"
+		ai_chance = { factor = 75 }
+		
+		owner = {
+			add_years_of_income = -3
+			add_adm_power = -100
+			add_dip_power = -100
+		}
+		add_base_tax = 4
+		add_base_production = 4
+		add_permanent_province_modifier = {
+			name = "center_of_trade_modifier"
+			duration = -1
+		}
+		change_culture = greek
+		if = {
+			limit = {
+				NOT = {
+					renaissance = 100
+				}
+			}
+			add_institution_embracement = {
+				which = renaissance
+				value = 100
+			}
+			
+		}
+		change_trade_goods = dyes
+		change_price = {
+			trade_goods = dyes
+			key = byz_tyrian_purple
+			value = 0.25
+			duration = -1
+		}
+		change_price = { #Silk is good with Tyrian Purple!
+			trade_goods = silk
+			key = byz_tyrian_purple
+			value = 0.1
+			duration = -1
+		}
+	}
+	
+	option = {	#Do not
+		name = "flavor_BYZ.8.b"
+		ai_chance = { factor = 25 }
+		
+		owner = {
+			add_prestige = -5
+		}
+	}
+}
+
+country_event = { #15 The Restoration of the Ecumenical Patriach
+	id = flavor_BYZ.15
+	title = "flavor_BYZ.15.t" 
+	desc = "flavor_BYZ.15.d"
+	picture = ORTHODOX_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	
+	trigger = {
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		has_idea = ecumenical_patriarch
+		religion = orthodox
+	}
+	
+	mean_time_to_happen = {
+		days = 7
+	}
+	
+	option = { #The Orthodox Church shall forever be the one true Church!
+		name = "flavor_BYZ.15.a"
+		add_prestige = 10
+		add_patriarch_authority = 0.10
+		151 = {
+			add_province_modifier = {
+				name = religious_center
+				duration = -1
+			}
+		}
+	}
+}
+
+country_event = { #27 Seeking help from Europe
+	id = flavor_BYZ.27
+	title = "flavor_BYZ.27.t" 
+	desc = "flavor_BYZ.27.d"
+	picture = BATTLE_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		tag = BYZ
+		any_country = {
+			religion_group = muslim
+			offensive_war_with = BYZ
+			army_size = BYZ
+			NOT = {
+				OR = {
+					war_with = emperor
+					truce_with = emperor
+				}
+				OR = {
+					war_with = PAP
+					truce_with = PAP
+				}
+			}
+		}
+		OR = {
+			NOT = { has_country_flag = byz_no_help_wanted_from_pope }
+			had_country_flag = { flag = byz_no_help_wanted_from_pope days = 3650 } #10 years of war? Ya need sum help, mon!
+		}
+		NOT = { is_year = 1550 }
+		NOT = { has_country_flag = byz_refused_conversion_to_catholicism }
+	}
+	
+	mean_time_to_happen = {
+		months = 12
+	}
+		
+	option = { #Ask for help from the Pope
+		name = "flavor_BYZ.27.a"
+		PAP = {
+			country_event = { id = flavor_BYZ.28 days = 7 }
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					religion_group = muslim
+					offensive_war_with = BYZ
+					NOT = {
+						OR = {
+							war_with = emperor
+							truce_with = emperor
+						}
+						OR = {
+							war_with = PAP
+							truce_with = PAP
+						}
+					}
+				}
+				country_event = { id = flavor_BYZ.34 }
+			}
+		}
+		custom_tooltip = byz_pope_will_consider
+		add_patriarch_authority = -0.05
+		add_legitimacy = -20
+		add_prestige = -15
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = -15
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				NOT = { manpower_percentage = 0.5 }
+			} #Low manpower may influence the Basileus
+			modifier = {
+				factor = 4
+				NOT = { manpower_percentage = 0.25 }
+			} #Low manpower may influence the Basileus
+			modifier = {
+				factor = 6
+				NOT = { manpower_percentage = 0.10 }
+			} #Low manpower may influence the Basileus
+		}		
+	}
+	
+	option = { #We don't need any help from those stinking Schismatics!
+		name = "flavor_BYZ.27.b"
+		add_patriarch_authority = 0.05
+		add_prestige = 5
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 15
+		}
+		clr_country_flag = byz_no_help_wanted_from_pope
+		set_country_flag = byz_no_help_wanted_from_pope
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 2
+				patriarch_authority = 0.25
+			} #Patriarch authority may influence the Basileus
+			modifier = {
+				factor = 3
+				patriarch_authority = 0.50
+			} #Patriarch authority may influence the Basileus
+			modifier = {
+				factor = 4
+				patriarch_authority = 0.75
+			} #Patriarch authority may influence the Basileus
+		}
+	}
+}
+
+country_event = { #28 The Greeks ask for help
+	id = flavor_BYZ.28
+	title = "flavor_BYZ.28.t" 
+	desc = "flavor_BYZ.28.d"
+	picture = POPE_PREACHING_eventPicture
+	
+	major = yes
+	
+	trigger = {
+		tag = PAP
+	}
+	
+	is_triggered_only = yes
+	
+	option = { #Grant help
+		name = "flavor_BYZ.28.a"
+		PAP = {
+			declare_war_with_cb = {
+				who = event_target:BYZ_enemy
+				casus_belli = cb_crusade
+			}
+		}
+		emperor = {
+			declare_war_with_cb = {
+				who = event_target:BYZ_enemy
+				casus_belli = cb_crusade
+			}
+		}
+		BYZ = {
+			country_event = { id = flavor_BYZ.29 }
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 2
+				PAP = {
+					has_opinion = {
+						who = BYZ
+						value = 50
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				emperor = {
+					has_opinion = {
+						who = BYZ
+						value = 50
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				PAP = {
+					has_opinion = {
+						who = BYZ
+						value = 100
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				emperor = {
+					has_opinion = {
+						who = BYZ
+						value = 100
+					}
+				}
+			}
+			modifier = {
+				factor = 9
+				BYZ = {
+					NOT = { patriarch_authority = 0.10 }
+				}
+			} #To simulate that they may actually convert to catholicism if helped
+		}
+	}
+	
+	option = { #Deny help
+		name = "flavor_BYZ.28.b"
+		BYZ = {
+			country_event = { id = flavor_BYZ.30 }
+			add_opinion = { 
+				who = PAP
+				modifier = byz_resurgence_refused_help
+			}
+			add_opinion = {
+				who = emperor 
+				modifier = byz_resurgence_refused_help 
+			}
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 0
+				BYZ = { religion = catholic }
+			} #Always happy to help out fellow catholic against the heathen!
+		}
+	}
+}
+
+country_event = { #29 The Pope has granted help!
+	id = flavor_BYZ.29
+	title = "flavor_BYZ.29.t" 
+	desc = "flavor_BYZ.29.d"
+	picture = BYZANTINE_EAGLE_eventPicture
+	
+	trigger = {
+		tag = BYZ
+	}
+	
+	is_triggered_only = yes
+	
+	option = { #We are saved!
+		name = "flavor_BYZ.29.a"
+		add_war_exhaustion = -2
+		set_country_flag = byz_awaiting_concessions
+	}
+}
+
+country_event = { #30 The Pope denied our plead for help...
+	id = flavor_BYZ.30
+	title = "flavor_BYZ.30.t" 
+	desc = "flavor_BYZ.30.d"
+	picture = BAD_WITH_MONARCH_eventPicture
+	
+	trigger = {
+		tag = BYZ
+	}
+	
+	is_triggered_only = yes
+	
+	#Multiple options just for the funsies
+	
+	option = { #I guess we're on our own...
+		name = "flavor_BYZ.30.a"
+		add_war_exhaustion = 2
+	}
+	option = { #Dire times are ahead of us...
+		name = "flavor_BYZ.30.b"
+		add_war_exhaustion = 2
+	}
+	option = { #What do we do now?!
+		name = "flavor_BYZ.30.c"
+		add_war_exhaustion = 2
+	}
+}
+
+country_event = { #32 The city of Ailia and the Jews
+	id = flavor_BYZ.32
+	title = "flavor_BYZ.32.t" 
+	desc = "flavor_BYZ.32.d"
+	picture = JERUSALEM_eventPicture
+	
+	fire_only_once = yes
+	
+	trigger = {
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		religion = orthodox
+		379 = { owned_by = ROOT }
+	}
+	
+	mean_time_to_happen = {
+		months = 6
+	}
+	
+	option = {
+		name = "flavor_BYZ.32.a" #Keep the ban on the Jews
+		add_ruler_modifier = {
+			name = "ruler_kept_jewish_ban"
+		}
+		add_patriarch_authority = 0.10
+		set_country_flag = byz_kept_jewish_ban #For follow-up events or such
+		
+		ai_chance = {
+			factor = 95
+			modifier = {
+				factor = 2
+				patriarch_authority = 0.25
+			} #Patriarch authority may influence the Basileus
+			modifier = {
+				factor = 2
+				patriarch_authority = 0.50
+			} #Patriarch authority may influence the Basileus
+			modifier = {
+				factor = 2
+				patriarch_authority = 0.75
+			} #Patriarch authority may influence the Basileus
+			modifier = {
+				factor = 0
+				has_idea_group = humanist_ideas
+			}
+		}
+	}
+	option = {
+		name = "flavor_BYZ.32.b" #Lift the ban and build a Third Temple
+		379 = {
+			change_religion = jewish
+			add_province_modifier = {
+				name = "built_third_temple"
+				duration = -1
+			} #To counteract Tolerance True Faith -> Tolerance Heathen, whose difference is likely to be this high for the Byzantines even without religious ideas
+			add_province_modifier = {
+				name = "religious_center"
+				duration = -1
+			}
+			add_base_tax = 2
+			add_base_production = 2
+			change_province_name = "Hierosolyma"
+		}
+		add_years_of_income = -2.50
+		add_ruler_modifier = {
+			name = "ruler_lifted_jewish_ban"
+		}
+		add_patriarch_authority = -0.10
+		set_country_flag = byz_lifted_jewish_ban #For follow-up events or such
+		
+		ai_chance = {
+			factor = 5 #It is highly unlikely a Basileus would do this unless specifically not in tune with the church or wishes religious freedom (humanist ideas).
+			modifier = {
+				factor = 2
+				NOT = { patriarch_authority = 5 }
+			} #Low patriarch authority may influence the Basileus
+			modifier = {
+				factor = 10
+				jewish = 0
+			} #Good tolerance of jewish may influence the Basileus
+			modifier = {
+				factor = 10
+				jewish = 2
+			} #Good tolerance of jewish may influence the Basileus
+			modifier = {
+				factor = 0
+				has_idea_group = religious_ideas
+			}
+		}
+		
+		
+		
+		
+	}
+}
+
+country_event = { #34 We are the possible target of the catholics!
+	id = flavor_BYZ.34
+	title = "flavor_BYZ.34.t" 
+	desc = "flavor_BYZ.34.d"
+	picture = BAD_WITH_MONARCH_eventPicture
+	
+	trigger = {
+		religion_group = muslim
+		offensive_war_with = BYZ
+	}
+	
+	is_triggered_only = yes
+		
+	option = { #Should we be scared?
+		name = "flavor_BYZ.34.a"
+		add_prestige = 5
+		save_global_event_target_as = BYZ_enemy
+	}
+}
+
+country_event = { #35 The Pope demands concessions for their help
+	id = flavor_BYZ.35
+	title = "flavor_BYZ.35.t" 
+	desc = "flavor_BYZ.35.d"
+	picture = POPE_PREACHING_eventPicture
+	
+	major = yes
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = BYZ
+		NOT = { is_subject = yes }
+		NOT = { is_at_war = yes }
+		has_country_flag = byz_awaiting_concessions
+	}
+	
+	mean_time_to_happen = {
+		months = 6
+	}
+		
+	option = { #We have to accept it...
+		name = "flavor_BYZ.35.a"
+		change_religion = catholic
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = -25
+		}
+		add_estate_influence_modifier = {
+			estate = estate_church
+			desc = byz_converted_catholicism
+			influence = -15
+			duration = 18250
+		}
+		add_estate_loyalty_modifier = {
+			estate = estate_church
+			desc = byz_converted_catholicism
+			loyalty = -20
+			duration = 18250
+		}
+		add_prestige = -25
+		add_stability = -2
+		PAP = {
+			add_opinion = { 
+				who = BYZ
+				modifier = byz_resurgence_converted_catholicism
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				NOT = { revanchism = 0.1 }
+			} #If they failed the war, there is no way in heck they'd accept it.
+			modifier = {
+				factor = 9
+				NOT = { patriarch_authority = 0.15 }
+			} #If the patriarchs have no authority, perhaps it is the best way (Still only 50/50 barring other modifiers)
+		}
+			
+	}
+	option = { #We will never abandon our true faith!
+		name = "flavor_BYZ.35.b"
+		add_prestige = 25
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 20
+		}
+		add_patriarch_authority = 0.25
+		PAP = {
+			add_opinion = { 
+				who = BYZ
+				modifier = byz_resurgence_refused_catholicism
+			}
+		}
+		emperor = {
+			declare_war_with_cb = {
+				who = BYZ
+				casus_belli = cb_religious_conformance
+			}
+		}
+		set_country_flag = byz_refused_conversion_to_catholicism #To prevent help in the future
+		
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 0.11
+				emperor = {
+					military_strength = {
+						who = BYZ
+						value = 4
+					}
+				}
+			} #If they have no chance to stand up against the emperor, they'll think there's little point (Still only 50/50 barring other modifiers)
+		}
+	}
+}
+
+province_event = { #36 The Theme capital [ROOT.GetName] attracts the countryside populace
+	id = flavor_BYZ.36
+	title = "flavor_BYZ.36.t" 
+	desc = "flavor_BYZ.36.d"
+	picture = CITY_DEVELOPMENT_eventPicture
+	
+	trigger = {
+		has_estate = estate_strategoi
+		has_province_modifier = byz_katepano_ruler
+		owner = {
+			OR = {
+				tag = BYZ
+				AND = {
+					tag = ROM
+					culture_group = byzantine
+				}
+			}
+			any_owned_province = {
+				NOT = { has_estate = estate_strategoi }
+				development = 10
+				NOT = { has_province_modifier = byz_katepano_ruler }
+				NOT = { has_province_modifier = center_of_trade_modifier }
+				NOT = { has_province_modifier = inland_center_of_trade_modifier }
+			}
+			NOT = { is_at_war = yes }
+		}		
+	}
+	
+	immediate = {
+		hidden_effect = {
+			owner = {
+				random_owned_province = {
+					limit = {
+						NOT = { has_estate = estate_strategoi }
+						development = 10
+						NOT = { has_province_modifier = byz_katepano_ruler }
+						NOT = { has_province_modifier = center_of_trade_modifier }
+						NOT = { has_province_modifier = inland_center_of_trade_modifier }
+					}
+					set_province_flag = byz_emigration_province
+				}
+			}
+			save_event_target_as = byz_immigration_province
+		}
+		
+	}
+	
+	mean_time_to_happen = {
+		years = 25
+	} #This only happens for Katepano theme capitals and such doesn't happen too often
+	
+	option = { 
+		name = "flavor_BYZ.36.a" #Let them move in
+		owner = {
+			every_owned_province = {
+				limit = {
+					has_province_flag = byz_emigration_province
+				}
+				random_list = {
+					33 = {
+						add_base_tax = -1
+						event_target:byz_immigration_province = {
+							add_base_tax = 1
+						}
+					}
+					33 = {
+						add_base_production = -1
+						event_target:byz_immigration_province = {
+							add_base_production = 1
+						}
+					}
+					33 = {
+						add_base_manpower = -1
+						event_target:byz_immigration_province = {
+							add_base_manpower = 1
+						}
+					}
+				}
+				clr_province_flag = byz_emigration_province
+			}
+		}
+		
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 0
+				owner = {
+					estate_influence = { estate = estate_strategoi influence = 80 }
+				}
+			}
+		}
+	}
+	option = {
+		name = "flavor_BYZ.36.b" #Stop the relocation attempt
+		owner = {
+			every_owned_province = {
+				limit = {
+					has_province_flag = byz_emigration_province
+				}
+				add_province_modifier = {
+					name = "byz_disallowed_migration_province"
+					duration = 3650
+				}
+				clr_province_flag = byz_emigration_province
+			}
+			add_country_modifier = {
+				name = "byz_disallowed_migration_country"
+				duration = 1825
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = { #37 The Rediscovery of Greek Fire
+	id = flavor_BYZ.37
+	title = "flavor_BYZ.37.t" 
+	desc = "flavor_BYZ.37.d"
+	picture = SHIP_SAILING_eventPicture
+	
+	fire_only_once = yes
+	major = yes
+	
+	trigger = {
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		OR = {
+			owns = 2447 #It is theorized that Greek Fire was based on crude oil extracted from oil wells around Tmurakan
+			owns = 4297 #Heliopolis in Syria, supposedly a city which has been influential in development of Greek Fire
+		}
+		OR = {
+			galley_fraction = 0.5 #A lot of galleys. Basically more galleys than all your other ships combined, i.e heavies, transports, lights. If you do trade ships, you're probably not gonna get this.
+			heavy_ship_fraction = 0.1 #This is a lot of heavies to have as an inland sea nation
+		}
+		
+		NOT = { is_year = 1800 } #Around the time when fire ships became obsolete
+	}
+	
+	mean_time_to_happen = {
+		years = 200
+		modifier = {
+			factor = 0.75
+			AND = {
+				owns = 2447
+				owns = 4297
+			}
+		}	
+	} #The rediscovery should be a lucky one, not something that should happen every game.
+	
+	option = { 
+		name = "flavor_BYZ.37.a" #Let's use this against our enemies once more! 
+		add_country_modifier = {
+			name = "byz_greek_fire"
+			duration = -1
+		}
+		ai_chance = {
+			factor = 90
+		}
+	}
+	option = {
+		name = "flavor_BYZ.37.b" #Let's sell it to one of our allies
+		trigger = {
+			any_country = {
+				alliance_with = BYZ
+			}
+		}
+		add_years_of_income = 3.0
+		random_country = {
+			limit = {
+				alliance_with = BYZ
+			}
+			add_country_modifier = {
+				name = "byz_greek_fire"
+				duration = -1
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				ruler_has_personality = embezzler_personality
+			}
+		}
+	}
+	option = {
+		name = "flavor_BYZ.37.c" #Let's burn the documents and refrain from using it
+		add_prestige = -5
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+

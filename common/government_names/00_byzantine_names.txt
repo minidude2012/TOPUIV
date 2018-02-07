@@ -1,0 +1,106 @@
+exarch_monarchy = {
+	#Apparently there is such a thing as kingdom and empire vassals - You just need to release them from your own lands!
+	rank = {
+		1 = EXARCHATE
+		2 = EXARCHATE
+		3 = EXARCHATE
+	}
+
+	ruler_male = {
+		1 = EXARCH
+		2 = EXARCH
+		3 = EXARCH
+	}
+
+	ruler_female = {
+		1 = EXARCHISSA
+		2 = EXARCHISSA
+		3 = EXARCHISSA
+	}
+	
+	consort_male = {
+		1 = EXARCH
+		2 = EXARCH
+		3 = EXARCH
+	}
+
+	consort_female = {
+		1 = EXARCHISSA
+		2 = EXARCHISSA
+		3 = EXARCHISSA
+	}
+
+	trigger = {
+		government = monarchy
+		OR = {
+			is_subject_of = BYZ
+			AND = {
+				is_subject_of = ROM
+				ROM = {
+					culture_group = byzantine
+				}
+			}
+		}
+		
+		is_lesser_in_union = no #To avoid PU's being called Exarches, 'cause they fekkin' ain't.
+	}
+}
+
+byzantine_monarchy = {
+	rank = {
+		1 = DESPOTATE
+		2 = KINGDOM
+		3 = EMPIRE
+	}
+
+	ruler_male = {
+		1 = DESPOT
+		2 = AUTOKRATOR
+		3 = BASILEUS
+	}
+
+	ruler_female = {
+		1 = DESPOTISSA
+		2 = AUTOKRATEIRA 
+		3 = BASILISSA
+	}
+	
+	consort_male = {
+		1 = DESPOT
+		2 = AUTOKRATOR
+		3 = BASILEUS
+	}
+
+	consort_female = {
+		1 = DESPOTISSA
+		2 = AUTOKRATEIRA 
+		3 = BASILISSA
+	} #The female consort could also be known as Kyria or Despoina, i.e lady of the house, but yeah.
+
+	heir_male = {
+		1 = HEIR
+		2 = DESPOT #Technically this was also used by the Empire, but I figure Symbasileus is more prestigous
+		3 = SYMBASILEUS
+	}
+
+	heir_female = {
+		1 = HEIR
+		2 = DESPOTISSA #Technically this was also used by the Empire, but I figure Symbasileus is more prestigous
+		3 = SYMBASILISSA
+	}
+	
+	trigger = {
+		government = monarchy
+		OR = {
+			tag = BYZ
+			tag = TRE
+			tag = EPI
+			tag = MOE
+			tag = CAP #Adjusted because I saw they did not adjust this in BT, apparently.
+			AND = { #To allow for Roman Empire restoration while still being Basileus
+				tag = ROM 
+				culture_group = byzantine
+			}
+		}
+	}
+}

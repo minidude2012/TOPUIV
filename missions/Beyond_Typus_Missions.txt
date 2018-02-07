@@ -1,0 +1,3799 @@
+#Beyond Typus's colonial missions, hopefully both historical and dynamic.
+#Note the missions for a first settlement in the Lesser Antilles, Eastern United States, and Canada are located in the vanilla 'Colonial_Missions' file
+
+#Beyond Typus Colonial Region missions - Newfoundland
+bt_establish_newfoundland_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_newfoundland = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_newfoundland = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_newfoundland = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_newfoundland = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_newfoundland = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.4
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = ENG
+				tag = GBR
+				tag = FRA
+				tag = NAV
+				tag = IRE
+				tag = TNA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = HOL
+				tag = NED
+				tag = POR
+				tag = CAS
+				tag = SPA
+				tag = BRI
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_newfoundland = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_newfoundland = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_newfoundland = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Rupert's Land
+bt_establish_hudson_bay_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_hudson_bay = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			NOT = {
+				AND = {
+					has_terrain = glacier
+					has_climate = arctic
+				}
+			}
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_hudson_bay = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_hudson_bay = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_hudson_bay = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_hudson_bay = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.5
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = FRA
+				tag = SCO
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				245 = {			#York - North Sea
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				245 = {			#York - North Sea
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_hudson_bay = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_hudson_bay = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_hudson_bay = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Greenland
+bt_establish_greenland_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_greenland = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_greenland = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_greenland = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_greenland = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_greenland = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.6
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 16.0			#Special x4 to make up for the lower base priority and ensure Denmark picks this despite Arctic terrain
+			OR = {
+				tag = DAN
+				tag = ICE
+				tag = NOR
+			}
+		}	#High chance historical tag favouritism
+		#No low chances
+		#modifier = {
+		#	factor = 2.0
+		#}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				23 = {			#Bergen - North Sea
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				23 = {			#Bergen - North Sea
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_greenland = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_greenland = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_greenland = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Acadia
+bt_establish_acadia_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_acadia = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_acadia = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_acadia = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_acadia = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_acadia = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.7
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 16.0			#Special x4, the first permanent colonies in contental North America, and the first French and Scottish colonies
+			OR = {
+				tag = FRA
+				tag = SCO
+				tag = GBR
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = ENG
+				tag = POR
+				tag = NED
+				tag = HOL
+				tag = BRI
+				tag = IRE
+				tag = TNA
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_acadia = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_acadia = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_acadia = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Florida
+bt_establish_florida_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_florida = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_florida = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_florida = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_florida = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_florida = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = FRA
+				tag = ENG
+				tag = GBR
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_florida = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_florida = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_florida = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Cuba
+bt_establish_cuba_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_cuba = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_cuba = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_cuba = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_cuba = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_cuba = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.8
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_cuba = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_cuba = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_cuba = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Hispaniola
+bt_establish_hispaniola_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_hispaniola = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_hispaniola = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_hispaniola = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_hispaniola = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_hispaniola = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.9
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 16.0			#Special x4, the first Spanish colonies in North America, also the first colonies since Vinland hundreds of years earlier
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			tag = FRA
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_hispaniola = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_hispaniola = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_hispaniola = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Bahamas
+bt_establish_bahamas_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_bahamas = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_bahamas = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_bahamas = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_bahamas = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_bahamas = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.10
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		#No high chance, these were largely left abandoned until very late
+		#modifier = {
+		#	factor = 4.0
+		#}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_bahamas = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_bahamas = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_bahamas = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Northwest Territories
+bt_establish_northwest_territories_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_northwest_territories = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_northwest_territories = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_northwest_territories = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_northwest_territories = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_northwest_territories = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.11
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = FRA
+				tag = SCO
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				1005 = {			#York Factory - Hudson Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				873 = {			#Astoria/Fort George - Columbia
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				1005 = {			#York Factory - Hudson Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				873 = {			#Astoria/Fort George - Columbia
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_northwest_territories = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_northwest_territories = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_northwest_territories = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Cascadia
+bt_establish_cascadian_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_cascadia = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_cascadia = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_cascadia = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_cascadia = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_cascadia = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.12
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+				tag = ENG
+				tag = GBR
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = FRA
+				tag = RUS
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				2021 = {			#San Francisco Area - California
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				1005 = {			#York Factory - Hudson Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				893 = {			#New Orleans - Mississippi
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				978 = {			#Anchorage - Alaska
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				2021 = {			#San Francisco Area - California
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				1005 = {			#York Factory - Hudson Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				893 = {			#New Orleans - Mississippi
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				978 = {			#Anchorage - Alaska
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_cascadia = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_cascadia = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_cascadia = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Alaska
+bt_establish_alaska_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_alaska = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_alaska = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_alaska = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_alaska = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_alaska = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.13
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = MOS
+				tag = RUS
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			730 = {			#Girin - Girin
+				trade_share = {
+					country = ROOT
+					share = 25
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				730 = {			#Girin - Girin
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_alaska = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_alaska = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_alaska = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Louisiana
+bt_establish_louisiana_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_louisiana = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_louisiana = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_louisiana = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_louisiana = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_louisiana = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.14
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			tag = FRA
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				2670 = {			#Toronto - Great Lakes
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				2670 = {			#Toronto - Great Lakes
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_louisiana = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_louisiana = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_louisiana = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - California
+bt_establish_california_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_california = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_california = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_california = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_california = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_california = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.15
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			tag = RUS
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				852 = {			#Mexico City - Mexico
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				2499 = {			#Rio Grande - Rio Grande
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				1020 = {			#Kyoto - Nippon
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				852 = {			#Mexico City - Mexico
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				2499 = {			#Rio Grande - Rio Grande
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				1020 = {			#Kyoto - Nippon
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_california = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_california = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_california = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Mexico
+bt_establish_mexico_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_mexico = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_mexico = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_mexico = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_mexico = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_mexico = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.16
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 8.0			#Special x2, because this is a core area for Spain
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		#No low chances
+		#modifier = {
+		#	factor = 2.0
+		#}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				835 = {			#Panama - Panama
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				835 = {			#Panama - Panama
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_mexico = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_mexico = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_mexico = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Colombia
+bt_establish_colombia_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_colombia = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_colombia = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_colombia = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_colombia = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_colombia = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.17
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 8.0			#Special x2, because this is a core area for Spain
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = HOL
+				tag = NED
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 30.0
+			tag = SCO
+		}	#Special Colombian modifier (The Darien Scheme)
+		modifier = {
+			factor = 2.0
+			OR = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				835 = {			#Panama - Panama
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				484 = {			#Havana - Caribbean
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				835 = {			#Panama - Panama
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_colombia = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_colombia = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_colombia = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Peru
+bt_establish_peru_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_peru = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_peru = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_peru = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_peru = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_peru = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.18
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 8.0			#Special x2 because it is a primary Spanish holding
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		#modifier = {
+		#	factor = 2.0
+		#}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			835 = {			#Panama - Panama
+				trade_share = {
+					country = ROOT
+					share = 25
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				835 = {			#Panama - Panama
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_peru = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_peru = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_peru = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - La Plata
+bt_establish_la_plata_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_la_plata = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_la_plata = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_la_plata = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_la_plata = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_la_plata = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.19
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = HOL
+				tag = NED
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				809 = {			#Lima - Lima
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				756 = {			#Bahia - Brazil
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				809 = {			#Lima - Lima
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				756 = {			#Bahia - Brazil
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_la_plata = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_la_plata = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_la_plata = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Brazil
+bt_establish_brazil_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_brazil = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_brazil = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_brazil = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_brazil = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_brazil = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.20
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 16.0			#Special x4, Portugal's main foreign holding
+			tag = POR
+		}	#High chance historical tag favouritism
+		#No low chances
+		#modifier = {
+		#	factor = 2.0
+		#	OR = {
+		#		tag = HOL
+		#		tag = NED
+		#	}
+		#}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 30.0
+			OR = {
+				tag = HOL
+				tag = NED
+			}
+		}	#Special Brazilian modifier
+		modifier = {
+			factor = 2.0
+			227 = {			#Lisbon - Lisbon
+				trade_share = {
+					country = ROOT
+					share = 25
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				227 = {			#Lisbon - Lisbon
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_brazil = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_brazil = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_brazil = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Australia
+bt_establish_australia_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_australia = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_australia = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_australia = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_australia = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_australia = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.21
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+		}	#Historical tag favouritism
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_australia = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_australia = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_australia = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+#Beyond Typus Colonial Region missions - Australia
+bt_establish_polynesia_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_polynesia = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_polynesia = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_polynesia = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_polynesia = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_polynesia = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.22
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = ENG
+				tag = GBR
+				tag = NED
+				tag = HOL
+			}
+		}	#Lesser historical tag favouritism
+		modifier = {
+			factor = 1.5
+			OR = {
+				tag = FRA
+				tag = SCO
+				tag = IRE
+				tag = TNA
+			}
+		}	#Least historical tag favouritism
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_polynesia = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_polynesia = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_polynesia = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}

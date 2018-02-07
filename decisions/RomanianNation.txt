@@ -1,0 +1,88 @@
+country_decisions = {
+
+	romanian_nation = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			NOT = { has_country_flag = formed_romania_flag_btp }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { tag = HLR }
+			NOT = { tag = PAP }
+			NOT = { exists = RMN }
+			primary_culture = romanian
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+		}
+		allow = {
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			NOT = { exists = BYZ }
+			owns_core_province = 158	# Maros
+			owns_core_province = 3164	# Constanta
+			owns_core_province = 160	# Craiova
+			owns_core_province = 161	# Tirgoviste
+			owns_core_province = 268	# Iasi
+			owns_core_province = 1756	# Budjak
+			owns_core_province = 3154	# Alba
+			owns_core_province = 2405	# Bender
+		}
+		effect = {
+			161 = { move_capital_effect = yes }
+			change_tag = RMN
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = {
+					NOT = {
+						government_rank = 2
+					}
+				}
+				set_government_rank = 2
+			}
+			wallachia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = RMN
+			}
+			moldavia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = RMN
+			}
+			transylvania_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+				}
+				add_permanent_claim = RMN
+			}
+			random_owned_province = {
+				add_base_tax = 1
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_romania_flag_btp
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

@@ -1,0 +1,39 @@
+released_culture = {
+	opinion = 75
+	yearly_decay = 2
+}
+
+helped_regain_georgia = {
+	opinion = 125
+	yearly_decay = 2
+}
+
+byz_resurgence_refused_help = {
+	opinion = -100
+	yearly_decay = 2
+}
+
+byz_resurgence_converted_catholicism = {
+	opinion = 50
+	yearly_decay = 1
+}
+
+byz_resurgence_refused_catholicism = {
+	opinion = -200
+	yearly_decay = 1
+}
+
+byz_granted_trade = {
+	opinion = 25
+	yearly_decay = 2
+}
+
+byz_denied_trade = {
+	opinion = -25
+	yearly_decay = 2
+}
+
+byz_established_sound_toll = {
+	opinion = -50
+	yearly_decay = 2
+}

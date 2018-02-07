@@ -1,0 +1,44 @@
+take_balkan_provinces = {
+	type = take_capital
+	
+	badboy_factor = 0.25
+	prestige_factor = 1.5
+	peace_cost_factor = 0.5	
+	
+	allowed_provinces = {
+		OR = {
+			region = balkan_region
+			region = carpathia_region
+		}
+		owned_by = TUR
+	}
+	
+	peace_options = {
+		#po_annex = yes
+		po_demand_provinces = yes
+	}
+	
+	prov_desc = ALL_BALKAN_CARPARTHIA_PROV
+	war_name = BALKAN_WAR_NAME
+}
+
+take_anatolia_provinces = {
+	type = take_capital
+	
+	badboy_factor = 0.25
+	prestige_factor = 1.5
+	peace_cost_factor = 0.5	
+	
+	allowed_provinces = {
+		region = anatolia_region
+		owned_by = TUR
+	}
+	
+	peace_options = {
+		#po_annex = yes
+		po_demand_provinces = yes
+	}
+	
+	prov_desc = ALL_ANATOLIAN_PROV
+	war_name = ANATOLIAN_WAR_NAME
+}

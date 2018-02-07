@@ -1,0 +1,267 @@
+conquer_orkney = {
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		tag = SCO
+		is_free_or_tributary_trigger = yes
+		369 = {
+			NOT = {
+				owned_by = ROOT
+				owner = {
+					is_subject_of = ROOT
+					overlord_of = ROOT
+				}
+			}
+		}		# Orkney
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes		
+	}
+	success = {
+		owns = 369
+	}
+	chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			adm = 4
+		}
+	}
+	immediate = {
+		add_claim = 369
+	}
+	abort_effect = {
+		369 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		369 = {
+			add_province_modifier = {
+				name = "faster_integration"
+				duration = 3650
+			}
+		}
+	}
+}
+
+scottish_control = {
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	allow = {
+		tag = SCO
+		normal_or_historical_nations = yes
+		exists = ENG
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		NOT = { alliance_with = ENG }
+		NOT = { highlands_area = { owned_by = ENG } }
+		NOT = { western_lowlands_area = { owned_by = ENG } }
+		NOT = { lowlands_area = { owned_by = ENG } }
+		NOT = { southern_isles_area = { owned_by = ENG } }
+		NOT = { northern_england_area = { owned_by = ROOT } }
+		NOT = { northern_england_area = { NOT = { owned_by = ENG } } }
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		NOT = { war_with = ENG }
+		NOT = { highlands_area = { owned_by = ENG } }
+		NOT = { western_lowlands_area = { owned_by = ENG } }
+		NOT = { lowlands_area = { owned_by = ENG } }
+		NOT = { southern_isles_area = { owned_by = ENG } }
+		northern_england_area = { owned_by = ROOT }
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 2
+			ENG = { is_at_war = yes }
+		}
+	}
+	immediate = {
+		northern_england_area = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		northern_england_area = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+	}
+}
+
+
+scottish_defense = {
+	
+	type = country
+
+	category = MIL
+	
+	allow = {
+		normal_or_historical_nations = yes
+		tag = SCO
+		exists = ENG
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		OR = {
+			highlands_area = { owned_by = ENG }
+			western_lowlands_area = { owned_by = ENG }
+			lowlands_area = { owned_by = ENG }
+			southern_isles_area = { owned_by = ENG }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		NOT = { war_with = ENG }
+		NOT = { highlands_area = { NOT = { owned_by = ROOT } } }
+		NOT = { western_lowlands_area = { NOT = { owned_by = ROOT } } }
+		NOT = { lowlands_area = { NOT = { owned_by = ROOT } } }
+		NOT = { southern_isles_area = { NOT = { owned_by = ROOT } } }
+	}
+	chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			ENG = { is_at_war = yes }
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				highlands_area = { owned_by = ENG }
+			}
+			highlands_area = {
+				limit = {
+					owned_by = ENG
+				}
+				add_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				western_lowlands_area = { owned_by = ENG }
+			}
+			western_lowlands_area = {
+				limit = {
+					owned_by = ENG
+				}
+				add_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				lowlands_area = { owned_by = ENG }
+			}
+			lowlands_area = {
+				limit = {
+					owned_by = ENG
+				}
+				add_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				southern_isles_area = { owned_by = ENG }
+			}
+			southern_isles_area = {
+				limit = {
+					owned_by = ENG
+				}
+				add_claim = ROOT
+			}
+		}
+	}
+	abort_effect = {
+		if = {
+			limit = {
+				highlands_area = { owned_by = ENG }
+			}
+			highlands_area = {
+				limit = {
+					owned_by = ENG
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				western_lowlands_area = { owned_by = ENG }
+			}
+			western_lowlands_area = {
+				limit = {
+					owned_by = ENG
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				lowlands_area = { owned_by = ENG }
+			}
+			lowlands_area = {
+				limit = {
+					owned_by = ENG
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+		if = {
+			limit = {
+				southern_isles_area = { owned_by = ENG }
+			}
+			southern_isles_area = {
+				limit = {
+					owned_by = ENG
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_stability = 1
+		add_war_exhaustion = -5
+	}
+}

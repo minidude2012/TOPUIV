@@ -1,0 +1,434 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new groups or cultures, make sure they are unique.
+#
+# Union tags do not suffer from the 'same_culture_group' tax penalty.
+# Primary tags are the first choice for rebel factions seeking cultural independence.
+#
+# graphical_culture = westerngfx
+# second_graphical_culture = muslimgfx (fallback if the first does not exist)
+
+#gaelic	= {
+#	graphical_culture = westerngfx
+
+#Cornish moved to btpl_cultures and the brythonic culture group
+	
+#	manx = {			#removed in Beyond Typus, readd for BtPL
+#		graphical_culture = westerngfx
+#		primary = IOM
+#		dynasty_names = {
+#			Stanley Fairfax Dhone Kelly Corlett Quayle Moore Cain Caine Christian Kneale Teare Clague Shimmin Stevenson
+#			Quirk Watterson Cannell Carine Kewish Comish Costain Corkill Kennaugh Faragher Kissack
+#		}
+#		male_names = {
+#			Abban Adaue Aedan Albyn Aldyn Aleyn Aland Alister Allowe Altar Waltar Andreays Anghus Art Arteure
+#			Asketil Aslac Asmund Aspallan Austeyn Baran Bertram Biom Brendan Bretnach Bretan Cairbe Carbry Cane
+#			Cian Carmac Carmick Cormac Caroly Cashin Colby Colla Colum Colyn Connaghyn Conylt Conal Coobragh
+#			Cooil Cristen Cristal Custal Crosse Dermot Germot Diarmid Dofnald Dogan Dolen Dolyn Dollin Donal
+#			Doncan Donachan Donn Doolish Douglas Dugal Dooil Dufgal Eaghan Eamon Ector Edard Eoin Ean Ewan Yvon
+#			Erling Faragher Fayrhare Fergus Felys Fiac Filip Finbar Finlo Fynlo Fintan Flan Flaxney Fogal Franc
+#			Fynn Galfrid Gavan Gawain Geffry Geoffrey German Gibbon Gilbrid Gilbert Gilander Gilaspic Gilcolm
+#			Gilno Gilrea Godred Gorman Hane Harold Hugh Hugo Illiam Inry Ivar Jamys Hamish Jocelin Jole Yuan
+#			Keird Kieran Kerron Laurys Lear Liagh Loghlan Lochlin Lonan Lucas Magnus Mannanan Markys Martyn
+#			Mayl Mian Miall Mold Moleyn Monier Moris Maurice Murchad Nele Niall Nellyn Nevyn Nichol Nigel Okerfair
+#			Olaf Olave Olyn Ossian Oshin Oter Odairr Padeen Paric Perick Parlance Paton Payl Peddyr Qusten Quistaghyn
+#			Ramsey Reginald Reynold Rigard Robart Robyn Rody Rory Ronan Rumund Sandulf Sharry Sigurd Sigvald
+#			Silvester Stiurt Stoill Teige Thomase Thomlyn Thorkell Thorgil Thorulf Urmen Heremon Herman Ysaig
+#			Yvar Yvor Yveno Ivanhoe Yvon
+#		}
+#		female_names = {
+#			Aalid Aelid Aalin Aaue Aileen Eileen Elena Aimel Ainle Ailstreena Andreca Aufrica Effrica Averick Aurick
+#			Bahey Bahie Paie Peggy Blaa Blae Breata Brede Breeshey Bridget Brenta Breda Breesha Caly Calybride Calycrist
+#			Calycrista Calyhony Calypatrick Calyree Calyvorra Cara Carree Carola Catreena Catreeney Cissolt Conla
+#			Cossot Creena Crera Cristeena Cristory Diorval Doona Drema Ealee Ealish Ealisaid Emell Essa Eunys Feena
+#			Fenella Finola Francaig Fritha Grayse Greeba Inot Iney Ina Isot Jinn Joan Joney Joannia Johnet Jonee
+#			Joney Jony Juliana Julia Katryna Kathleen Lilee Lora Lula Lulach Malane Manana Margaid Mariot Marion
+#			Moreen Mariod Mawde Meave Moira Moirrey Voirrey Mona More Moreen Mureal Nan Nancy Nessa Nessy Onnee Onnor
+#			Onora Nora Paaie Ranhilda Ratyn Reina Renny Roseen Sheela Sorcha Tissot Tosha Una Ursula Vorana Vorgel Ysbal
+#		}
+#	}
+#}
+
+british = {
+	northumbrian = {
+		graphical_culture = westerngfx
+		primary = NOL
+		dynasty_names = { 
+			Dudley Mowbray  Percy Howard Seymour Holland 
+			Talbot Stanley Courtenay "de la Pole" "de Vere" Stafford Grey Mortimer "le Despenser" "de Camoys"
+			"Oglethorpe" Hyde
+			# CKII
+			"Turberville" "Butler" "Montagu" "Beauchamp" "Raleigh" "Stratford"
+		}
+		male_names = {
+			Henry Edward Charles James William Richard Philip Henry Frederick Arthur Charles James Edgar Thomas Edmund 
+			George John Jacob Humphrey Robert Stephen Adam Alexander Albert Alfred Ambrose Andrew Anthony Archibald 
+			Benjamin Christopher Daniel David Ernest Francis Geoffrey Guy Horatio Hugh Isaac Jeremy Jonathan Joseph 
+			Lawrence Matthew Nehemiah Oliver Samuel Sydney Ellis Duncan Sampson Turstan Edulf Edwyn Hereward
+
+			Adam Alan Albert Alexander Alfred Andrew Anselm Arnold Arthur Aubrey Christopher David 		
+			Edmund Edward Eric Erik Eustace Fulk Folke Geoffrey George Gerald Gilbert Godfrey Gregory Guy 
+			Henry Hugh Humphrey Jocelyn John Jordan Laurence Lionel Mark Marcus Martin Matthew Maurice 
+			Michael Nicholas Paul Peter Philip Ralph Randolph Reginald Richard Robert Roger Simon Stephen 
+			Theobald Thomas Waleran Walter William Jacob Ambrose Anthony Archibald Benjamin Daniel Ernest 
+			Francis Horatio Isaac Jeremy Jonathan Joseph Lawrence Nehemiah Oliver Samuel Sydney 
+		}
+		female_names = {
+			Agnes Alice Cristina Matild Emma Margery Aline Eve Hawis Catherine Cecily 
+			Beatrix Mabil Ramett Alienor Amabil Emma Hawise Isabel Isold Elisabeth Joan Idony 
+			Custance Mahaut Margaret Mary Denis Maud Matilda Gillian Milisent
+		}
+	}
+	anglo_irish = {
+		graphical_culture = westerngfx
+		primary = KOI
+		dynasty_names = {
+			Butler Fitzgerald Sanford Sweetman Fitzanthony Grant Rockett Grace
+			Cantwell Fitzrobert Comerford Forrestall "de la Freyne" Flood Alyward
+			Toler Marshall Purcell Rochford Howlin Shortall "d'Earley" Gore Raggett
+			Fitznorman Troy Laffan "St. John" Tobin Wall Roche Eustace Grennan
+			Fleming Morris Burke Archer Hackett Plunkett Walsh "le Poer" Keating
+			"de Braose" Lindsay Montague Bermingham Prendergast Forrestal Everard 
+			"O'Brian" "MacCarthy" "O'Shea" Fitzstephen Sutton Esmonde Brown Rossiter 
+			Wadding Hearns Whitty Hore Harper "le Denne" Fitzhenry Leigh Colclough 
+			Devereux Sinnott Talbot Merris Carew Dalton Howell Hayes French Codd 
+			Lambert Stafford "de Villiers" Redmond Stokes Cheevers Condon Barry Supple 
+			Nugent Galway Hodnett Nagle Downing Hyde Terry Synan Lombard Stapleton 
+			"de Cogan" Barrett Fant Maunsell Baggott "de Lacey" Daly Gunning Finniter
+			Hewson Courtenay Fitzmaurice Cantillon Hussey Ferriter
+			Bunyan Mulvihill Boyle "Mac Sheehy" Cotter "O'Hanley" "O'Casey" 
+			"O'Donovan" "O'Mahony" "O'Hynes" Coppinger MacSweeney Blake Dillon 
+			Halloran Jennings Coyne MacDonnell McPhilbin McEvilly McMorris McCostello 
+			Jordan Phillips MacWilliam Athy Bodkin Browne "d'Arcy" Deane Ffont Ffrench 
+			Joyce Kirwan Lynch Martin Skerritt Bigod "le Gros" Hartpole Riddlesford
+			"de Vesey" "de Clare" "de Bigarz" Costello Reynell Sherlock "de Taghmon" 
+			Tuite Lowe "de Ginkel" Mortimer Haynes Bellew "de Verdon" Taaffe Bagnall 
+			"de Gray" Rushe "de Courcey" Nesbitt Mitchell Sely Audley Mandeville Savage
+			Archbold "de Loundres" Lawless Brabazon Power Harold Loftus Fitzwilliam
+			Barnewall Taylor Locke Bathe Barber Aylmer Hereford
+			Connell Tyrrell "St. Lawrence" Russell Fitzrory Luttrell "de la Salle" Cornwalsh
+			"de Geneville" "d'Exetor" Bomford Dowdall Cussack White "St. Leger" Townley 
+			Netterville Wogan Warren Bellingham Aston Clinton Dromgoole Gernon Babe
+		}	#Draiocht copy-pasted from leader names pulled from countries. Written based on historical family holdings in the 16th century
+		male_names = {
+			Arthur Bartley Bertie Bert Darcy Hugh William Piers Raymond John Thomas
+			Aaron Abel Alwin Angus Augustine Walter Bran Kenneth Clemens Clement Nicholas Constantine
+			David Donald Duncan Douglas Eric Eugene Jacob Malcolm Nigel Oscar Peter Ernest
+			Paul Francis Roy Roderick Shaw Godfrey William Philip George Robert Jonathan Edmund Oliver
+			Gerald Richard Wentworth Lettice Edward Augustus Henry
+		}
+		female_names = {
+			Alice Elizabeth Darcy Joan Eva Agnes Margaret Muriel Catherine Christina Eleanor Martha
+			Maria Matilda Mary
+		}
+	}
+}
+
+french = {
+	arpitan = {
+		primary = DAU
+	}
+}
+
+germanic = {
+	frisian = {
+		graphical_culture = westerngfx
+		primary = FRI
+		male_names = {
+			Adriaen Albrecht Albert Alwin Ambroos Antoon Arnold Arnold Arnulf Arnulf Balderik Barend 
+			Barnaerd Bernard Bartolomeus Bartolomeus
+			Bavo Bertold Boudewijn Baldwin Claes Nicholas Claeuwaert Daevit David Damaes Diederick 
+			Thierry Dirk Thierry Douwe Eduard Edward Egmund Ekbert
+			Emmo Engelbrecht Filips Philip Floris Folbert Frans Francis Frederik Frederick Gerard Gerolt 
+			Gerulf
+			Gerrit Gijsbrecht Giselbert Gilbert Godfried Godfrey Godschalk Gozewijn Guij Guy Gwijde 
+			Gwijde Hendrik Henry Herman Herman Hubert
+			Hugo Hugh Ijsbrand Ijsbrecht Jacco Jacob Jan John Karel Charles Koenraad Konrad
+			Kristof Christopher Lambert Lambert Lodewijk Louis Ludewijn Lutbert Luthard Maertijn Martin
+			Marquart Niclaes Nicholas
+			Olivier Oliver Otto Otto Otwin Onno Pieter Peter Reinaerd Reinoud Reinhold Reginar Robrecht
+			Robert Robert Robert Rodulf 
+			Roelof Roland Rutger Sebastiaen Sebastian Sicco Simon Steven Stephen Steyn Sten Theodolf
+			Waelram Walter Walter
+			Wicher Willem William Wolfard Hendrik Maurits
+			Adriaan Andries Antonius Gaspar Isaac Johan Laurens Paul Abraham Barthout Christiaan
+			Christoffel Constantijn Cornelis Daniel Eise Gabriel Gerben Hans Jeroen Joost Nicolaas 
+			Roeland Rogier Thomas Vincent Zacharias
+		}
+		female_names = {
+			Ada Adela Adelheid Adelaide Aechte Agaete Aleid Alijse Alice Aliken Anna Annelies
+			Badeloge Bava Beatrijs Beatrice Benedicta
+			Blanca Blanche Blanceflore Cecily Cecilia Cille Clara Clementia 
+			Ellijnore Eleanor Emma Ermingarde Ermengarde Fenne
+			Filippa Philippa Frida Gheertrude Gertrude Gerda Godila Haduwijn Helena Helen Herlinda 
+			Hilligonda Ide Ida Imagina Irene Isabelle Iudith
+			Jacoba Jaccobijn Jasminne Johanna Joan Jolanda Juliana Jutte Kathrijne 
+			Katrien Catherine Liedwin Lisebet Elisabeth Machtelt Margareta Margaret
+			Maria Mathilde Matilda Oda Odelt Olinde Onna Pieternelle Petronilla Reynilde Sanne 
+			Sigerda Sophie Sophia Swanhildis Thetburga Tiburge Waltrud
+			Wila Wendelmoet Wenna Willemine Yonefij Yvonne Zoete Margaretha Rosanne Tamara
+		}
+		dynasty_names = {
+			"van Groningen" Nassau "van Wassenberg" "van Henegouwen" "de Friesland"
+			"van Haspinga" "van Limburg" "van Lotharingen"  "von der Mark"
+			"van Leuven" "van Brabant" "van Egmont" "de Reginar" "van Jülich-Hengebach"
+			# CKII
+			"van Loon" "von Geldern" "van Sulzbach" "von Salm"
+			"van Bergh" "van Heinsberg" "van de Veluwe" "De Graeff"
+			"van Brederode" "van Breda" "van Heemskerk" "van Glymes" "van Grimberghe"
+			"van Renesse" "van Wassenaer" "van Bronckhorst"
+			"van Keppel" "Van Voorst tot Voorst" "van Wisch" "van Kamerijk" "Cirksena"
+			"van Diest" "van Montfoort"
+			# Frisian
+			"van Serooskerken"
+		}
+	}
+}
+
+dacian = {
+	graphical_culture = easterngfx
+	romanian = {
+		primary = RMN
+		dynasty_names = {
+			"Basarab" "Danesti" "Draculesti"
+			Callimachi Ghica Cantacuzino Cantemiresti Racovita Caradja Sturdza 
+			Conachi Soutzos Golescu Vacarescu Mavrocordatos Craiovesti Hâjdau
+			Kogalniceanu Movilesti
+		}
+		male_names = {
+			Constantin Mihail Mircea Mihnea Nicolae Vladislav Mattia 
+			Ilias Scarlat Stefan Alexandru Ioan Leon Moise Neagoie Besarab 
+			Serban Simeon Teodosiu Vladut Corneliu Flaviu Iuliu Octavian
+			Valeriu Petru Petrascu 
+			Adrian Alexander Anghel Angel Aron Bajan Balc Barbat Basarab Bogdan Carol 
+			Ciprian Ciubar Claudiu
+			Cornelius Costin Damjan Dan Dragos Dumitru Emerik Florin Franjo Francis Gavril 
+			Gheorghe George Grigore Gregory Iacob Gabriel
+			Iancu Ieremia Ilie John Iorghu Iosif Iuga Janos Ladislau Latcu Laurentiu Laurence 
+			Litovoi Lucian Lucius Marin Marius
+			Mihai Milos Milosz Nicolaie Petre Pirvu Radovan Radu Roman Sas Seneslav 
+			Sergiu Simion Simon
+			Stephen Stelian Teodor Theodore Tepes Tibor Tihomir Timotei Tudor Thierry
+			Valentin Vasile Basil Veaceslav
+			Victor Vilhelm William Vintila Vlad
+		}
+		female_names = {
+			Adelina Adriana Afina Alexandra Alexia Ana Anna Anastasia Angela Arina
+			Christina Clara Dana Ecatarina Catherine
+			Elena Helen Elisabeta Elisabeth Emilia Emily Eufroysina Euphrosyne Felicia Floarea Flora 
+			Ioana Ionela Irina Iulia Juliana Maria Monica Iacoba
+			Natalia Olimpia Paraschiva Petra Roxana Ruxandra Smaranda Sophia Stana Stefana 
+			Stefania Stephania Teodora Rahela Flavia Cosmina
+			Tereza Teresa Vasilica Violeta Yolanda Voica Zina
+		}
+	}
+	#Remove next major patch, leaving for now for compatibility
+	transylvanian = {
+		male_names = {
+			Ulászló László Lajos Albert János Mátyás Zsigmond András Károly István Béla Anasztáz Barnabás 
+			Boldizsár Dávid Dömötör Edvárd Ernö Ferenc Gábor György Izsák Jenö József Kálmán Kázmér Lörinc 
+			Miklós Oszkár Ottó Patrik Péter Simon Tamás Vencel
+			Ábel Ádárn Ágoston Álmos Árpád Õdön Otto Alajos Ambrus András Andrew Antal Attila Bálint 
+			Albert Balázs Benedek Benedict Bernát Bernard Bertók Bertalan Boldizsár Bonuslo
+			Borisz Boris Csák Csaba Csongor Dénes Dömötör Dezsõ Domoszló Donát Elek Elemér Endre Ernõ 
+			Philip Ferenc Francis Frigyes Gábor Gábriel Gabriel Gáspár Caspar Géza Gazsi
+			Gellért Gergely György George Gyula Imre István Stephen Izsák Jákob Jacob János John József 
+			Joseph Jenõ Kálmán Károly Charles Konrád Konrad Kornél Kristóf László Lázár Lõrinc Lajos 
+			Lampert Levente Lukács Márk Marcus Márton Martin Máté Mátyás Matthew Móric Mózes Mihály 
+			Michael Louis Fulöp Béla
+			Miklós Nándor Orbán Oszkár Pál Paul Péter Peter Sámuel Samuel Sándor Alexander Salamon 
+			Szilveszter Silvester Tádor Tacsony Tamás Thomas Tibor Tivadar Vazul Vencel Vaclav Vilmos 
+			Zoltán Zsigmond Sigmund Zsolt Saul Soma
+			Alexandru Radu Vlad Constantin Mihail Mircea George Grigore Mihnea Nicolae Besarab Vladislav Mattia 
+			Radu Ilias Scarlat Stefan Dan Alexandru Ilias Gabriel Ioan George Leon Moise Neagoie Besarab 
+			Leon Radu Mihnea Serban Simeon Teodosiu Vintila Vladut Milos Corneliu Flaviu Iuliu Octavian Sergiu 
+			Valeriu Petru Petrascu Radu 
+			Adrian Alexandru Alexander Anghel Angel Aron Bajan Balc Barbat Basarab Bogdan Bogdan Carol 
+			Ciprian Ciubar Claudiu
+			Corneliu Cornelius Costin Damjan Dan Dragos Dumitru Emerik Florin Franjo Francis Gavril 
+			Gheorghe George Grigore Gregory Iacob Gabriel
+			Iancu Ieremia Ilie Ioan John Iorghu Iosif Iuga Janos John Ladislau Latcu Laurentiu Laurence 
+			Litovoi Lucian Lucius Marin Marius
+			Mihai Milos Milosz Mircea Moise Nicolaie Petre Pirvu Radovan Radu Roman Sas Seneslav 
+			Sergiu Simion Simon
+			Stefan Stephen Stelian Teodor Theodore Tepes Tibor Tihomir Timotei Tudor Thierry Valentin 
+			Valentin Valeriu Vasile Basil Veaceslav
+			Victor Vilhelm William Vintila Vlad
+		}
+		female_names = {
+			Ágnes Agnes Éva Eva Adelaida Adelaide Agáta Agatha Amália Amelia Angyalka Anikó Aranka 
+			Bertha Borbála Csilla Csillag Czenzi Dorottya Dorothy Edit Edith Emõke Emese Erika Erzsébet 
+			Elisabeth Eszter Berta Anna
+			Etel Euphemia Euphemia Gizella Gisela Györgyi Georgia Hajnal Hedwig Hedwig Ibolya Ildikó 
+			Irén Irene Jácinta Józsa Júlia Juliana Jolán Judith Judith Kamilla Camilla Katalin 
+			Kinga Klára Catherine Illona
+			Konstancia Constance Krisztina Christina Kunigunda Kunigunde Luca Mária Maria Márta Martha 
+			Magdolna Magdalena Margaréta Margaret Margit Matild Matilda Natália Natalia Odola Orsolya 
+			Panni Piroska Rózsa Rosa Sára Sarah Sarolt Zsuzsa Zsanett
+			Skolasztika Sophia Tundér Terezia Viola Virág Zoltána Zsófia Adelina Adriana Afina Alexandra Alexia Ana Anna Anastasia Anastasia Angela Arina Christina 
+			Christina Dana Ecatarina
+			Elena Helen Elisabeta Elisabeth Emilia Emily Eufroysina Euphrosyne Felicia Floarea Flora 
+			Ioana Ionela Irina Iulia Juliana Maria Maria Monica Iacoba
+			Natalia Olimpia Paraschiva Petra Roxana Ruxandra Smaranda Stana Stefana 
+			Stefania Stephania Teodora Rahela Flavia Cosmina
+			Tereza Teresa Vasilica Violeta Yolanda Voica Zina 			 
+		}
+		dynasty_names = {
+			Báthory Hunyadi Szapolyai Rákóczy Bocskai Bethlen Almásy Andrássy Batthyány Csáky Dessewffy
+			Erdody Eszterházy Festetics Hajdú Károlyi Kun Magyary Perényi Rónai Széchenyi Szepessy 
+			Thököly Tisza Zrínyi Teleki
+			Majláth Dóczy Dobó Koháry Orczy Frankopan Garay Mikes Szécsi Imreffy Nádasdy Rhédey
+			Zrinski Hadik Both "Rákóczi" Forgách Cseszneky Derencsényi Décsey Révay Esterházy
+			Kállay Kemény Thurzó Zichy
+			"Basarab" "Danesti" "Draculesti"
+			Callimachi Ghica Cantacuzino Cantemiresti Racovita Caradja Sturdza 
+			Conachi Soutzos Golescu Vacarescu Mavrocordatos Craiovesti Hâjdau
+			Kogalniceanu Movilesti
+		}
+	}
+}
+
+south_slavic = {
+	bosnian = {
+		primary = BOS
+		male_names = {
+			Stefan Lazar Djuradj Milosh Djordje Alexa Grgur Petrija Todor Aleksandar Mihailo Milan 
+			Bratislav Darko Dragan Dubravko Dusan Filip Goran Ivan Josif Konstantin Luka Marko Mateja Miroslav 
+			Nebojsa Nemanja Nenad Nikola Pedrag Stanko Toma Vinko Vjekoslav Zdravko Zvonimir
+			Aldimir Asen Berbat Blaz Blaise Boleslav Borna Branimir Budimir Kosmin Danilo Daniel 
+			George Dmitar Dobroslav Dragija Dragos Dragutin Gavrilo Gabriel Godimir Goran
+			Grgur Ilija Ivan John Josif Joseph Josip Joseph Jovan John Kasjan Konstantin Constantine 
+			Lazar Ljudevit Luka Marko Marcus Martin Martin Matija Matthew Mihailo Mihovil Milorad 
+			Mircea Miroslav Miroslav Mislav Nenad Nikodim Nicodemus Nikola Nicholas
+			Ninoslav Petar Peter Porin Prvoslav Radoslav Rastko Ratomir Roman Serapion Simeon 
+			Sinisa Slavko Slobodan Stefan Stephen Teodosije Trajan Uros Visarion Vladimir Vladimir 
+			Vladislav Vladislav Vlastimir Milutin Krsto Djordje Bogdan Branko 
+			Vuk Lupo Vukan Vukasin Vukoman Zoran Zvonimir Simon Mladen
+		}
+		female_names = {
+			Agata Agatha Barbara Branimira Desislava Dubravka Elena Helen Hicela Jelena Karolina 
+			Lovorka Marija Maria Milka Neda Radica Zdenka Andjela Antonija
+			Bastina Biljana Bistrina Bojana Casna Chasna Dejana Dragana Dragoslava Duga Dusica Gordana 
+			Grana Grubana Jagoda Jovana Jovanka Karika
+			Ljubica Luka Majka Malina Medeni Meki Milinka Miljana Miriti Mirjana Mudary Mudra Nada 
+			Namena Nadanje Keratza Branka Mirna
+		}
+		dynasty_names = {
+			"Nemanjic" "Vlastimirovic" "Obrenovic" "Obilic" "Karadjordjevic" "Kovacevic" "Petrovic" 
+			"Dragutinovic" "Vojislavljevic" "Sokolovic" "Ilic" "Vukanovic" "Mrnjavcevic" "Lazarevic" 
+			"Brakovic" "Balsic" "Vukovic" "Branovic"
+		}
+	}
+	slovene = {
+		primary = CNL
+		male_names = {
+			Alenka Alfonz Alfred Andrej Anton Avgust Bartolomej Blaz Bojan Boris
+			Bostjian Bozidar Ciril Danilo Demeter Drago Dusan Franc Gregorij Ivan
+			Ivo Janez Jernej Joze Jurij Karpo Lado Leon Lojze Miha
+			Milan Mladen Odilo Pino Rado Radovan Rudolf Slavko Slavoj Stane
+			Stanko Tomasz Toncka Tone Viktor Vilko Vladimir Vladko Vojko Zeljko
+		}
+		female_names = {
+			Adriana Anna Borislava Cededa Doroteja Dorothy Ekaterina Catherine Helena Helen Jadviga 
+			Jovana Kera Ladika Maria Maria Mihaela Nada Petra Viola Yolanda Jadranka Mare
+			Antonija Capeka Dragana Dubravka Emilija Emily Gordana Jagoda Jelena Jelka Lucija Lucia 
+			Catherine Marija Maria Marijana Mirjana Mirna Mojca Natalija NataŠa
+			Rijeka Silvija Snjezana Sofija Sophia Suzana Susana Svjetlana Suronja Tatjana Tihana 
+			Vedrana Visnja Vjekoslava Zlata Zvonimira Valerija Katalin
+		}
+		dynasty_names = {
+			Arnic Avbelj Avsenik Bajuk Bitenc Cankar Cec Cernigoj Czipott Dolar
+			Drolc Duletic Globocnik Gobec Godina Golob Haus Hladnik Ivanek Kantuser
+			Kidric Komar Kopitar Kraigher Lipovsek Lipuscek Macek Maister Marinko Miklosic
+			Mravlajk Pengov Pesek Peterle Pirec Plecnik Rozman Rupnik Sarh Srebrnic
+			Tomazic Tomsic Urbancic Vega "Von Windisch-Grätz" Zagar Zerjal Zizke Zornada Zupancic
+		}
+	}
+}
+
+west_slavic = {
+	sorbian = {
+		graphical_culture = westerngfx
+		primary = LUS
+	}
+}
+
+scandinavian = {
+	icelandic = {
+		graphical_culture = westerngfx
+		primary = ICE
+		male_names = {
+			Agnar Ásgeir Björn Eidur Einar Emil Geir Gudmund Gunnar Hannes
+			Hermann Jón Kristján Magnús Ólafur Pétur Sigurdur Stefán Sveinn Tryggvi
+			Hrafn Ormur Ketill Eiríkur Bótólfur Grímur Holti Ívar Árni Andrés Þorsteinn
+			Smiður Þorgautur Vigfús Arnfinnur Helgi Hannes Loftur Torfi Hinrik Diðrik
+			Þorleifur Søren Týli Jóhann Ögmundur Poul Benedikt Enevold Holger
+		}
+		female_names = {
+			Torhild Aleta Alfhildr Alfhild Alfridh Alvör Anna Asa Åsa Aslaug Asta Astrid Beata 
+			Birgitta Brigid Björg Bodil Bothildr Bothild Cecilia Edla Elin Elisabet Elizabeth Freyja Freja 	
+			Grima Gunnhildr Gunhild Gurli Gudrun Gyla Gytha Hafrid Halla Helena 
+			Helen Holmfrid Iliana Inga Ingfrid Ingibjörg Ingeborg Ingjerðr Ingegerd Ingrid Karin 
+			Katarina Catherine Kraka Kristina Christina Linda Maer Malmfrið Malmfrid Margareta Margaret 
+			Maria Rikissa Rögnfrid Ragnfrid Rögnhildr Ragnhild Saga Sara Sarah Sif Sigrid Skuld Sofia 
+			Sophia Svanhildr Svanhild Ulfhildr Ulvhilde Vigdis Ylva Yrsa Þora Thora Þordis Thordis Þyra 
+			Thyra
+		}
+		dynasty_names = {
+			Arnórsson Ásgeirsson Benediktsson Bjarnasen Björnsson Eggers Eldjárn Hafstein Hansen
+			Hermannsson Johánesson Jónsson Magnússon Stefánsson Steinthosson Thórdarson Thórhallson Thorláksson Thurs
+			Oddsson Ormsson Þórisson Þorláksson Sveinbjarnarson Andrésson Þorsteinsson Þorgrímsson Bjarnarson
+			Þórðarson Gíslason Eyjólfsson Pétursson Snorrason Sveinsson Guðmundsson Ívarsson Styrsson Ólafsson
+		}
+	}
+}
+
+aquitanian = {
+	graphical_culture = westerngfx
+	basque = {
+		primary = NAV
+		dynasty_names = {
+			"de Navarra" "de Beaumont" "de Lerín" "de Monteagudo" Escors 
+			# CKII
+			"de Haro"
+		}
+		male_names = {
+			Enrique Carlos Francisco Juan Luis Gastón Pedro Buenaventura Godofredo Jaime Lanzarote 
+			Martín García Felipe Teobaldo Alfonso Agustín Alejandro Álvaro Andrés Antonio Bernardo César 
+			Cristóbal Diego Esteban Fernando Gaspar José Melchor Nicolás Simón Leonel
+			Alfontso Alphonse Alvar Oliver Antso Sancho Aznar Belasko Vasco Bermudo Vermudo 
+			Bernard Diaco Donato Donatus Egidio Egidius Eneko Inigo Erramun Raymond
+			Fortun Galindo Gartzia Garcia Gilen William Gontzal Gonzalo Herramel Joanes John 
+			Lope Lupo Louis Manrike Amalric Martin Munio Nuño Nuno Obeko Ordoño 
+			Ordono Pelaio Pelagius Piarres Peter Ramiro Rodrigo Roderick Vela Ximeno Simon 
+			Zentulo Centule Ladron Ferdinand Bernart
+		}
+		female_names = {
+			Juana Catalina Leonor Blanca
+			Aines Agnes Aldontza Aldonza Andregoto Antsa Sancha Belaskita Berengaria Blanka 
+			Blanche Elbira Elvira Eliza Emili Emily Estefania Stephania Joana Joan Konstantzia Constance 
+			Maior Mayor Maria Mentzia Mencia Munia Nuña Oneka Oria Plazentzia
+			Teresa Toda Urraka Urraca Ximena Plaisance
+		}
+	}
+}
+
+illyrian = {
+	graphical_culture = easterngfx
+	albanian = {
+		primary = ALB
+		male_names = {
+			Gjergj Lekë Gjon Kostandin Lulëzim Pal Tanush Aleksandër Karolus Filippo Adnan Agim Bashkim Besnik 
+			Dardan Dhurim Dritëro Elidon Erjon Fatmir Flamur Florin Hekuran Ilir Ismail Klodian Luigj Milaim 
+			Pashko Pëllumb Përparim Pjetër Rrok Shpëtim Tahir Viktor Xhevat Ylli Zenel Halil Ali Mustafa Qemal 
+			Mehmet Ramiz Edi Demaci Edon Dukagjin Haxhi Lishëndri Mensur Kreshnik Rahman Nxhiku Riza Rexhep 
+			Sulejman Selim Sadik Bujar Nikolla Enver Ramadan
+		}
+		female_names = {
+			Gjylo Afërdita Blerta Bora Dafina Dardana Era Fatmire Flutura Gentiana Jehona Lindita Lule Luljeta Pranvera Shpresa 
+			Shqipe Teuta Venera Vera Vesa Yllka
+		}
+	}
+	dynasty_names = { 
+		"Trpimirovic" "Svetoslavic" "Kosovic" "Kresimirovic" "Zrinski" "Domagojevic" "Hrvatinic" "Kotromanic" "Brankovic" "Lazarevic" "Ibrahimovic"
+	}
+}

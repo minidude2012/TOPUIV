@@ -1,0 +1,83 @@
+#Hopefully these are not too overpowered
+
+DAC_ideas = { #Stolen from Romanian Ideas
+	start = {
+		discipline = 0.05
+		tolerance_own = 2
+	}
+
+	bonus = {
+		improve_relation_modifier = 0.25
+	}
+
+	trigger = {
+		tag = DAC
+	}
+
+	free = yes # will be added at load
+
+	flexible_recruiting = {
+		manpower_recovery_speed = 0.2
+	}
+	skilled_commanders = {
+		leader_land_manuever = 1
+	}
+	scorch_the_land_and_poison_the_wells = {
+		hostile_attrition = 1
+	}
+	latin_island = {
+		legitimacy = 1
+	}
+	rom_peasant_soldiers = {
+		infantry_cost = -0.1
+		global_manpower_modifier = 0.1
+	}
+	phanariote_traders = {
+		global_trade_power = 0.15
+	}
+	phanariote_taxes = {
+		global_tax_modifier = 0.1
+	}
+}
+
+new_BYZ_ideas = { #The new Byzantine ideas. They are taken directly from Renovatio Imperii, used with permission. Slightly adjusted.
+	start = {
+		advisor_pool = 1
+		tolerance_own = 3
+	}
+	
+	bonus = { #Changed to more states (From 5% admin efficiency). 
+		max_states = 5 
+	}
+	
+	trigger = {
+		tag = BYZ
+	}
+	free = yes
+	
+	regulations_for_mercenaries = {
+		merc_maintenance_modifier = -0.25
+	}
+	repopulation_of_countryside = { #I kind of want to adjust this to decrease development cost to encourage Byzantium to build a tall(er) empire, but I'll leave it as is for now.
+		global_trade_goods_size_modifier = 0.1
+		global_manpower_modifier = 0.10
+	}
+	bureau_of_barbarians = { #Adjusted from Renovatio Imperii's diplomatic relations +1 to 20% improve relations and +1 diplo rep. The bureau of barbarians was used to do diplomacy well, which doesn't translate into diplo relations in my opinion.
+		improve_relation_modifier = 0.2
+		diplomatic_reputation = 1
+	}
+	autocrat_of_romans = { #Nerfing the yearly absolutism to half. Byzantium already gets too much of the good stuff.
+		stability_cost_modifier = -0.1
+		yearly_absolutism = 0.1
+	}
+	merchant_class = {
+		global_trade_power = 0.1
+	}
+	new_imperial_army = {
+		discipline = 0.05
+		army_tradition = 0.5
+	}
+	ecumenical_patriarch = {
+		global_missionary_strength = 0.03
+	}
+}

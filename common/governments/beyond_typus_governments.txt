@@ -1,0 +1,87 @@
+#Do not change tags in here without changing every other reference to them.
+#If adding new forms of governemnts, make sure they are uniquely named.
+
+#Uses all 'modifiers' possible that's exported as a Modifier.
+
+# valid_for_new_country determines which governments can be converted to normally
+# allow_convert determines which governments can be force-converted to and from via CBs
+
+#ai_will_do will only check if it's valid,and won't break unions or switch to republic from monarchy, nor check to convert to something earlier in the file.
+#ai_importance determines overall 'quality' of government when government is auto-picked.
+
+
+#A powerful government type with large bonuses and large penalties for a vassalised KoI. Events should replace this government type if Ireland ceases to be a vassal.
+puppet_kingdom_of_ireland = {
+	republic = yes
+
+	color = { 104 144 216 }			#colour based on colonial governments
+
+	unique_government = yes
+	
+	duration = 8
+	
+	valid_for_new_country = no
+	allow_convert = no
+	
+	valid_for_nation_designer = no
+	
+	republican_name = no
+	royal_marriage = no
+	
+	ai_will_do = {
+		factor = 0
+	}
+	
+	has_parliament = yes
+	
+	rank = {
+		2 = {
+			production_efficiency = 0.2
+			global_tax_modifier = 0.1
+			global_unrest = 3
+			max_absolutism = 10
+		}
+	}
+	fixed_rank = 2
+}
+
+#A transitionary government based on a republican dictatorship with a parliament
+transitional_government_ireland = {
+	dictatorship = yes
+
+	color = { 12 84 132 }			#colour based on dictatorship
+
+	unique_government = yes
+	
+	valid_for_new_country = no
+	allow_convert = no
+	
+	valid_for_nation_designer = no
+	
+	republican_name = yes
+	royal_marriage = no
+	
+	ai_will_do = {
+		factor = 0
+	}
+	
+	has_parliament = yes
+	
+	rank = {
+		1 = {
+			legitimacy = -0.5
+			stability_cost_modifier = 0.25
+			global_unrest = 5
+		}
+		2 = {
+			legitimacy = -0.5
+			stability_cost_modifier = 0.25
+			global_unrest = 5
+		}
+		3 = {	
+			legitimacy = -0.5
+			stability_cost_modifier = 0.25
+			global_unrest = 5
+		}
+	}
+}

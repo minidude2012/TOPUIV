@@ -1,0 +1,88 @@
+#Special for Byzantium
+roman_monarchy = {
+	monarchy = yes
+	
+	unique_government = yes
+	valid_for_new_country = no
+	allow_convert = no
+	valid_for_nation_designer = yes
+	nation_designer_cost = 30
+	nation_designer_trigger = {
+		OR = {
+			culture_group = byzantine
+			culture = roman
+		}
+	}	
+	
+	color = { 121 28 144 }
+	#Taken from Renovatio Imperii
+	faction = logothete_military
+	faction = logothete_postal
+	faction = logothete_general
+	
+	fixed_rank = 3
+
+	rank = {
+		3 = {
+			#These are from pre-1.12 Byzantine Imperial government
+			land_morale = 0.1
+			vassal_income = 0.20
+			global_autonomy = -0.1
+			#Adding absolutism a la enlightened despotism
+			max_absolutism = 10
+		}
+	}
+}
+
+#Special for Exarches
+byz_exarchate = {
+	monarchy = yes
+	
+	unique_government = yes
+	valid_for_new_country = no
+	allow_convert = no
+	valid_for_nation_designer = no
+	
+	color = { 21 28 44 }
+	
+	fixed_rank = 2
+
+	rank = {
+		2 = {
+			state_maintenance_modifier = -0.50
+			global_manpower = 0.25
+		}
+	}
+}
+
+#Special for Byzantium, commented out for the time being because it feels out of place. Since there's no way to mod in dual monarchy, there is no point to try to fix this. I could possibly use the consort system and change it up, however I do not have RoM myself.
+# roman_republic = {
+	# republic = yes
+
+	# color = { 144 28 121 }
+
+	# duration = 1
+	
+	# unique_government = yes
+	# valid_for_new_country = no
+	# allow_convert = no
+	
+	# republican_name = no
+	# royal_marriage = yes
+	
+	# valid_for_nation_designer = yes
+	# nation_designer_cost = 40
+	# nation_designer_trigger = {
+		# has_dlc = "Res Publica"
+	# }	
+
+	# fixed_rank = 3
+
+	# rank = {
+		# 3 = {	
+			# land_morale = 0.20
+			# trade_efficiency = 0.10
+			# max_absolutism = -30
+		# }
+	# }
+# }

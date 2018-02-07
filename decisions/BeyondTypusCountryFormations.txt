@@ -1,0 +1,180 @@
+country_decisions = {
+
+#Added in 1.23, so cut here.
+#	bt_yemen_formation = {
+#	}
+	
+	bt_najd_formation = {
+		potential = {
+			normal_or_historical_nations = yes
+			NOT = { has_country_flag = formed_najd_bt }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}	#Custom Ai will not form this
+			NOT = { tag = NAJ }
+			NOT = { tag = ALH }
+			primary_culture = bedouin_arabic
+			OR = {
+				ai = no
+				NOT = { exists = NAJ }
+			}
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}	#Normal no colonial stuff
+		}
+		
+		allow = {
+			NOT = { exists = NAJ }
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			custom_trigger_tooltip = {
+				tooltip = half_of_najd_tooltip
+				num_of_owned_provinces_with = {
+					value = 6
+					OR = {
+						area = najd_area
+						area = yamamah_area
+					}
+					is_core = ROOT
+				}
+			}
+			total_development = 30			#Normal requirement for rank 2 is 300 dev, so this is 90 percent discounted.
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+			}
+		
+		effect = {
+			change_tag = NAJ
+			remove_non_electors_emperors_from_empire_effect = yes
+			every_province = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					OR = {
+						area = najd_area
+						area = yamamah_area
+					}
+				}
+				add_permanent_claim = NAJ
+			}
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			country_event = { id = ideagroups.1 } #Swap Ideas
+			set_country_flag = formed_najd_bt
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	bt_sennar_formation = {
+		potential = {
+			normal_or_historical_nations = yes
+			NOT = { has_country_flag = formed_sennar_bt }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}	#Custom Ai will not form this
+			NOT = { tag = NUB }
+			OR = {
+				tag = FNJ
+				AND = {
+					owns_core_province = 2799
+					culture_group = sudanese
+					religion_group = muslim
+				}
+			}
+			OR = {
+				ai = no
+				NOT = { exists = NUB }
+			}
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}	#Normal no colonial stuff
+		}
+		
+		allow = {
+			NOT = { exists = NUB }
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			owns_core_province = 2799
+			}
+		
+		effect = {
+			2799 = { move_capital_effect = yes }
+			change_tag = NUB
+			remove_non_electors_emperors_from_empire_effect = yes
+			every_province = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					OR = {
+						province_id = 2798
+						province_id = 5285
+						province_id = 1222
+						province_id = 5287
+						province_id = 2800
+						province_id = 2997
+						province_id = 5284
+						province_id = 1220
+						province_id = 5286
+						province_id = 1221
+						province_id = 1216
+					}
+				}
+				add_permanent_claim = NUB
+			}
+			every_province = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					OR = {
+						province_id = 5302
+						province_id = 5281
+						province_id = 5279
+						province_id = 1228
+					}
+				}
+				add_claim = NUB
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			2799 = {
+				add_base_tax = 2
+				add_base_production = 2
+				add_base_manpower = 1
+			}
+			add_prestige = 10
+			change_religion = sunni
+			add_piety = -0.30
+			country_event = { id = ideagroups.1 } #Swap Ideas
+			set_country_flag = formed_sennar_bt
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	#Added in 1.23, so cut here.
+	#bt_armenia_formation = {
+	#}
+	
+}

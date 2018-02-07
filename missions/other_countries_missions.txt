@@ -1,0 +1,193 @@
+restore_the_latin_empire = {
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			culture_group = latin
+			culture_group = french
+		}
+		NOT = { tag = BYZ }
+		religion = catholic
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		exists = BYZ
+		BYZ = {
+			owns = 151
+			religion = orthodox
+		}
+		NOT = {
+			any_province = {
+				region = balkan_region
+				owned_by = TUR
+			}
+		}
+		OR = {
+			army_size = BYZ
+			navy_size = BYZ
+		}
+		NOT = { alliance_with = BYZ }
+		NOT = { overlord_of = BYZ }
+		NOT = { has_country_flag = latins_invaded_constantinople }
+		NOT = { has_country_flag = defeated_byzantine_empire }
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			151 = {
+				NOT = { owned_by = BYZ }  
+			}
+		}
+	}
+	success = {
+		owns = 151	# Constantinople
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 4
+			OR = {
+				tag = VEN #Venice
+				tag = ATH #Duchy of Athens
+				tag = KNI #The Knights of Rhodos & Malta
+				tag = KOJ #Kingdom of Jerusalem
+				tag = CYP #Knights of Cyprus
+				tag = TEM #Knights Templar (If formed in CK2)
+				tag = NAX #Duchy of Naxos
+				tag = LES #Duchy of Lesbos added in BtPL/BT
+				tag = CEP #Corfu
+			}
+			
+		}
+	}
+	immediate = {
+		add_claim = 151
+	}
+	abort_effect = {
+		151 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		set_country_flag = latins_invaded_constantinople
+		add_country_modifier = {
+			name = "defeated_byzantine_empire"
+			duration = 3650
+		}
+	}
+}
+
+push_back_the_byzantines = {
+
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		owned_by = BYZ
+		continent = europe
+	}
+	
+	allow = {
+		normal_or_historical_nations = yes
+		is_emperor = yes
+		NOT = { tag = BYZ }
+		religion = catholic
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		BYZ = {
+			exists = yes
+			religion = orthodox
+		}
+		all_province = {
+			region = balkan_region
+			NOT = { owned_by = TUR }
+		}
+		OR = {
+			army_size = BYZ
+			navy_size = BYZ
+		}
+		NOT = { alliance_with = BYZ }
+		NOT = { overlord_of = BYZ }
+		NOT = { has_country_flag = pushed_back_byzantines }
+		NOT = { has_country_flag = defeated_byzantine_empire }
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			151 = {
+				NOT = { owned_by = BYZ }
+				NOT = { owned_by = ROOT }
+			}
+		}
+	}
+	success = {
+		151 = {
+			is_part_of_hre = yes
+		}
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 4
+			BYZ = {
+				has_country_modifier = the_theme_system
+			}
+			
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		set_country_flag = pushed_back_byzantines
+		add_country_modifier = {
+			name = "defeated_byzantine_empire"
+			duration = 3650
+		}
+	}
+
+
+}

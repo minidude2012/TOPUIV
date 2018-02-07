@@ -1,0 +1,41 @@
+cb_recover_balkans = {
+
+	prerequisites = {
+		tag = BYZ
+		is_free_or_tributary_trigger = yes
+		any_province = {
+			OR = {
+				region = balkan_region
+				region = carpathia_region
+			}
+			owned_by = TUR
+		}
+		FROM = { tag = TUR }
+	}
+
+	war_goal = take_balkan_provinces
+	
+}
+cb_recover_anatolia = {
+
+	prerequisites = {
+		tag = BYZ
+		is_free_or_tributary_trigger = yes
+		any_province = {
+			region = anatolia_region
+			owned_by = TUR
+		}
+		balkan_region = {
+			type = all
+			NOT = { owned_by = TUR }
+		}
+		carpathia_region = {
+			type = all
+			NOT = { owned_by = TUR }
+		}
+		FROM = { tag = TUR }
+	}
+
+	war_goal = take_anatolia_provinces
+	
+}

@@ -1,0 +1,7 @@
+########################################
+# PUVE EVENTS #
+########################################
+
+namespace = pu1800_nap
+normal_or_historical_nations = yes
+

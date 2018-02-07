@@ -1,0 +1,5 @@
+government = despotic_monarchy 
+primary_culture = cilician
+religion = catholic					# Close ties with crusaders and relations with the pope
+technology_group = eastern
+capital = 5138						# Provinces encompassing Sis

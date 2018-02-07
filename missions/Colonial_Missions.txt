@@ -1,0 +1,2246 @@
+discover_mission = {
+
+	type = empty_provinces
+	
+	category = DIP
+	
+	allow = {
+		FROM = { has_idea = quest_for_the_new_world }
+		range = FROM
+		has_port = yes
+		NOT = { has_discovered = FROM }
+		FROM = {
+			is_at_war = no
+			num_of_ports = 1
+		}
+		NOT = {
+			FROM = { has_country_modifier = "colonial_enthusiasm" }
+		}
+		
+	}
+	abort = {
+		OR = {
+			FROM = { NOT = { num_of_ports = 1 } }
+			FROM = { NOT = { has_idea = quest_for_the_new_world } }
+		}
+	}
+	success = {
+		has_discovered = FROM
+	}
+	chance = {
+		factor = 1000
+		#tweak for some historical preferences.
+		modifier = {
+			factor = 0
+			FROM = { tag = POR }
+			continent = north_america
+		}
+		modifier = {
+			factor = 1.25
+			FROM = { tag = POR }
+			OR = {
+				region = brazil_region
+				AND = {
+					region = guinea_region
+					has_port = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			FROM = { 
+				OR = {
+					tag = SPA
+					tag = CAS
+				}
+			}
+			OR = {
+				continent = north_america
+				region = brazil_region
+				AND = {
+					region = guinea_region
+					has_port = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			FROM = { 
+				OR = {
+					tag = SPA
+					tag = CAS
+				}
+			}
+			OR = {
+				region = colombia_region
+				region = central_america_region
+				region = mexico_region
+				region = carribeans_region
+				region = la_plata_region
+			}
+		}
+		modifier = {
+			factor = 1.25
+			FROM = {
+				OR = {
+					tag = ENG
+					tag = GBR
+					tag = FRA
+				}
+			}
+			continent = north_america
+		}
+	}
+	effect = {
+		FROM = {
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 3650
+			}
+		}
+	}
+}
+
+
+build_colony_to_city = {
+
+	type = our_provinces
+	
+	category = ADM
+	
+	allow = {
+		FROM = { is_at_war = no }
+		is_colony = yes
+		has_port = yes
+		owner = {
+			num_of_colonists = 1
+			monthly_income = 10
+			NOT = {
+				any_owned_province = {
+					has_province_modifier = local_colonial_expansion
+				}
+			}
+		}
+	}
+	abort = {
+		NOT = { owned_by = FROM }
+	}
+	success = {
+		is_colony = false
+		owned_by = FROM
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 1.2
+			development = 3
+		}		
+		modifier = {
+			factor = 1.25
+			development = 5
+		}		
+		
+	}
+	effect = {
+		if = {
+			limit = { NOT = { has_dlc = "Common Sense" } }
+			add_base_tax = 1
+			add_base_manpower = 1
+			add_base_production = 1
+		}
+		if = {
+			limit = { has_dlc = "Common Sense" }
+			add_base_production = 1
+			add_permanent_province_modifier = {
+				name = "local_colonial_expansion"
+				duration = 3650
+			}
+		}
+	}
+}
+
+
+convert_the_pagans = {
+
+	type = our_provinces
+	
+	category = ADM
+	
+	allow = {
+		FROM = { is_at_war = no }
+		owner = { religion_group = christian }
+		OR = {
+			continent = north_america
+			continent = south_america
+		}
+		religion_group = pagan
+		is_overseas = yes
+		development = 6
+		owner = {
+			num_of_missionaries = 1
+			num_of_owned_provinces_with = {
+				value = 5
+				religion = ROOT
+				continent = ROOT
+			}
+			NOT = { has_country_modifier = converting_the_pagans }
+		}
+	}
+	abort = {
+		NOT = { owned_by = FROM }
+	}
+	success = {
+		religion_group = christian
+	}
+	chance = {
+		factor = 1000
+	}
+	effect = {
+		owner = {
+			add_country_modifier = {
+				name = "converting_the_pagans"
+				duration = 3650
+			}
+		}
+	}
+}
+
+establish_carribean_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_the_carribean = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_the_carribean = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_the_carribean = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_the_carribean = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_the_carribean = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.1
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = CAS
+				tag = SPA
+				tag = FRA
+				tag = ENG
+				tag = GBR
+				tag = HOL
+				tag = NED
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = IRE
+				tag = SCO
+				tag = TNA
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 30.0
+			OR = {
+				tag = KUR
+				tag = DAN
+				tag = NOR
+				tag = SWE
+				tag = KNI
+			}
+		}	#Special bonuses specifically for the West Indies
+		modifier = {
+			factor = 2.0
+			OR = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				224 = {			#Sevilla - Sevilla
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				950 = {			#Chesapeake - Chesapeake Bay
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.75
+			colonial_the_carribean = {
+				owner = {
+					is_subject_of_type = colony
+					NOT = { is_subject_of = ROOT }
+				}
+			}
+		}
+		#No other factors for the Antilles, all bets are off here
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+establish_usa_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_eastern_america = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_eastern_america = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_eastern_america = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_eastern_america = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_eastern_america = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.2
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 16.0			#Special x4, the first colonies in North America by the English and Dutch
+			OR = {
+				tag = ENG
+				tag = GBR
+				tag = HOL
+				tag = NED
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			tag = SCO
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 30.0
+			tag = SWE
+		}	#Special Eastern America bonus
+		modifier = {
+			factor = 2.0
+			OR = {
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				97 = {			#Amsterdam - English Channel
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				994 = {			#Canada - Saint Lawrence
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_eastern_america = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_eastern_america = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_eastern_america = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+		modifier = {
+			factor = 0.5
+			colonial_eastern_america = {
+				owner = {
+					is_subject_of_type = colony
+					NOT = { is_subject_of = ROOT }
+				}
+			}
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+establish_canada_colony = {
+
+	type = country
+	
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		num_of_ports = 1
+		has_idea = quest_for_the_new_world 
+		religion_group = christian
+		is_colonial_nation = no	
+		colonial_canada = {
+			is_empty = yes
+			range = ROOT
+			has_discovered = ROOT
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+		}
+		NOT = {
+			colonial_canada = {
+				owned_by = ROOT
+			}
+		}
+		NOT = {
+			colonial_canada = {
+				owner = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		NOT = {
+			has_country_modifier = "colonial_enthusiasm" 
+		}
+	}
+	abort = {
+		OR = {
+			NOT = {
+				colonial_canada = {
+					is_empty = yes
+					has_discovered = ROOT
+				}
+			}
+			NOT = { num_of_ports = 1 }
+			NOT = { has_idea = quest_for_the_new_world }
+		}
+	}
+	success = {
+		colonial_canada = {
+			owned_by =  ROOT
+			colonysize = 400
+		}
+	}
+	immediate = {
+		if = {
+			limit = { ai = yes }
+			random_owned_province = {
+				limit = { has_port = yes }
+				province_event = { 
+					id = BeyondTypusHeavyHandedAIColonialEvents.3
+					days = 10
+					random = 50
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 500
+		modifier = {
+			factor = 1.5
+			OR = {
+				personality = ai_colonialist
+				AND = {
+					has_idea_group = exploration_ideas
+					has_idea_group = expansion_ideas
+				}
+				ruler_has_personality = expansionist_personality
+				advisor = colonial_governor
+				advisor = navigator
+			}
+		}
+		modifier = {
+			factor = 4.0
+			OR = {
+				tag = FRA
+				tag = BRI
+			}
+		}	#High chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				tag = GBR
+				tag = NAV
+			}
+		}	#Low chance historical tag favouritism
+		modifier = {
+			factor = 2.0
+			OR = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 25
+					}
+				}
+			}
+		}	#Controls at least 25 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.1
+			NOT = {
+				239 = {			#Bristol - Irish sea
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+				174 = {			#Bordeaux - Bordeaux
+					trade_share = {
+						country = ROOT
+						share = 10
+					}
+				}
+			}
+		}	#Does not control at least 10 percent of an immediately downsteam node
+		modifier = {
+			factor = 0.25
+			OR = {
+				any_subject_country = {
+					colonial_canada = { owned_by = PREV }
+				}
+				any_ally = {
+					colonial_canada = { owned_by = PREV }
+				}
+			}
+		}	#Very unlikely if a vassal or ally already owns land in the region
+		modifier = {
+			factor = 0
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { liberty_desire = 50 }
+			overlord = {
+				colonial_canada = { owned_by = PREV }
+			}
+		}	#Impossible if a content vassal and overlord has land in the region
+		modifier = {
+			factor = 0.5
+			colonial_canada = {
+				owner = {
+					is_subject_of_type = colony
+					NOT = { is_subject_of = ROOT }
+				}
+			}
+		}
+	}
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				#	tag = CAS
+				#	tag = SPA
+				}
+			}
+			add_country_modifier = {
+				name = "colonial_enthusiasm"
+				duration = 1875
+			}
+		}
+		if = {
+			limit = {
+				#OR = {
+				AND = {
+					full_idea_group = exploration_ideas
+					full_idea_group = expansion_ideas
+				}
+				#	tag = CAS
+				#	tag = SPA
+				#}
+			}
+			add_country_modifier = {
+				name = "bt_spanish_colonial_enthusiasm"
+				duration = 625
+			}
+		}
+	}
+}
+
+establish_colony_mission = {
+
+	type = empty_provinces
+	
+	category = DIP
+	
+	allow = {
+		FROM = { 
+			num_of_ports = 1
+			num_of_colonists = 1
+			primitives = no
+		}
+		range = FROM
+		has_port = yes
+		has_discovered = FROM
+		OR = {
+			FROM = { NOT = { religion = catholic } }
+			is_religion_grant_colonial_claim = no
+			is_religion_grant_colonial_claim = FROM
+		}
+		OR = {
+			FROM = { is_colonial_nation = no }
+			any_neighbor_province = { owned_by = FROM }
+			FROM = {
+				capital_scope = { colonial_region = ROOT }
+			}
+		}
+		NOT = {
+			FROM = { has_country_modifier = "colonial_enthusiasm" }
+		}
+	}
+	abort = {
+		OR = {
+			AND = {
+				is_empty = no
+				NOT = { owned_by = FROM }
+			}
+			FROM = { NOT = { num_of_ports = 1 } }
+		}
+	}
+	success = {
+		owned_by = FROM
+		colonysize = 400
+	}
+	chance = {
+		factor = 1000
+		#tweak for some historical preferences.
+		modifier = {
+			factor = 20.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = CAS
+					tag = SPA
+				}
+			}
+			province_id = 5568	#Santo Domingo
+		}
+		modifier = {
+			factor = 15.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = CAS
+					tag = SPA
+				}
+			}
+			province_id = 492	#Puerto Rico
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = CAS
+					tag = SPA
+				}
+			}
+			province_id = 2654	#Baracoa
+		}
+		modifier = {
+			factor = 20.0
+			FROM = {
+				ai = yes
+				tag = POR
+			}
+			province_id = 764	#Sao Vicente
+		}
+		modifier = {
+			factor = 15.0
+			FROM = {
+				ai = yes
+				tag = POR
+			}
+			province_id = 755	#Pernambuco
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = POR
+			}
+			province_id = 756	#For no particular reason
+		}
+		modifier = {
+			factor = 20.0
+			FROM = {
+				ai = yes
+				tag = FRA
+			}
+			province_id = 2568	#Port Royal
+		}
+		modifier = {
+			factor = 15.0
+			FROM = {
+				ai = yes
+				tag = FRA
+			}
+			province_id = 994	#Quebec
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = FRA
+			}
+			province_id = 5059	#Plaisence
+		}
+		modifier = {
+			factor = 20.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = ENG
+					tag = GBR
+				}
+			}
+			province_id = 950	#Jamestown
+		}
+		modifier = {
+			factor = 15.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = ENG
+					tag = GBR
+				}
+			}
+			province_id = 5013	#Saint Johns
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = ENG
+					tag = GBR
+				}
+			}
+			province_id = 1004	#Moose Fort
+		}
+		modifier = {
+			factor = 20.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = HOL
+					tag = NED
+				}
+			}
+			province_id = 965	#Manhattan
+		}
+		modifier = {
+			factor = 15.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = HOL
+					tag = NED
+				}
+			}
+			province_id = 743	#Essequibo
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				OR = {
+					tag = HOL
+					tag = NED
+				}
+			}
+			province_id = 5586	#Sint Eustatius
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = SCO
+			}
+			province_id = 982	#Ochiltree's settlement on Cape Breton
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = KUR
+			}
+			province_id = 5581	#New Kurland
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = SWE
+			}
+			province_id = 962	#New Sweden
+		}
+		modifier = {
+			factor = 10.0
+			FROM = {
+				ai = yes
+				tag = DAN
+			}
+			province_id = 3112	#Nuuk
+		}
+		modifier = {
+			factor = 0
+			FROM = { tag = POR }
+			continent = north_america
+		}
+		modifier = {
+			factor = 1.15
+			FROM = { tag = POR }
+			OR = {
+				region = brazil_region
+				AND = {
+					region = guinea_region
+					has_port = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			FROM = { 
+				OR = {
+					tag = SPA
+					tag = CAS
+				}
+			}
+			OR = {
+				continent = north_america
+				region = brazil_region
+				region = guinea_region
+			}
+		}
+		modifier = {
+			factor = 1.15
+			FROM = { 
+				OR = {
+					tag = SPA
+					tag = CAS
+				}
+			}
+			OR = {
+				region = colombia_region
+				region = central_america_region
+				region = mexico_region
+				region = carribeans_region
+				region = la_plata_region
+			}
+		}	
+		modifier = {
+			factor = 1.15
+			FROM = {
+				OR = {
+					tag = ENG
+					tag = GBR
+					tag = FRA
+				}
+			}
+			continent = north_america
+		}
+		modifier = {
+			factor = 1.05
+			development = 3
+		}
+		modifier = {
+			factor = 1.05
+			development = 5
+		}
+		modifier = {
+			factor = 1.15
+			any_neighbor_province = { owned_by = FROM }
+		}
+		modifier = {
+			factor = 0.9
+			any_neighbor_province = {
+				is_empty = no
+				NOT = { owned_by = FROM }
+			}
+		}
+		modifier = {
+			factor = 1.05
+			FROM = {
+				any_owned_province = { area = ROOT }
+			}
+		}
+	}
+	effect = {
+		FROM = {
+			if = {
+				limit = {
+					NOT = {
+						AND = {
+							full_idea_group = exploration_ideas
+							full_idea_group = expansion_ideas
+						}
+					}
+				}
+				add_country_modifier = {
+					name = "colonial_enthusiasm"
+					duration = 3650
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						full_idea_group = exploration_ideas
+						full_idea_group = expansion_ideas
+					}
+				}
+				add_country_modifier = {
+					name = "bt_spanish_colonial_enthusiasm"
+					duration = 1225
+				}
+			}
+		}
+	}
+}
+
+
+#################################################################
+#################################################################
+###############		New 1.23/1.24 colonisation missions		###############	
+#################################################################
+#################################################################
+
+#Need to do new ones for new BT regions, as well. Later.
+
+#Expand Colony so it can form Colonial Nation
+establish_colonial_nation_mission_canada = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_canada
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_canada
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_canada
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_canada_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = scandinavian
+				culture_group = british
+				culture_group = french
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_alaska = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_alaska
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_alaska
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_alaska
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_alaska_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = east_slavic
+				culture_group = british
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_eastern_america = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_eastern_america
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_eastern_america
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_eastern_america
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_eastern_america_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = scandinavian
+				culture_group = british
+				culture_group = french
+				culture_group = german
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_louisiana = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_louisiana
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_louisiana
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_louisiana
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_louisiana_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_california = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_california
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_california
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_california
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_california_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_mexico = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_mexico
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_mexico
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_mexico
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_mexico_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_the_carribean = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_the_carribean
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_the_carribean
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_the_carribean
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_the_carribean_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_colombia = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_colombia
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_colombia
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_colombia
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_colombia_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_peru = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_peru
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_peru
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_peru
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_peru_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_la_plata = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_la_plata
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_la_plata
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_la_plata
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_la_plata_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_brazil = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_brazil
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_brazil
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_brazil
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_brazil_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+
+establish_colonial_nation_mission_colonial_australia = {
+
+	type = country
+	
+	category = DIP
+	
+	target_colonial_region_list = {
+		colonial_australia
+	}
+	
+	target_provinces = {
+		always = yes
+	}
+	
+	allow = {
+		any_owned_province = {
+			colonial_region = colonial_australia
+			NOT = { same_continent = CAPITAL }
+			OR = {
+				ROOT = { NOT = { religion = catholic } }
+				is_religion_grant_colonial_claim = no
+				is_religion_grant_colonial_claim = ROOT
+			}
+			is_city = yes
+			is_core = ROOT
+		}
+		capital_scope = {
+			NOT = { continent = north_america }
+			NOT = { continent = south_america }
+		}
+		num_of_ports = 1
+		num_of_colonists = 1
+		primitives = no
+		calc_true_if = {
+			all_province = {
+				colonial_region = colonial_australia
+				range = ROOT
+				has_discovered = ROOT
+				is_empty = yes
+			}
+			amount = 10
+		}
+		NOT = {
+			has_country_modifier = "new_colony"
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { num_of_ports = 1 }
+			NOT = { num_of_colonists = 1 }
+		}
+	}
+	success = {
+		custom_trigger_tooltip = {
+			tooltip = establish_colonial_nation_mission_colonial_australia_tooltip
+			calc_true_if = {
+				amount = 5
+				all_target_province = {
+					country_or_non_sovereign_subject_holds = ROOT
+					is_city = yes
+				}
+			}
+		}
+	}
+	chance = {
+		factor = 4000 #You already have a colony in this colonial region, this should be a priority. Will dissapear by itself if there aren't 10 free provinces in range due to triggers.
+		modifier = {
+			factor = 2
+			NOT = {
+				any_subject_country = {
+					is_subject_of_type = colony
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				culture_group = french
+				culture_group = iberian
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = "new_colony"
+			duration = 3650
+		}
+	}
+}
+

@@ -1,0 +1,67 @@
+﻿l_english:
+ #Vanilla Compatibility (adding BT province modifiers referred to in addon to the addon, so engine doesn't stall from not finding them)
+ grand_center_of_trade_modifier:0 "Grand Center of Trade"
+ desc_grand_center_of_trade_modifier:0 "The great importance of this province as a Grand Center of Trade will help dominate trade in the region."
+ 
+ 
+ #Institution Adjustments
+ tooltip_development_5_post_1550:0 "5 development province - post 1550"
+ tooltip_northern_italian_renaissance:0 "Province in Northern Italy"
+ tooltip_all_italian_renaissance:0 "Province in mainland Italy"
+ tooltip_flanders_renaissance:0 "Province in Flanders"
+ tooltip_has_colonial_subject_in_new_world_bt_addon_a:0 "Capital of a nation with a colonial vassal"
+ tooltip_has_colonial_subject_in_new_world_bt_addon_b:0 "Important port (at least 10 trade power) of a nation with a colonial vassal"
+ tooltip_has_colonial_subject_in_new_world_bt_addon_c:0 "Mainland core of a nation with a colonial vassal"
+ tooltip_colonial_overlord_new_world_i_bt_addon_a:0 "Colonial overlord has embraced §YColonialism§"
+ tooltip_colonialism_exploration_small_bonus_bt_addon_a:0 "Important port (at least 10 trade power) of a nation who has discovered land in the New World"
+ tooltip_any_neighbor_has_embraced_global_trade_bt_addon_a:0 "Adjacent unowned province has §YGlobal Trade§!"
+ tooltip_bt_add_new_instituiton_details_a:0 "Located in Northern Italy"
+ tooltip_bt_add_new_instituiton_details_b:0 "Development at least 16 and a Capital"
+ tooltip_bt_add_new_instituiton_details_c:0 "Located in the Old World"
+ tooltip_bt_add_new_instituiton_details_d:0 "Coastal with at least 16 development or a Center of Trade"
+ tooltip_bt_add_new_instituiton_details_e:0 "Has discovered any province in the New World"
+ tooltip_bt_add_new_instituiton_details_f:0 "is a Center of Trade or a Capital"
+ tooltip_bt_add_new_instituiton_details_g:0 "Development at least 24 in Europe"
+ tooltip_bt_add_new_instituiton_details_h:0 "Development at least 32"
+ tooltip_bt_add_new_instituiton_details_i:0 "Development at least 40"            #Unused, removed after some testing and consideration
+ tooltip_bt_add_new_instituiton_details_j:0 "Manufactory constructed and has §YPrinting Press§!"
+ tooltip_bt_add_new_instituiton_details_k:0 "Owner employs a Natural Scientist"
+ tooltip_bt_add_new_instituiton_details_l:0 "Owner employs a Philosopher"
+ tooltip_bt_add_new_instituiton_details_m:0 "Owner has completed Innovative Idea Group"
+ tooltip_bt_add_new_instituiton_details_n:0 "Ruler is a Paragon of the Enlightenment (5 in all skills)"
+ tooltip_bt_add_new_instituiton_details_o:0 "Capital in Europe with at least 32 Development"
+ tooltip_bt_add_new_instituiton_details_p:0 "Development at least 24"
+ tooltip_bt_add_new_instituiton_details_q:0 "Development at least 32"
+ tooltip_bt_add_new_instituiton_details_r:0 "Development at least 40"
+ tooltip_bt_add_new_instituiton_details_s:0 "[Root.GetName] has at least 5 trade power"         #ended up not using these
+ tooltip_bt_add_new_instituiton_details_t:0 "[Root.GetName] has at least 10 trade power"         #ended up not using these
+ tooltip_bt_add_new_instituiton_details_u:0 "[Root.GetName] has at least 20 trade power"         #ended up not using these
+ tooltip_bt_add_new_instituiton_details_v:0 "[Root.GetName] has at least 40 trade power"         #ended up not using these
+ tooltip_bt_add_new_instituiton_details_w:0 "[Root.GetName] has at least 60 trade power"         #ended up not using these
+ tooltip_bt_add_new_instituiton_details_x:0 "Is a Center of Trade and has §YPrinting Press§!"
+ tooltip_bt_add_new_instituiton_details_y:0 "Manufactory constructed and has §YGlobal Trade§!"
+ tooltip_bt_add_new_instituiton_details_z:0 "Owner has completed Humanist Idea Group"
+ tooltip_bt_add_new_instituiton_details_aa:0 "Highly developed province (20 or above) after 1550"           #ended up not using this, sticking with increased strength 30 and above only
+ tooltip_bt_add_new_instituiton_details_ab:0 "Very highly developed province (30 or above) after 1600"
+ tooltip_bt_add_new_instituiton_details_ac:0 "Mainland core of a Western Great Power"
+ tooltip_bt_add_new_instituiton_details_ad:0 "Owned by an independant colonial nation"
+ tooltip_bt_add_new_instituiton_details_ae:0 "Owner employs a philosopher or natural scientist"
+ tooltip_bt_add_new_instituiton_details_af:0 "Owner employs a skilled philosopher or natural scientist"
+ tooltip_bt_add_new_instituiton_details_ag:0 "Owner employs a gifted philosopher or natural scientist"
+ tooltip_bt_add_new_instituiton_details_ah:0 "Owner is Tolerant"
+ tooltip_bt_add_new_instituiton_details_ai:0 "Owner is a Scholar"
+ tooltip_bt_add_new_instituiton_details_aj:0 "Is a Center of Trade"
+ tooltip_bt_add_new_instituiton_details_ak:0 "Is a coastal capital"
+ tooltip_bt_add_new_instituiton_details_al:0 "Is in the capital area"
+ tooltip_bt_add_new_instituiton_details_am:0 "Is located in Germany"
+ tooltip_bt_add_new_instituiton_details_an:0 "Development at least 30 after 1700 in Asia"
+ tooltip_bt_add_new_instituiton_details_ao:0 "Is a Center of Trade and has §YColonialism§!"
+ tooltip_bt_add_new_instituiton_details_ap:0 "Development at least 20 in Europe"
+ 
+ 
+ #Improved Elections
+ tooltip_bt_republican_reelection_bonus:0 "[Root.Monarch.GetName] has a 50% chance to receive a bonus of 1 skill point and 50 bonus monarch points in each category."
+ tooltip_bt_improved_election_adm_candidate:0 "A high level bureaucrat is elected [Root.Monarch.GetTitle] of [Root.GetName]"
+ tooltip_bt_improved_election_dip_candidate:0 "A popular diplomat is elected [Root.Monarch.GetTitle] of [Root.GetName]"
+ tooltip_bt_improved_election_mil_candidate:0 "A decorated general is elected [Root.Monarch.GetTitle] of [Root.GetName]"
+ 

@@ -1,0 +1,1383 @@
+namespace = hidden
+###Core gain after Chinese unification wars###
+country_event = {
+	id = hidden.1
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	
+	is_triggered_only = yes
+	hidden = yes
+	
+	trigger = {
+		OR = {
+			culture_group = east_asian
+			is_emperor_of_china = yes
+		}
+		any_owned_province = {
+			chinese_region_trigger = yes
+			NOT = { is_core = ROOT }
+		}
+	}
+		
+	option = {
+		name = "hidden.1.a"
+		every_owned_province = {
+			limit = {
+				chinese_region_trigger = yes
+				NOT = { is_core = ROOT }
+			}
+			add_core = ROOT
+		}
+	}
+}
+country_event = {
+	id = hidden.2 # Cleanup after Qing conquest
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	fire_only_once = yes
+	hidden = yes
+	
+	trigger = {
+		tag = QNG
+		OR = {
+			is_emperor_of_china = yes
+			NOT = {
+				exists = MNG
+			}
+		}
+		NOT = { 
+			war_with = MNG
+			war_with = CSH
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+		
+	option = {
+		name = "hidden.1.a"
+		remove_country_modifier = defection_to_qng
+		clr_global_flag = qing_intervention_in_china
+		set_capital = 1816
+	}
+}
+country_event = {
+	id = hidden.3
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	
+	trigger = {
+		OR = {
+			tag = MCH
+			tag = MJZ
+			tag = MHX
+			tag = MYR
+		}
+		ai = yes
+		was_player = no
+		any_country = {
+			NOT = {
+				OR = {
+					primary_culture = manchu
+					tag = KRC
+					AND = {
+						NOT = { tag = MNG }
+						NOT = { tag = KOR }
+						any_owned_province = {
+							OR = {
+								is_core = ROOT
+								region = manchuria_region
+							}
+						}
+					}
+					OR = {
+						ai = no
+						was_player = yes
+					}
+				}
+			}
+			war_with = ROOT
+		}
+		NOT = {
+			any_country = {
+				OR = {
+					ai = no
+					was_player = yes
+				}
+				alliance_with = ROOT
+				is_at_war = yes
+			}
+		}
+		NOT = { has_global_flag = qing_intervention_china }
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		every_country = {
+			limit = {
+				war_with = ROOT
+				NOT = {
+					OR = {
+						primary_culture = manchu
+						tag = KRC
+						AND = {
+							NOT = { tag = MNG }
+							NOT = { tag = KOR }
+							any_owned_province = {
+								OR = {
+									is_core = ROOT
+									region = manchuria_region
+								}
+							}
+						}
+						OR = {
+							ai = no
+							was_player = yes
+						}
+					}
+				}
+			}
+			white_peace = ROOT
+		}
+	}
+}
+country_event = {
+	id = hidden.5
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	fire_only_once = yes
+	picture = SIEGE_eventPicture
+	hidden = yes
+	
+	trigger = {
+		OR = {
+			tag = MCH
+			tag = MJZ
+			tag = QNG
+		}
+		OR = {
+			is_emperor_of_china = yes
+			NOT = {
+				exists = MNG
+			}
+		}
+		NOT = { exists = MNG }
+	}
+	
+	mean_time_to_happen = {
+		months = 1
+	}
+		
+	option = {
+		every_province = {
+			limit = {
+				qing_china_region_trigger = yes
+			}
+			add_permanent_claim = QNG
+		}
+		set_country_flag = cores_gained_qing
+	}
+}
+country_event = {
+	id = hidden.6
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	fire_only_once = yes
+	hidden = yes
+	
+	trigger = {
+		tag = MJZ
+		ai = yes
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		manchuria_region = {
+			add_core = MJZ
+		}
+		KRC = {
+			every_owned_province = {
+				add_core = MJZ
+			}
+		}
+	}
+}
+
+#country_event = {
+#	id = hidden.7
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = QNG
+#		OR = {
+#			is_emperor_of_china = yes
+#			NOT = {
+#				exists = MNG
+#			}
+#		}
+#		is_neighbor_of = RUS
+#		war_with = RUS
+#		ai = yes
+#		was_player = no
+#		RUS = {
+#			ai = yes
+#			was_player = no
+#		}
+#		NOT = {
+#			any_country = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#				alliance_with = ROOT
+#				war_with = RUS
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		white_peace = RUS
+#	}
+#}
+#country_event = {
+#	id = hidden.8
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = QNG
+#		ai = yes
+#		was_player = no
+#		OR = {
+#			is_emperor_of_china = yes
+#			NOT = {
+#				exists = MNG
+#			}
+#		}
+#		NOT = { exists = MNG }
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 60
+#	}
+#		
+#	option = {
+#		every_province = {
+#			limit = {
+#				qing_china_region_trigger = yes
+#				owner = {
+#					is_subject_of = ROOT
+#					was_player = no
+#					ai = yes
+#				}
+#			}
+#			cede_province = ROOT
+#			add_core = ROOT
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.9
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = RUS
+#		is_neighbor_of = QNG
+#		ai = yes
+#		was_player = no
+#		QNG = {
+#			ai = yes
+#			was_player = no
+#			OR = {
+#				is_emperor_of_china = yes
+#				NOT = {
+#					exists = MNG
+#				}
+#			}
+#		}
+#		OR = {
+#			any_owned_province = {
+#				qing_china_region_trigger = yes
+#			}
+#			any_province = {
+#				owned_by = QNG
+#				OR = {
+#					region = mongolia_region
+#					region = central_asia
+#					region = west_siberia_region
+#					region = east_siberia_region
+#					region = manchuria_region
+#				}
+#				NOT = { qing_china_region_trigger = yes }
+#			}
+#		}
+#	}
+#	
+#	mean_time_to_happen = {
+#		months = 60
+#	}
+#		
+#	option = {
+#		every_owned_province = {
+#			limit = {
+#				qing_china_region_trigger = yes
+#			}
+#			cede_province = QNG
+#			add_core = QNG
+#			remove_core = ROOT
+#		}
+#		every_province = {
+#			limit = {
+#				owned_by = QNG
+#				OR = {
+#					region = mongolia_region
+#					region = central_asia
+#					region = west_siberia_region
+#					region = east_siberia_region
+#					region = manchuria_region
+#				}
+#				qing_china_region_trigger = no
+#			}
+#			cede_province = ROOT
+#			add_core = ROOT
+#			remove_core = QNG
+#		}
+#	}
+#}
+
+#country_event = {
+#	id = hidden.10
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		persia_region = {
+#			add_core = AKK
+#		}
+#		QAR = {
+#			every_owned_province = {
+#				add_core = AKK
+#			}
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.11
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		ai = yes
+#		NOT = {
+#			OR = {
+#				TIM = { ai = no }
+#				QAR = { ai = no }
+#				TIM = { was_player = yes }
+#				QAR = { was_player = yes }
+#			}
+#		}
+#
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		set_country_flag = AKK_47
+#		add_manpower = 50
+#		add_country_modifier = {
+#			name = "AKK_expansion"
+#			duration = -1
+#			desc = "AKK_expansion_desc"
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.12
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		has_country_flag = AKK_47
+#		ai = yes
+#		NOT = {
+#			OR = {
+#				TIM = { ai = no }
+#				QAR = { ai = no }
+#				TIM = { was_player = yes }
+#				QAR = { was_player = yes }
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		capital_scope = {
+#			build_to_forcelimit = {
+#				infantry = 0.5
+#				cavalry = 0.5
+#			}
+#		}
+#		declare_war_with_cb = {
+#		  who = QAR
+#		  casus_belli = cb_expand_federation
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.13
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		num_of_cities = 6
+#		any_owned_province = {
+#			is_core = QAR
+#		}
+#		ai = yes
+#		NOT = {
+#			OR = {
+#				TIM = { ai = no }
+#				QAR = { ai = no }
+#				TIM = { was_player = yes }
+#				QAR = { was_player = yes }
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		months = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		inherit = QAR
+#		every_province = {
+#			limit = {
+#				is_core = QAR
+#			}
+#			remove_core = QAR
+#		}
+#		add_manpower = 50
+#		declare_war_with_cb = {
+#		  who = TIM
+#		  casus_belli = cb_expand_federation
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.14
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		ai = yes
+#		has_country_modifier = AKK_expansion
+#		any_owned_province = {
+#			is_core = TIM
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		remove_country_modifier = AKK_expansion
+#		add_accepted_culture = persian
+#		add_country_modifier = {
+#			name = "AKK_settled"
+#			duration = -1
+#			desc = "AKK_settled_desc"
+#		}
+#		clr_country_flag = AKK_47
+#		set_capital = 416
+#		if = {
+#			limit = { NOT = { government_rank = 2 } }
+#			set_government_rank = 2
+#		}
+#		set_country_flag = AKK_conquered_provinces
+#		every_province = {
+#			limit = {
+#				region = persia_region
+#				owned_by = TIM
+#			}
+#			cede_province = ROOT
+#		}
+#		every_province = {
+#			limit = {
+#				owned_by = ROOT
+#			}
+#			remove_core = TIM
+#		}
+#		TIM = {
+#			country_event = { id = hidden.18 }
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.15
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		has_country_modifier = AKK_expansion
+#		OR = {
+#			ai = no
+#			was_player = yes
+#			TIM = { ai = no }
+#			QAR = { ai = no }
+#			TIM = { was_player = yes }
+#			QAR = { was_player = yes }
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		remove_country_modifier = AKK_expansion
+#	}
+#}
+#country_event = {
+#	id = hidden.16
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = AKK
+#		ai = yes
+#		was_player = no
+#		has_country_flag = AKK_conquered_provinces
+#		NOT = {
+#			any_country = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#				alliance_with = AKK
+#				is_at_war = yes
+#			}
+#		}
+#		any_country = {
+#			NOT = {
+#				OR = {
+#					primary_culture = manchu
+#					tag = KRC
+#					AND = {
+#						NOT = { tag = MNG }
+#						NOT = { tag = KOR }
+#						any_owned_province = {
+#							OR = {
+#								is_core = ROOT
+#								region = manchuria_region
+#							}
+#						}
+#					}
+#					OR = {
+#						ai = no
+#						was_player = yes
+#					}
+#				}
+#			}
+#			war_with = ROOT
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		every_country = {
+#			limit = {
+#				war_with = ROOT
+#				NOT = { 
+#					OR = {
+#						tag = TUR
+#						tag = MAM
+#						capital_scope = {
+#							continent = persia_region
+#						}
+#						OR = {
+#							ai = no
+#							was_player = yes
+#						}
+#					}
+#				}
+#			}
+#			white_peace = ROOT
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.17
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = TIM
+#		ai = yes
+#		was_player = no
+#		NOT = { has_country_flag = TIM_rise_of_mughals }
+#		NOT = {
+#			AKK = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#			}
+#		}
+#		any_country = {
+#			NOT = {
+#				OR = {
+#					primary_culture = manchu
+#					tag = KRC
+#					AND = {
+#						NOT = { tag = MNG }
+#						NOT = { tag = KOR }
+#						any_owned_province = {
+#							OR = {
+#								is_core = ROOT
+#								region = manchuria_region
+#							}
+#						}
+#					}
+#					OR = {
+#						ai = no
+#						was_player = yes
+#					}
+#				}
+#			}
+#			war_with = ROOT
+#		}
+#		NOT = {
+#			any_country = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#				alliance_with = TIM
+#				is_at_war = yes
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		every_country = {
+#			limit = {
+#				war_with = ROOT
+#				NOT = { 
+#					OR = {
+#						capital_scope = {
+#							superregion = india_superregion
+#						}
+#						tag = AKK
+#						tag = QAR
+#						OR = {
+#							ai = no
+#							was_player = yes
+#						}
+#					}
+#				}
+#			}
+#			white_peace = ROOT
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.18
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	is_triggered_only = yes
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		add_treasury = 3000
+#		add_manpower = 50
+#		if = {
+#			limit = {
+#				exists = BAL
+#				BAL = {
+#					ai = yes
+#					was_player = no
+#				}
+#			}
+#			inherit = BAL
+#		}
+#		if = {
+#			limit = {
+#				exists = SND
+#				SND = {
+#					ai = yes
+#					was_player = no
+#				}
+#			}
+#			inherit = SND
+#		}
+#		if = {
+#			limit = {
+#				exists = MUL
+#				MUL = {
+#					ai = yes
+#					was_player = no
+#				}
+#			}
+#			inherit = MUL
+#		}
+#	}
+#}
+#country_event = {
+#	id = hidden.19
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = QNG
+#		OR = {
+#			is_emperor_of_china = yes
+#			NOT = {
+#				exists = MNG
+#			}
+#		}
+#		ai = yes
+#		was_player = no
+#		NOT = {
+#			is_in_war = {
+#				casus_belli = cb_force_tributary
+#			}
+#		}
+#		any_country = {
+#			NOT = {
+#				tag = QNG
+#			}
+#			any_owned_province = {
+#				qing_china_region_trigger = yes
+#			}
+#		}
+#		any_country = {
+#			NOT = {
+#				any_owned_province = {
+#					qing_china_region_trigger = yes
+#				}
+#			}
+#			ai = yes
+#			was_player = no
+#			war_with = ROOT
+#		}
+#		NOT = {
+#			any_country = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#				alliance_with = ROOT
+#				is_at_war = yes
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		every_country = {
+#			limit = {
+#				NOT = {
+#					any_owned_province = {
+#						qing_china_region_trigger = yes
+#					}
+#				}
+#				ai = yes
+#				was_player = no
+#				war_with = ROOT
+#			}
+#			white_peace = ROOT
+#		}
+#	}
+#}
+country_event = {
+	id = hidden.20
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	fire_only_once = yes
+	
+	trigger = {
+		tag = HAB
+		is_year = 1500
+		ai = yes
+		was_player = no
+		exists = BOH
+		exists = HUN
+	}
+	mean_time_to_happen = {
+		months = 100
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		if = {
+			limit = {
+				HUN = {
+					ai = yes
+					was_player = no
+					junior_union_with = ROOT
+				}
+			}
+			create_union = HUN
+		}
+		if = {
+			limit = {
+				BOH = {
+					ai = yes
+					was_player = no
+					NOT = {
+						junior_union_with = ROOT
+					}
+				}
+			}
+			create_union =  BOH
+			BOH = {
+				every_owned_province = {
+					limit = {
+						OR = {
+							region = north_german_region
+							region = south_german_region
+							area = silesia_area
+						}
+						NOT = {
+							OR = {
+								area = bohemia_area
+								area = erzgebirge_area
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = BRA
+						}
+						cede_province = BRA
+						add_core = BRA
+						remove_core = BOH
+					}
+					if = {
+						limit = {
+							exists = PRU
+							NOT = {
+								exists = BRA
+							}
+						}
+						cede_province = PRU
+						add_core = PRU
+						remove_core = BOH
+					}
+				}
+				every_owned_province = {
+					limit = {
+						OR = {
+							region = poland_region
+						}
+						NOT = {
+							OR = {
+								area = bohemia_area
+								area = erzgebirge_area
+								area = silesia_area
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = POL
+						}
+						cede_province = POL
+						add_core = POL
+						remove_core = BOH
+					}
+					if = {
+						limit = {
+							exists = PLC
+						}
+						cede_province = PLC
+						add_core = PLC
+						remove_core = BOH
+					}
+				}
+			}
+		}
+	}
+}
+#country_event = {
+#	id = hidden.21
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = MUG
+#		ai = yes
+#		was_player = no
+#		any_country = {
+#			NOT = {
+#				any_owned_province = {
+#					superregion = india_superregion
+#				}
+#			}
+#			ai = yes
+#			was_player = no
+#			war_with = ROOT
+#		}
+#		NOT = {
+#			any_country = {
+#				OR = {
+#					ai = no
+#					was_player = yes
+#				}
+#				alliance_with = ROOT
+#				is_at_war = yes
+#			}
+#		}
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		every_country = {
+#			limit = {
+#				NOT = {
+#					any_owned_province = {
+#						superregion = india_superregion
+#					}
+#				}
+#				ai = yes
+#				was_player = no
+#				war_with = ROOT
+#			}
+#			white_peace = ROOT
+#		}
+#	}
+#}
+country_event = {
+	id = hidden.22
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = "hidden.1.a"
+		every_country = {
+			limit = {
+				has_country_flag = joined_first_coalition
+			}
+			country_event = {
+				id = hidden.23
+				days = 100
+			}
+		}
+	}
+}
+country_event = {
+	id = hidden.23
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = "hidden.1.a"
+		every_country = {
+			limit = {
+				has_country_flag = joined_first_coalition
+			}
+			white_peace = ROOT
+			add_truce_with = ROOT
+		}
+	}
+}
+country_event = {
+	id = hidden.60
+	title = "hidden.60.t"
+	desc = "hidden.60.d"
+	picture = DIPLOMACY_eventPicture
+
+	hidden = yes
+	is_triggered_only = yes	
+
+	option = {	
+		name = "hidden.60.a"
+		every_country = {
+			limit = {
+				NOT = {
+					war_with = ROOT
+				}
+				has_country_flag = joined_first_coalition
+			}
+			declare_war_with_cb = {
+				who = ROOT
+				casus_belli = cb_coalition_wars
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = hidden.60
+				days = 1830
+			}
+		}
+	}
+}
+#Debug: occupy all of France to dismantle revolution
+country_event = {
+	id = hidden.100
+	title = "hidden.60.t"
+	desc = "hidden.60.d"
+	picture = DIPLOMACY_eventPicture
+
+	hidden = yes
+	is_triggered_only = yes	
+
+	option = {	
+		name = "hidden.60.a"
+		every_province = {
+			limit = {
+				de_jure_france = yes
+			}
+			change_controller = ROOT
+		}
+	}
+}
+country_event = {
+	id = hidden.101
+	title = "hidden.60.t"
+	desc = "hidden.60.d"
+	picture = DIPLOMACY_eventPicture
+
+	hidden = yes
+	is_triggered_only = yes	
+
+	option = {	
+		name = "hidden.60.a"
+		every_province = {
+			limit = {
+				continent = europe
+			}
+			change_controller = ROOT
+		}
+	}
+}
+country_event = {
+	id = hidden.25
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	fire_only_once = yes
+	
+	trigger = {
+		NOT = {
+			exists = MAM
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		every_province = {
+			limit = {
+				is_core = MAM
+			}
+			remove_core = MAM
+		}
+		every_province = {
+			limit = {
+				culture = al_misr_arabic
+			}
+			add_core = EGY
+		}
+	}
+}
+#country_event = {
+#	id = hidden.26
+#	
+#	title = "hidden.1.t"
+#	desc = "hidden.1.d"
+#	
+#	picture = SIEGE_eventPicture
+#	hidden = yes
+#	
+#	trigger = {
+#		tag = TUR
+#		CRI = {
+#			is_vassal_of = ROOT
+#		}
+#		ai = yes
+#		was_player = no
+#	}
+#	mean_time_to_happen = {
+#		days = 1
+#	}
+#	
+#	option = {
+#		name = "hidden.1.a"
+#		create_march = CRI
+#		add_stability = 1
+#	}
+#}
+country_event = {
+	id = hidden.27
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	fire_only_once = yes
+	
+	trigger = {
+		NOT = {
+			exists = PLC
+		}
+		any_province = {
+			is_core = PLC
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		every_province = {
+			limit = {
+				is_core = PLC
+			}
+			remove_core = PLC
+		}
+		every_province = {
+			limit = {
+				is_core = POL
+			}
+			remove_core = POL
+		}
+		every_province = {
+			limit = {
+				is_core = LIT
+			}
+			remove_core = LIT
+		}
+		every_province = {
+			limit = {
+				culture = polish
+			}
+			add_core = POL
+		}
+		every_province = {
+			limit = {
+				culture = lithuanian
+			}
+			add_core = LIT
+		}
+	}
+}
+country_event = {
+	id = hidden.28
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	
+	trigger = {
+		tag = POL
+		ai = yes
+		was_player = no
+		NOT = {
+			exists = PRU
+		}
+		exists = TEU
+		NOT = {
+			is_year = 1550
+		}
+		any_owned_province = {
+			OR = {
+				province_id = 2958
+				province_id = 767
+				province_id = 42
+				province_id = 41
+				province_id = 40
+			}
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		every_province = {
+			limit = {
+				owned_by = POL
+				OR = {
+					province_id = 2958
+					province_id = 767
+					province_id = 42
+					province_id = 41
+					province_id = 40
+				}
+			}
+			cede_province = TEU
+		}
+	}
+}
+country_event = {
+	id = hidden.29
+	
+	title = "hidden.1.t"
+	desc = "hidden.1.d"
+	
+	picture = SIEGE_eventPicture
+	hidden = yes
+	fire_only_once = yes
+	
+	trigger = {
+		tag = TEU
+		ai = yes
+		was_player = no
+		is_religion_enabled = protestant
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "hidden.1.a"
+		change_religion = protestant
+		add_country_modifier = {
+			name = "conversion_zeal"
+			duration = 1825
+		}
+	}
+}

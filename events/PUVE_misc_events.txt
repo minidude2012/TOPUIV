@@ -1,0 +1,147 @@
+########################################
+# AOE Misc Events
+########################################
+
+namespace = pu1800_misc_events
+
+#country_event = {
+	#id = pu1800_misc_events.1
+	#title = "pu1800_misc_events.1.t"
+	#desc = "pu1800_misc_events.1.d"
+	#picture = ORTHODOX_eventPicture
+	
+	#is_triggered_only = yes
+	
+	#option = {
+		#name = "pu1800_misc_events.1.a"
+		#add_country_modifier = {
+			#name = "converted_from_pentarchy"
+			#duration = 5475
+			#desc = "converted_from_pentarchy_desc"
+		#}
+		#change_religion = orthodox
+		#ai_chance = { factor = 100 }
+	#}
+	#option = {
+		#name = "pu1800_misc_events.1.b"
+		#add_country_modifier = {
+			#name = "refused_pentarchy_catholic"
+			#duration = -1
+			#desc = "refused_pentarchy_catholic_desc"
+		#}
+		#ai_chance = { factor = 0 }
+	#}
+#}
+
+#country_event = {
+	#id = pu1800_misc_events.2
+	#title = "pu1800_misc_events.2.t"
+	#desc = "pu1800_misc_events.2.d"
+	#picture = ORTHODOX_eventPicture
+	
+	#is_triggered_only = yes
+	
+	#option = {
+		#name = "pu1800_misc_events.2.a"
+		#add_country_modifier = {
+			#name = "converted_from_pentarchy"
+			#duration = 5475
+			#desc = "converted_from_pentarchy_desc"
+		#}
+		#change_religion = orthodox
+		#ai_chance = { factor = 95 }
+	#}
+	#option = {
+		#name = "pu1800_misc_events.2.b"
+		#add_country_modifier = {
+			#name = "refused_pentarchy_protestant"
+			#duration = -1
+			#desc = "refused_pentarchy_catholic_desc"
+		#}
+		#ai_chance = { factor = 5 }
+	#}
+
+#}
+country_event = {
+	id = pu1800_misc_events.5
+	title = "pu1800_misc_events.5.t"
+	desc = "pu1800_misc_events.5.d"
+	picture = IMPERIAL_SEAL_eventPicture
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "pu1800_misc_events.5.a"
+		add_prestige = 100
+		ai_chance = { factor = 100 }
+	}
+}
+#Startup options
+country_event = {
+	id = pu1800_misc_events.6
+	title = "pu1800_misc_events.6.t"
+	desc = "pu1800_misc_events.6.d"
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		ai = no
+		NOT = { is_year = 1450 }
+		has_country_flag = not_implemented_yet
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = "pu1800_misc_events.6.a" # Colonial Railroading
+		country_event = {
+			id = pu1800_misc_events.7
+		}
+	}
+	option = {
+		name = "pu1800_misc_events.6.b" # Get me out of here!
+	}
+}
+
+country_event = {
+	id = pu1800_misc_events.6
+	title = "pu1800_misc_events.6.t"
+	desc = "pu1800_misc_events.6.d"
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = "pu1800_misc_events.6.a" # Yes, I want colonial railroading.
+		
+	}
+	option = {
+		name = "pu1800_misc_events.6.b" # Back
+		country_event = {
+			id = pu1800_misc_events.7
+		}
+	}
+}
+country_event = {
+	id = pu1800_misc_events.7
+	title = "pu1800_misc_events.7.t"
+	desc = "pu1800_misc_events.7.d"
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = "pu1800_misc_events.6.a" # Yes, I want colonial railroading.
+		
+	}
+	option = {
+		name = "pu1800_misc_events.6.b" # Back
+		country_event = {
+			id = pu1800_misc_events.7
+		}
+	}
+}
+
+#Partitions of Poland

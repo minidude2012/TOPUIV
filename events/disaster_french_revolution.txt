@@ -1,0 +1,2650 @@
+
+########################################
+# Revolution & Napoleon                #
+########################################
+
+namespace = french_revolution
+
+#The National Assembly
+country_event = {
+	id = french_revolution.1
+	title = "french_revolution.1.t"
+	desc = "french_revolution.1.d"
+	picture = LIBERUM_VETO_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	immediate = {
+		set_country_flag = had_revolution
+		add_stability = -1
+		set_country_flag = bastille_incoming
+	}
+
+	option = {		# Dire times are ahead of us
+		name = "french_revolution.1.a"
+		add_prestige = -10
+	}
+}
+#The Storming of the Bastille
+country_event = {
+	id = french_revolution.2
+	title = "french_revolution.2.t"
+	desc = "french_revolution.2.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1789
+		OR = {
+			is_month = 5
+			is_month = 6
+		}
+		has_country_flag = bastille_incoming
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		set_country_flag = bastille_stormed
+	}
+
+	option = {		# Dire times are ahead of us
+		name = "french_revolution.2.a"
+		add_stability = -1
+		add_prestige = 10
+	}
+}
+#Declaration of the Rights of Man and of the Citizen
+country_event = {
+	id = french_revolution.3
+	title = "french_revolution.3.t"
+	desc = "french_revolution.3.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1789
+		has_country_flag = bastille_stormed
+		OR = {
+			is_month = 6
+			is_month = 7
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	immediate = {
+		set_country_flag = declaration_rom
+	}
+	option = {
+		name = "french_revolution.3.a"
+		change_government = constitutional_monarchy
+		set_revolution_target = ROOT
+		add_stability = -1
+		add_prestige = 10
+	}
+}
+# Women's March on Versailles
+country_event = {
+	id = french_revolution.4
+	title = "french_revolution.4.t"
+	desc = "french_revolution.4.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1789
+		OR = {
+			is_month = 9
+			is_month = 8
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "french_revolution.4.a"
+		add_prestige = 10
+	}
+}
+#F�te de la F�d�ration
+country_event = {
+	id = french_revolution.5
+	title = "french_revolution.5.t"
+	desc = "french_revolution.5.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1790
+		OR = {
+			is_month = 5
+			is_month = 6
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "french_revolution.5.a"
+		add_prestige = 10
+	}
+}
+#Flight to Varennes
+country_event = {
+	id = french_revolution.6
+	title = "french_revolution.6.t"
+	desc = "french_revolution.6.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1791
+		OR = {
+			is_month = 4
+			is_month = 5
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		set_country_flag = flight_to_varennes
+	}
+
+	option = {
+		name = "french_revolution.6.a"
+		add_prestige = -10
+		add_stability = -1
+	}
+}
+#Declaration of Pillnitz
+country_event = {
+	id = french_revolution.7
+	title = "french_revolution.7.t"
+	desc = "french_revolution.7.d"
+	picture = DIPLOMACY_eventPicture
+	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1791
+		OR = {
+			is_month = 7
+			is_month = 8
+			is_month = 9
+		}
+		FRA = {
+			has_disaster = french_revolution
+			has_country_flag = flight_to_varennes
+		}
+		OR = {
+			AND = {
+				any_country = {
+					is_part_of_hre = yes
+				}
+				is_emperor = yes
+			}
+			AND = {
+				NOT = {
+					any_country = {
+						is_part_of_hre = yes
+					}
+				}
+				capital_scope = {
+					continent = europe
+				}
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "french_revolution.7.a"
+		every_country = {
+			limit = {
+				any_owned_province = {
+					continent = europe
+				}
+				NOT = {
+					OR = {
+						tag = ROOT
+						tag = FRA
+						tag = GBR
+					}
+				}
+			}
+			country_event = {
+				id = french_revolution.8
+				days = 2
+			}
+		}
+		if = {
+			limit = {
+				exists = GBR
+				NOT = {
+					tag = GBR
+				}
+				GBR = {
+					NOT = {
+						government = republic
+					}
+				}
+			}
+			GBR = {
+				country_event = {
+					id = french_revolution.9
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = joined_first_coalition
+			add_opinion = {
+				who = FRA
+				modifier = coalition_wars
+			}
+			set_ai_attitude = {
+				who = FRA
+				attitude = attitude_outraged
+			}
+			FRA  = {
+				add_opinion = {
+					who = ROOT
+					modifier = coalition_wars
+				}
+			}
+			country_event = {
+				id = hidden.22
+				days = 60
+			}
+		}
+	}
+}
+country_event = {
+	id = french_revolution.9
+	title = "french_revolution.9.t"
+	desc = "french_revolution.9.d"
+	picture = DIPLOMACY_eventPicture
+
+	is_triggered_only = yes	
+
+	option = {	
+		name = "french_revolution.9.a"
+		hidden_effect = {
+			set_country_flag = joined_first_coalition
+			FRA = {
+				country_event = {
+					id = french_revolution.11
+					days = 240
+				}
+			}
+			add_opinion = {
+				who = FRA
+				modifier = coalition_wars
+			}
+			set_ai_attitude = {
+				who = FRA
+				attitude = attitude_outraged
+			}
+			FRA  = {
+				add_opinion = {
+					who = ROOT
+					modifier = coalition_wars
+				}
+			}
+		}
+	}
+}
+#Join the First Coalition?
+country_event = {
+	id = french_revolution.8
+	title = "french_revolution.8.t"
+	desc = "french_revolution.8.d"
+	picture = DIPLOMACY_eventPicture
+
+	is_triggered_only = yes	
+
+	option = {	
+		name = "french_revolution.8.a"
+		ai_chance = { factor = 100 }
+		custom_tooltip = "truces_formed"
+		hidden_effect = {
+			set_country_flag = joined_first_coalition
+			add_opinion = {
+				who = FRA
+				modifier = coalition_wars
+			}
+			set_ai_attitude = {
+				who = FRA
+				attitude = attitude_outraged
+			}
+			FRA  = {
+				add_opinion = {
+					who = ROOT
+					modifier = coalition_wars
+				}
+			}
+		}
+	}
+	option = {	
+		name = "french_revolution.8.b"
+		add_prestige = -10
+		add_country_modifier = {
+			name = refused_coalition
+			duration = -1
+		}
+		ai_chance = { factor = 0 }
+	}
+}
+#The Coalition Wars
+country_event = {
+	id = french_revolution.11
+	title = "french_revolution.11.t"
+	desc = "french_revolution.11.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	immediate = {
+		set_country_flag = declared_war_on_hre
+	}
+
+	option = {
+		name = "french_revolution.11.a"
+		hidden_effect = {
+			every_country = {
+				limit = {
+					war_with = ROOT
+				}
+				white_peace = ROOT
+			}
+			every_country = {
+				limit = {
+					has_country_flag = joined_first_coalition
+				}
+				white_peace = FROM
+				form_coalition_against = FRA
+			}
+		}
+		add_prestige = 10
+		add_stability = 1
+		declare_war_with_cb = {
+		  who = FROM
+		  casus_belli = cb_coalition_wars
+		}
+		capital_scope = {
+			build_to_forcelimit = {
+				infantry = 0.55
+				cavalry = 0.05
+				artillery = 0.4
+			}
+		}
+	}
+}
+#Storming of the Tuileries
+country_event = {
+	id = french_revolution.12
+	title = "french_revolution.12.t"
+	desc = "french_revolution.12.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1792
+		OR = {
+			is_month = 6
+			is_month = 7
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		set_country_flag = storming_of_tuileries
+	}
+
+	option = {
+		name = "french_revolution.12.a"
+		disband_rebels = revolutionary_rebels
+		add_prestige = 10
+		change_government = revolutionary_republic
+		kill_ruler = yes
+	}
+}
+#Trial and Execution of Louis XVI
+country_event = {
+	id = french_revolution.13
+	title = "flavor_fra.EVTNAME3146"
+	desc = "flavor_fra.EVTDESC3146"
+	picture = DEATH_OF_HEIR_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1792
+		OR = {
+			is_month = 10
+			is_month = 11
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {		# 361 votes for and 360 against execution
+		name = "flavor_fra.EVTOPTA3146"
+		add_stability_or_adm_power = yes
+		set_country_flag = fra_executed_louis
+		every_country = {
+			limit = {
+				government = monarchy
+			}
+			add_opinion = {
+				who = ROOT
+				modifier = executed_monarch
+			}
+		}
+		ai_chance = { factor = 100 }
+	}
+	option = {		# 361 votes against and 360 for execution
+		name = "flavor_fra.EVTOPTB3146"
+		add_stability = -1
+		ai_chance = { factor = 0 }
+	}
+}
+#Committee on Public Safety and the Reign of Terror
+country_event = {
+	id = french_revolution.14
+	title = "french_revolution.14.t"
+	desc = "french_revolution.14.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1793
+		OR = {
+			is_month = 3
+			is_month = 4
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate = {
+		set_country_flag = reign_of_terror
+	}
+	option = {
+		name = "french_revolution.14.a"
+		add_republican_tradition = -5
+		add_country_modifier = {
+			name = the_reign_of_terror
+			duration = -1
+		}
+		ai_chance = { factor = 100 }
+	}
+}
+#Execution of Robspierre - End of the Terror
+country_event = {
+	id = french_revolution.15
+	title = "french_revolution.15.t"
+	desc = "french_revolution.15.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1794
+		OR = {
+			is_month = 5
+			is_month = 6
+		}
+		has_country_flag = reign_of_terror
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate = {
+		set_country_flag = end_of_terror
+	}
+
+	option = {
+		name = "french_revolution.15.a"
+		remove_country_modifier = the_reign_of_terror
+		ai_chance = { factor = 100 }
+	}
+}
+#The Directory
+country_event = {
+	id = french_revolution.16
+	title = "flavor_fra.EVTNAME3781"
+	desc = "flavor_fra.EVTDESC3781"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1795
+		OR = {
+			is_month = 7
+			is_month = 8
+		}
+		has_country_flag = end_of_terror
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "flavor_fra.EVTOPTA3781"
+		add_stability = 2
+		ai_chance = { factor = 100 }
+	}
+}
+#Coup of 18 Brumaire
+country_event = {
+	id = french_revolution.17
+	title = "french_revolution.17.t"
+	desc = "french_revolution.17.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1799
+		OR = {
+			is_month = 9
+			is_month = 10
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "french_revolution.17.a"
+		add_prestige = 10
+		add_stability = -1
+		if = {
+			limit = {
+				has_heir = yes
+			}
+			hidden_effect = {
+				kill_heir = yes
+			}
+		}
+		define_ruler = {
+			name = "Napoleon I"
+			dynasty = "Bonaparte" 
+			age = 30
+			claim = 75
+			regency = no
+			female = no
+			adm = 6
+			dip = 6
+			mil = 6
+		}
+		define_ruler_to_general = {
+		  shock = 8
+		  fire = 7
+		  manuever = 8
+		  siege = 10
+		  trait = glory_seeker_personality
+		}
+		if = {
+			limit = {
+				has_dlc = "Rights of Man" 
+			}
+			hidden_effect = { add_ruler_personality = inspiring_leader_personality }
+		}
+		set_ruler_flag = napoleon_flag
+		end_disaster = french_revolution
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = french_revolution.18
+	title = "french_revolution.18.ae.t"
+	desc = "french_revolution.18.ae.d"
+	picture = REVOLUTION_eventPicture
+	
+	major = yes
+	fire_only_once = yes
+	
+	trigger = {
+		is_year = 1798
+		tag = GBR
+		NOT = {
+			exists = IRE
+		}
+		OR = {
+			is_month = 4
+			is_month = 3
+		}
+		FRA = {
+			has_country_flag = had_revolution
+		}
+		any_owned_province = {
+			OR = {
+				area = western_ireland_area
+				area = eastern_ireland_area
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "french_revolution.18.ae.a"
+		add_stability = -1
+		every_province = {
+			limit = {
+				OR = {
+					area = western_ireland_area
+					area = eastern_ireland_area
+				}
+				owned_by = ROOT
+				culture = irish
+			}
+			add_core = IRE
+			add_nationalism = 25
+		}
+		set_country_flag = irish_rebellion
+	}
+}
+#End of the HRE
+country_event = {
+	id = french_revolution.30
+	title = "french_revolution.30.t"
+	desc = "french_revolution.30.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+
+	option = {
+		name = "french_revolution.30.a"
+		dismantle_hre = yes
+		add_prestige = -100
+		hidden_effect = {
+			FRA = {
+				add_prestige = 100
+			}
+		}
+	}
+}
+#Fate of Northeast Germany
+country_event = {
+	id = french_revolution.31
+	title = "french_revolution.31.t"
+	desc = "french_revolution.31.d"
+	picture = REVOLUTION_eventPicture
+
+	is_triggered_only = yes	
+	fire_only_once = yes
+
+	option = {
+		name = "french_revolution.31.a"
+		if = {
+			limit = {
+				exists = PRU
+			}
+			white_peace = PRU
+			vassalize = PRU
+			PRU = {
+				kill_ruler = yes
+				change_government = constitutional_monarchy
+				remove_opinion = {
+					who = FRA
+					modifier = coalition_wars
+				}
+				reverse_remove_opinion = {
+					who = FRA
+					modifier = coalition_wars
+				}
+				clr_country_flag = joined_first_coalition
+			}
+			every_province = {
+				limit = {
+					NOT = {
+						owned_by = PRU
+					}
+					northeast_germany_france = yes
+				}
+				cede_province = PRU
+				add_core = PRU
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = PRU
+				}
+			}
+			every_province = {
+				limit = {
+					is_core = PRU
+				}
+				remove_core = PRU
+			}
+			every_province = {
+				limit = {
+					NOT = {
+						owned_by = ROOT
+					}
+					northeast_germany_france = yes
+				}
+				cede_province = ROOT
+				add_core = PRU
+			}
+			release = PRU
+			vassalize = PRU
+			PRU = {
+				change_government = constitutional_monarchy
+			}
+		}
+	}
+	option = {
+		name = "french_revolution.31.b"
+		every_province = {
+			limit = {
+				NOT = {
+					owned_by = RHI
+				}
+				northeast_germany_france = yes
+			}
+			cede_province = RHI
+			add_core = RHI
+		}
+	}
+}
+#Congress of Vienna
+country_event = {
+	id = french_revolution.40
+	title = "french_revolution.40.t"
+	desc = "french_revolution.40.d"
+	picture = LIBERUM_VETO_eventPicture
+
+	is_triggered_only = yes	
+	major = yes
+	fire_only_once = yes
+	
+	immediate = {
+		set_global_flag = congress_of_vienna
+		every_province = {
+			limit = {
+				area = piedmont_area
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = SPI
+						exists = SAV
+					}
+				}
+				cede_province = FRA
+				add_core = SPI
+				remove_core = FRA
+				FRA = {
+					release = SPI
+				}
+				127 = {
+					cede_province = SPI
+					add_core = SPI
+				}
+				2986 = {
+					cede_province = SPI
+					add_core = SPI
+				}
+			}
+			if = {
+				limit = {
+					exists = SAV
+				}
+				cede_province = SAV
+				add_core = SAV
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					exists = SPI
+					NOT = {
+						exists = SAV
+					}
+				}
+				cede_province = SPI
+				add_core = SPI
+				remove_core = FRA
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 205
+					province_id = 102
+				}
+			}
+			if = {
+				limit = {
+					exists = SAV
+					NOT = {
+						exists = SPI
+					}
+				}
+				cede_province = SAV
+				add_core = SPI
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					exists = SPI
+					NOT = {
+						exists = SAV
+					}
+				}
+				cede_province = SPI
+				add_core = SPI
+				remove_core = FRA
+			}
+		}
+		every_province = {
+			limit = {
+				ligurian_france = yes
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = SPI
+						exists = SAV
+						exists = GEN
+					}
+				}
+				cede_province = FRA
+				add_core = GEN
+				FRA = {
+					release = GEN
+				}
+				GEN = {
+					change_government = merchant_republic
+				}
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					exists = GEN
+					GEN = {
+						is_subject_of = FRA
+					}
+				}
+				GEN = {
+					change_government = merchant_republic
+				}
+			}
+			if = {
+				limit = {
+					exists = SPI
+					NOT = {
+						exists = SAV
+						exists = GEN
+					}
+				}
+				cede_province = SPI
+				add_core = SPI
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					exists = SAV
+					NOT = {
+						exists = SAV
+						exists = GEN
+					}
+				}
+				cede_province = SAV
+				add_core = SAV
+				remove_core = FRA
+			}
+		}
+		every_province = {
+			limit = {
+				northeast_germany_france = yes
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PRU
+						exists = BRA
+					}
+				}
+				cede_province = FRA
+				add_core = PRU
+				FRA = {
+					release = PRU
+				}
+				PRU = {
+					change_government = prussian_monarchy
+					define_ruler = {
+						name = "Friedrich Wilhelm III"
+						dynasty = "von Hohenzollern"
+					}
+					set_government_rank = 2
+					set_capital = 50
+				}
+				remove_core = FRA
+				remove_core = RHI
+			}
+			if = {
+				limit = {
+					exists = PRU
+					NOT = {
+						exists = BRA
+					}
+				}
+				cede_province = PRU
+				add_core = PRU
+				remove_core = FRA
+				remove_core = RHI
+			}
+			if = {
+				limit = {
+					exists = BRA
+					NOT = {
+						exists = PRU
+					}
+				}
+				cede_province = BRA
+				add_core = BRA
+				remove_core = FRA
+				remove_core = RHI
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_prussia = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = PRU
+					NOT = {
+						exists = BRA
+					}
+				}
+				cede_province = PRU
+				add_core = PRU
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					exists = BRA
+					NOT = {
+						exists = PRU
+					}
+				}
+				cede_province = BRA
+				add_core = BRA
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BRA
+						exists = PRU
+					}
+				}
+				cede_province = FRA
+				add_core = SAX
+				FRA = {
+					release = SAX
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_bavaria = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = BAV
+				}
+				cede_province = BAV
+				add_core = BAV
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BAV
+					}
+				}
+				cede_province = FRA
+				add_core = BAV
+				FRA = {
+					release = BAV
+				}
+				BAV = {
+					set_government_rank = 2
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 61
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = SAX
+				}
+				cede_province = SAX
+				add_core = SAX
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = SAX
+					}
+				}
+				cede_province = FRA
+				add_core = SAX
+				FRA = {
+					release = SAX
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 58
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = ANH
+				}
+				cede_province = ANH
+				add_core = ANH
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = ANH
+					}
+				}
+				cede_province = FRA
+				add_core = ANH
+				FRA = {
+					release = ANH
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 57
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = BRU
+				}
+				cede_province = BRU
+				add_core = BRU
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BRU
+					}
+				}
+				cede_province = FRA
+				add_core = BRU
+				FRA = {
+					release = BRU
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 44
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = HAM
+				}
+				cede_province = HAM
+				add_core = HAM
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAM
+					}
+				}
+				cede_province = FRA
+				add_core = HAM
+				FRA = {
+					release = HAM
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 45
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = HSA
+				}
+				cede_province = HSA
+				add_core = HSA
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HSA
+					}
+				}
+				cede_province = FRA
+				add_core = HSA
+				FRA = {
+					release = HSA
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 1876
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = FRN
+				}
+				cede_province = FRN
+				add_core = FRN
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = FRN
+					}
+				}
+				cede_province = FRA
+				add_core = FRN
+				FRA = {
+					release = FRN
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 78
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = MAI
+				}
+				cede_province = MAI
+				add_core = MAI
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = MAI
+					}
+				}
+				cede_province = FRA
+				add_core = MAI
+				FRA = {
+					release = MAI
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 83
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = NSA
+				}
+				cede_province = NSA
+				add_core = NSA
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = NSA
+					}
+				}
+				cede_province = FRA
+				add_core = NSA
+				FRA = {
+					release = NSA
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 1874
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = BRE
+				}
+				cede_province = BRE
+				add_core = BRE
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BRE
+					}
+				}
+				cede_province = FRA
+				add_core = BRE
+				FRA = {
+					release = BRE
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 55
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = OLD
+				}
+				cede_province = OLD
+				add_core = OLD
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = OLD
+					}
+				}
+				cede_province = FRA
+				add_core = OLD
+				FRA = {
+					release = OLD
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 94
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = LUX
+				}
+				cede_province = LUX
+				add_core = LUX
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = LUX
+					}
+				}
+				cede_province = FRA
+				add_core = LUX
+				FRA = {
+					release = LUX
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 262
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = KRA
+				}
+				cede_province = KRA
+				add_core = KRA
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = KRA
+					}
+				}
+				cede_province = FRA
+				add_core = KRA
+				FRA = {
+					release = KRA
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_meck = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = MKL
+				}
+				cede_province = MKL
+				add_core = MKL
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = MKL
+					}
+				}
+				cede_province = FRA
+				add_core = MKL
+				FRA = {
+					release = MKL
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_hes = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = HES
+				}
+				cede_province = HES
+				add_core = HES
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HES
+					}
+				}
+				cede_province = FRA
+				add_core = HES
+				FRA = {
+					release = HES
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 70
+					province_id = 1872
+					province_id = 69
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = WUR
+				}
+				cede_province = WUR
+				add_core = WUR
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = WUR
+					}
+				}
+				cede_province = FRA
+				add_core = WUR
+				FRA = {
+					release = WUR
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 72
+					province_id = 74
+					province_id = 77
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = BAD
+				}
+				cede_province = BAD
+				add_core = BAD
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BAD
+					}
+				}
+				cede_province = FRA
+				add_core = BAD
+				FRA = {
+					release = BAD
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 53
+					province_id = 1758
+					province_id = 2971
+					province_id = 54
+					province_id = 56
+					province_id = 1931
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = HAN
+				}
+				cede_province = HAN
+				add_core = HAN
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAN
+					}
+				}
+				cede_province = FRA
+				add_core = HAN
+				remove_core = BRU
+				FRA = {
+					release = HAN
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 2977
+					province_id = 119
+					province_id = 2976
+					province_id = 118
+					province_id = 114
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = PAP
+				}
+				cede_province = PAP
+				add_core = PAP
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PAP
+					}
+				}
+				cede_province = FRA
+				add_core = PAP
+				FRA = {
+					release = PAP
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 105
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = PAR
+				}
+				cede_province = PAR
+				add_core = PAR
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PAR
+					}
+				}
+				cede_province = FRA
+				add_core = PAR
+				FRA = {
+					release = PAR
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 106
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = MOD
+				}
+				cede_province = MOD
+				add_core = MOD
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = MOD
+					}
+				}
+				cede_province = FRA
+				add_core = MOD
+				FRA = {
+					release = MOD
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 2980
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = LUC
+				}
+				cede_province = LUC
+				add_core = LUC
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = LUC
+					}
+				}
+				cede_province = FRA
+				add_core = LUC
+				FRA = {
+					release = LUC
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 115
+					province_id = 116
+					province_id = 2978
+					province_id = 117
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = TUS
+				}
+				cede_province = TUS
+				add_core = TUS
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = TUS
+					}
+				}
+				cede_province = FRA
+				add_core = TUS
+				FRA = {
+					release = TUS
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 1774
+					province_id = 111
+					province_id = 112
+					province_id = 108
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = HAB
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					exists = VEN
+					NOT = {
+						exists = HAB
+					}
+				}
+				cede_province = VEN
+				add_core = VEN
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = VEN
+					}
+				}
+				cede_province = FRA
+				add_core = VEN
+				FRA = {
+					release = VEN
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 1867
+					province_id = 1871
+					province_id = 165
+					province_id = 1869
+					province_id = 166
+					province_id = 1873
+					province_id = 1870
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = SWI
+				}
+				cede_province = SWI
+				add_core = SWI
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = SWI
+					}
+				}
+				cede_province = FRA
+				add_core = SWI
+				FRA = {
+					release = SWI
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_ned = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			if = {
+				limit = {
+					exists = NED
+				}
+				cede_province = NED
+				add_core = NED
+				NED = {
+					change_government = constitutional_monarchy
+					define_ruler = {
+						name = "Willem I"
+						dynasty = "van Oranje"
+					}
+					set_capital = 97
+					set_government_rank = 2
+				}
+				remove_core = FRA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = NED
+					}
+				}
+				cede_province = FRA
+				add_core = NED
+				FRA = {
+					release = NED
+				}
+				NED = {
+					change_government = constitutional_monarchy
+					define_ruler = {
+						name = "Willem I"
+						dynasty = "van Oranje"
+					}
+					set_capital = 97
+					set_government_rank = 2
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 113
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = FER
+				}
+				cede_province = FER
+				add_core = FER
+			}
+			if = {
+				limit = {
+					exists = HAB
+					NOT = {
+						exists = FER
+					}
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = FER
+					}
+				}
+				cede_province = FRA
+				add_core = FER
+				FRA = {
+					release = FER
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 109
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = MAN
+				}
+				cede_province = MAN
+				add_core = MAN
+			}
+			if = {
+				limit = {
+					exists = HAB
+					NOT = {
+						exists = MAN
+					}
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = MAN
+					}
+				}
+				cede_province = FRA
+				add_core = MAN
+				FRA = {
+					release = MAN
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 107
+					province_id = 1862
+					province_id = 104
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = MLO
+				}
+				cede_province = MLO
+				add_core = MLO
+			}
+			if = {
+				limit = {
+					exists = HAB
+					NOT = {
+						exists = MLO
+					}
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = MLO
+					}
+				}
+				cede_province = FRA
+				add_core = MLO
+				FRA = {
+					release = MLO
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 137
+					province_id = 136
+					province_id = 1826
+					province_id = 130
+					province_id = 1769
+					province_id = 129
+					province_id = 131
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = CRO
+				}
+				cede_province = CRO
+				add_core = CRO
+			}
+			if = {
+				limit = {
+					exists = HAB
+					NOT = {
+						exists = CRO
+					}
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = CRO
+					}
+				}
+				cede_province = FRA
+				add_core = CRO
+				FRA = {
+					release = CRO
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				province_id = 128
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = HAB
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+					}
+					exists = CRO
+				}
+				cede_province = CRO
+				add_core = CRO
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 255
+					province_id = 254
+					province_id = 2963
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = PRU
+				}
+				cede_province = PRU
+				add_core = PRU
+			}
+			if = {
+				limit = {
+					exists = BRA
+					NOT = {
+						exists = PRU
+					}
+				}
+				cede_province = BAV
+				add_core = BAV
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PRU
+						exists = BRA
+					}
+					exists = PLC
+				}
+				cede_province = PLC
+				add_core = PLC
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PRU
+						exists = BRA
+						exists = PLC
+					}
+					exists = POL
+				}
+				cede_province = POL
+				add_core = POL
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = BRA
+						exists = PRU
+						exists = PLC
+						exists = POL
+					}
+				}
+				cede_province = FRA
+				add_core = POL
+				FRA = {
+					release = POL
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 76
+					province_id = 73
+					province_id = 1768
+					province_id = 110
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = HAB
+				}
+				cede_province = HAB
+				add_core = HAB
+			}
+			if = {
+				limit = {
+					exists = BAV
+					NOT = {
+						exists = HAB
+					}
+				}
+				cede_province = BAV
+				add_core = BAV
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = BAV
+					}
+					exists = TIR
+				}
+				cede_province = TIR
+				add_core = TIR
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = HAB
+						exists = BAV
+						exists = TIR
+					}
+				}
+				cede_province = FRA
+				add_core = TIR
+				FRA = {
+					release = TIR
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					area = mazovia_area
+					province_id = 2963
+					province_id = 270
+					province_id = 260
+					province_id = 259
+					province_id = 1939
+					province_id = 258
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = PLC
+				}
+				cede_province = PLC
+				add_core = PLC
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = PLC
+					}
+					POL = {
+						any_owned_province = {
+							OR = {
+								province_id = 76
+								province_id = 73
+								province_id = 1768
+								province_id = 110
+							}
+						}
+					}
+				}
+				cede_province = POL
+				add_core = POL
+			}
+			if = {
+				limit = {
+					exists = RUS
+					NOT = {
+						exists = PLC
+						POL = {
+							any_owned_province = {
+								OR = {
+									province_id = 76
+									province_id = 73
+									province_id = 1768
+									province_id = 110
+								}
+							}
+						}
+					}
+				}
+				cede_province = RUS
+				add_core = RUS
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = RUS
+						exists = PLC
+						POL = {
+							any_owned_province = {
+								OR = {
+									province_id = 76
+									province_id = 73
+									province_id = 1768
+									province_id = 110
+								}
+							}
+						}
+					}
+				}
+				cede_province = FRA
+				add_core = POL
+				FRA = {
+					release = POL
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				OR = {
+					province_id = 212
+					province_id = 213
+					province_id = 2987
+					province_id = 2988
+				}
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = SPA
+				}
+				cede_province = SPA
+				add_core = SPA
+			}
+			if = {
+				limit = {
+					exists = CAS
+					NOT = {
+						exists = CAT
+						exists = ARA
+						exists = SPA
+					}
+				}
+				cede_province = CAS
+				add_core = CAS
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = CAT
+						exists = SPA
+					}
+					exists = ARA
+				}
+				cede_province = ARA
+				add_core = ARA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = ARA
+						exists = SPA
+					}
+					exists = CAT
+				}
+				cede_province = CAT
+				add_core = CAT
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = ARA
+						exists = CAS
+						exists = SPA
+						exists = CAT
+					}
+				}
+				cede_province = FRA
+				add_core = CAT
+				FRA = {
+					release = CAT
+				}
+			}
+		}
+		every_province = {
+			limit = {
+				owner = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				conf_vienna_spa = yes
+			}
+			remove_core = RHI
+			remove_core = FRA
+			remove_core = ITA
+			if = {
+				limit = {
+					exists = SPA
+				}
+				cede_province = SPA
+				add_core = SPA
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = SPA
+					}
+				}
+				cede_province = FRA
+				add_core = SPA
+				FRA = {
+					release = SPA
+				}
+				SPA = {
+					set_government_rank = 2
+				}
+			}
+		}
+		if = {
+			limit = {
+				RUS = {
+					dynasty = "Bonaparte"
+				}
+			}
+			RUS = {
+				kill_heir = yes
+				define_ruler = {
+					name = "Aleksandr I"
+					dynasty = "Romanov"
+				}
+			}
+		}
+		if = {
+			limit = {
+				HAB = {
+					dynasty = "Bonaparte"
+				}
+			}
+			HAB = {
+				kill_heir = yes
+				define_ruler = {
+					name = "Franz II"
+					dynasty = "von Habsburg"
+				}
+			}
+		}
+		if = {
+			limit = {
+				SPA = {
+					dynasty = "Bonaparte"
+				}
+			}
+			SPA = {
+				kill_heir = yes
+				define_ruler = {
+					name = "Fernando VII"
+					dynasty = "de Bourbon"
+				}
+			}
+		}
+		FRA = {
+			kill_heir = yes
+			define_ruler = {
+				name = "Louis XVIII"
+				dynasty = "de Bourbon"
+			}
+			release_all_subjects = yes
+			set_government_rank = 2
+		}
+		every_country = {
+			limit = {
+				dynasty = "Bonaparte"
+			}
+			kill_heir =  yes
+			define_ruler = {
+			
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = joined_first_coalition
+			}
+			clr_country_flag = joined_first_coalition
+		}
+	}
+	option = {
+		name = "french_revolution.40.a"
+		add_prestige = 50
+	}
+}

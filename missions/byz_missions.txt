@@ -1,0 +1,228 @@
+#Integrated missions from Byzantium Events, barring the Reclaim Greek Islands mission which is already represented in this mod, commented in this case.
+destroy_kni = {
+    type = country
+    category = MIL
+    ai_mission = yes
+    
+    allow = {
+		normal_or_historical_nations = yes
+		tag = BYZ
+		is_subject = no
+		is_at_war = no
+		owns = 151
+		owns = 146
+		owns = 149
+		owns = 164
+		320 = { owned_by = KNI }
+		OR = {
+			army_size = KNI
+			navy_size = KNI
+		}
+        NOT = { religion = catholic }
+		NOT = { has_country_flag = BYZ_destroyed_kni }
+		NOT = { has_country_modifier = byzantium_resurgent }
+	}
+    
+    abort = {
+		OR = {
+			is_subject = yes
+			320 = {
+				NOT = { owned_by = KNI }  
+			}
+		}
+	}
+    
+    success = {
+		owns = 320	# The Knights
+	}
+    
+    chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			mil = 3
+		}
+		modifier = {
+			factor = 2
+			mil = 5
+		}
+	}
+    
+    immediate = {
+		add_claim = 320
+	}
+    
+    abort_effect = {
+		320 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+    
+	effect = {
+		set_country_flag = BYZ_destroyed_kni
+		add_country_modifier = {
+			name = "byzantium_resurgent"
+			duration = 3650
+		}
+	}
+}
+
+# reclaim_greek_islands = {
+    # type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# province_id = 164
+			# province_id = 3003
+			# province_id = 142
+			# province_id = 2348
+			# province_id = 320
+			# province_id = 163
+			# province_id = 321
+		# }
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { vassal_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# tag = BYZ
+		# is_subject = no
+		# NOT = { has_country_modifier = byzantium_resurgent }
+		# NOT = { has_country_flag = retook_greek_islands_byz }
+		# is_at_war = no
+        # owns = 151
+		# owns = 146
+		# owns = 149
+		# OR = {
+			# NOT = { owns = 164 }	# Naxos
+			# NOT = { owns = 3003 }	# Euboea
+			# NOT = { owns = 142 }	# Corfu
+			# NOT = { owns = 2348 }	# Chios
+			# NOT = { owns = 320 }	# Rhodes
+			# NOT = { owns = 163 }	# Crete
+			# NOT = { owns = 321 }	# Cyprus
+		# }
+	# }
+	# abort = {
+		# is_subject = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 3500
+		# modifier = {
+			# factor = 2
+			# mil = 3
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 5
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# set_country_flag = retook_greek_islands_byz
+		# add_country_modifier = {
+			# name = "byzantium_resurgent"
+			# duration = 3650
+		# }
+	# }
+# }
+
+appeal_to_pope = {
+
+	type = country
+
+	category = DIP
+
+	allow = {
+        normal_or_historical_nations = yes
+		tag = BYZ
+		is_subject = no
+		NOT = { is_year = 1500 }
+        is_at_war = no
+        NOT = { has_country_modifier = foreign_contacts }
+		NOT = { has_country_flag = appealed_to_pope }
+        PAP = {
+            exists = yes
+        }
+	}
+	abort = {
+		OR = {
+			war_with = PAP
+			exists = no
+			BYZ = {
+				ai_attitude = {
+					who = PAP
+					attitude = attitude_hostile
+				}
+			}
+		}
+	}
+
+	success = {
+        PAP = {
+            has_opinion = { who = BYZ value = 100 }
+        }
+	}
+	
+	chance = {
+		factor = 1500 #Adjusted from 3000 to 1500. Will put this above Vassalize Epirus with Ioannes VIII's 2 dip skill, but will allow to vassalize Epirus if insulting them first, which I like. 3000 with such high modifiers is... well, high.
+        modifier = {
+			factor = 2
+			dip = 2
+		}
+		modifier = {
+			factor = 2
+			dip = 4
+		}
+	}
+	effect = {
+        set_country_flag = appealed_to_pope
+        add_country_modifier = {
+            name = "foreign_contacts"
+            duration = 3650
+        }
+        every_country = {
+            limit = {
+                capital_scope = {
+                    region = italy_region
+                }
+            }
+            add_opinion = {
+                who = BYZ
+                modifier = christian_brothers
+            }
+        }
+	}	
+}

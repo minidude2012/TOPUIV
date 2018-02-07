@@ -1,0 +1,273 @@
+# Cascadia
+colonial_cascadia = {
+	color = { 10 120 40 }
+
+	# Random New World
+	tax_income = 0
+	native_size = 4
+	native_ferocity = 2
+	native_hostileness = 8
+	
+	trade_goods = {
+		fish = 10
+		fur = 6
+		naval_supplies = 6
+		wool = 2
+		iron = 1
+		copper = 1
+	}
+	
+	culture = {
+		salish = 10
+		interior_salish = 10
+		plateau_penutian = 10
+		chinook = 4
+		dakelh = 4
+		wakashan = 2
+		coast_penutian = 2
+		ktunaxa = 2
+		shoshone = 2
+		nuxalk = 1
+		umpqua = 1
+		tlingit = 1
+		haida = 1
+		quileute = 1
+		tsimshianic = 1
+	}
+	
+	religion = {
+		shamanism = 10
+	}
+
+	provinces = {
+		#ALASKANCASCADIA
+		975 974 972 2610 2609 2022
+		#CALIFORNIANCASCADIA
+		973 2484 2485 874 873 872 2481 2482 2483 2486 2489 2604 2605 2606 2607 2488 2019 2003 2487 2020
+		#BTNEWPROVINCES
+		4941 4949 4946 4956 4958 4947 4948 4960 4940 4942 4943 4944 4945 4961 4957 4988 4982 5612
+		#BTNEWPROVINCESWASTELANDS
+		#5115 #5116 #5117 #1913
+	}
+
+	# Specific
+	names = {
+		trigger = {
+			AND = {
+				culture_group = british
+				NOT = { tag = USA }
+			}
+		}
+		name = "COLONIAL_CALIFORNIA_New_Albion"
+	}
+	names = {
+		trigger = {
+			tag = USA
+		}
+		name = "COLONIAL_CALIFORNIA_Oregon"
+	}
+	names = {
+		trigger = {
+			culture_group = iberian
+		}
+		name = "COLONIAL_CALIFORNIA_Columbia"
+	}
+	names = {
+		trigger = {
+			culture_group = scandinavian			#Actually OWN based, but any Swedes or Danes will have to suggest better if they dont like it
+		}
+		name = "COLONIAL_CASCADIA_Skraelmork"
+	}
+	names = {
+		trigger = {
+			culture_group = germanic
+			NOT = {
+				primary_culture = dutch
+				tag = NED
+				tag = HOL
+			}
+		}
+		name = "COLONIAL_CASCADIA_Astorien"
+	}
+	names = {
+		trigger = { culture_group = gaelic }
+		name = "COLONIAL_CASCADIA_Tir_na_Easanna"
+	}
+	
+	# Generic
+	names = {
+		name = "COLONIAL_CALIFORNIA_Root_Culture_GetGroupName_Cascadia"
+	}
+	names = {
+		name = "COLONIAL_CALIFORNIA_Root_Culture_GetGroupName_Columbia"
+	}
+	names = {
+		name = "COLONIAL_CALIFORNIA_Cascadia"
+	}
+	names = {
+		name = "COLONIAL_REGION_New_Root_GetName"
+	}
+}
+
+#Hispaniola
+colonial_hispaniola = {
+	color = { 99 46 218 }
+
+	# Random New World
+	tax_income = 0
+	native_size = 10
+	native_ferocity = 1
+	native_hostileness = 3
+	
+	trade_goods = {
+		fish = 26
+		naval_supplies = 26
+	}
+	
+	culture = {
+		arawak = 26
+	}
+	
+	religion = {
+		animism = 26
+	}
+
+	provinces = {
+		488 489 490 2658 2659 5562 5563 5564 5565 5566 5567 5568 484 485 486 2654 2655 2656 5569 5570 5571 5572 482 483 5574 5575 5576 5577
+	}
+
+	# Specific
+	names = {
+		trigger = { culture_group = iberian }
+		name = "COLONIAL_THE_CARRIBEAN_Hispaniola"
+	}
+	names = {
+		trigger = { culture_group = french }
+		name = "COLONIAL_HISPANIOLA_Saint_Domingue"
+	}
+	names = {
+		trigger = { culture_group = gaelic }
+		name = "COLONIAL_HISPANIOLA_Haiti_IE"
+	}
+	names = {
+		trigger = { culture_group = scandinavian }
+		name = "COLONIAL_HISPANIOLA_Heitejyar"			#I don't speak Icelandic/OWN... let me know if this is crap -Draiocht
+	}
+	names = {
+		trigger = { culture_group = byzantine }
+		name = "COLONIAL_HISPANIOLA_Nea_Sikelia"
+	}
+	
+	# Generic
+	names = {
+		name = "COLONIAL_HISPANIOLA_Haiti"
+	}
+	names = {
+		name = "COLONIAL_REGION_New_Root_GetName"
+	}
+}
+
+#Polynesia
+colonial_polynesia = {
+	color = { 29 172 194 }
+
+	# Random New World
+	tax_income = 0
+	native_size = 10
+	native_ferocity = 1
+	native_hostileness = 3
+	
+	trade_goods = {
+		fish = 10
+		naval_supplies = 10
+	}
+	
+	culture = {
+		arawak = 10
+	}
+	
+	religion = {
+		animism = 10
+	}
+
+	provinces = {
+		1106 1107 1108 1109 1246 2737 2738 2739 5021 5022 
+		1243 1989 1990 5023 
+		5597 5598 5599 5600 5601 5602 5603 5604 5605 5606 5607 5608 5609 5610
+		1986 1239 1242 			#Fiji, New Caledonia and Vanuatu, went back and forth over adding these quite a few times
+		1244 1987 5024 5025 5026 			#West side of the map. Appears to display alright, unlike Alaska. I'll have to look into why and perhaps finally fix Alaska as well.
+	}
+
+	# Specific
+
+	# Generic
+	names = {
+		trigger = { culture_group = british }
+		name = "COLONIAL_POLYNESIA_EN"
+	}
+	names = {
+		trigger = {
+			OR = {
+				primary_culture = dutch
+				tag = NED
+				tag = HOL
+			}
+		}
+		name = "COLONIAL_POLYNESIA_NE"
+	}
+	names = {
+		trigger = {
+			culture_group = germanic
+			NOT = {
+				primary_culture = dutch
+				tag = NED
+				tag = HOL
+			}
+		}
+		name = "COLONIAL_POLYNESIA_DE"
+	}
+	names = {
+		trigger = { culture_group = french }
+		name = "COLONIAL_POLYNESIA_FR"
+	}
+	#names = {
+	#	trigger = { culture_group = byzantine }
+	#	name = "COLONIAL_POLYNESIA_EL"
+	#}
+	#names = {
+	#	trigger = { culture_group = scandinavian }
+	#	name = "COLONIAL_POLYNESIA_NO"
+	#}
+	names = {
+		trigger = { culture_group = gaelic }
+		name = "COLONIAL_POLYNESIA_IE"
+	}
+	names = {
+		trigger = {
+			OR = {
+				primary_culture = welsh
+				primary_culture = cornish
+			}
+		}
+		name = "COLONIAL_POLYNESIA_CY"
+	}
+	names = {
+		trigger = { primary_culture = breton }
+		name = "COLONIAL_POLYNESIA_BR"
+	}
+	names = {
+		trigger = {
+			OR = {
+				culture_group = latin
+				culture_group = iberian
+			}
+		}
+		name = "COLONIAL_POLYNESIA_LA"
+	}
+	names = {
+		name = "COLONIAL_POLYNESIA_Default"
+	}
+	names = {
+		name = "COLONIAL_REGION_New_Root_GetName"
+	}
+}

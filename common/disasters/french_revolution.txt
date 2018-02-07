@@ -1,0 +1,74 @@
+french_revolution = {
+	potential = {
+		NOT = { has_country_flag = had_revolution }
+		tag = FRA
+		is_free_or_tributary_trigger = yes
+		uses_doom = no
+		NOT = { revolution_target_exists = yes }
+		government = monarchy
+		NOT = { government = celestial_empire }
+	}
+	
+	
+	can_start = {
+		current_age = age_of_revolutions
+		num_of_cities = 30
+		has_any_disaster = no
+		is_year = 1789
+		OR = {
+			is_month = 4
+			is_month = 5
+		}
+	}
+	
+	can_stop = {
+		NOT = { is_year = 1789 }
+		OR = {
+			has_any_disaster = yes
+			stability = 3
+		}
+	}
+	
+	
+	progress = {	
+		modifier = {
+			factor = 100
+			is_year = 1789
+		}
+
+	}
+	
+	can_end = {
+		is_year = 9999
+		has_ruler = "Johan"
+		has_dlc = "The DLC to end it all"
+	}
+	
+
+	modifier = {
+		global_unrest = 1
+	}
+	
+	
+	on_start = french_revolution.1 #General Estates / Storming of the Bastille
+	on_end = french_revolution.18 #Long live the Republic/Monarchy
+	
+	on_monthly = {
+		events = {
+			french_revolution.2
+			french_revolution.3
+			french_revolution.4
+			french_revolution.5
+			french_revolution.6
+			french_revolution.12
+			french_revolution.13
+			french_revolution.14
+			french_revolution.15
+			french_revolution.16
+			french_revolution.17
+		}
+		random_events = {
+			1000 = 0
+		}
+	}
+}

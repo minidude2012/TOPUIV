@@ -1,0 +1,161 @@
+country_decisions = {
+
+#Moving the 1001 different files into this one, mostly for my sanity, easier ctrl-f, and because I'm slowly overhauling them all anyway to a hopefully more dynamic system with fewer assumptions, limitations, and more dynamic possibilities. Playing checkers to get that one required province to form a country 
+#really isn't the point, I think, so in general I'm moving away from specific provinces requirments and moving towards percentage of the provinces in the general area.
+#Note that, as a general rule, I'm removing religion requirements, most capital switching, most non-specific culture flipping, most government type switching, and most anything else that limits the decision to a certain historical path. With the current system of primary tags and cultures,
+#Everything is far too linked with culture for some of this clutter, and I don't want to establish a precedent of making a new, different religion or differnt gov type versions for every tag in the game. If people want a new capital, they can set it themselves, if people want to change culture, unless
+#it is a very logical switch, they can do so manually, if people want to reform their gov type and it isn't prevented by the tag's starting type, they can also do that manually.
+#I'm also making allow requirements more consistant and stable. General 1 to 3 specific provinces for the main capitals of the tag and 2/3rds of the kingdom's traditional territory, plus 150 dev (50% discount from default 300 to achieve rank 2), and 25 prestige (also 50% discount).
+#For empires, I'm typically going for 1 to 5 specific provinces and 3/4ths of the empire's traditional territory, as well as 500 dev (50% discount from default 1000 to achieve rank 3) and 40 prestige (default 75). Note I am making a few exceptions to all these rules on a case by case basis.
+
+#Note this is the file specifically for new tags in BT & BtP, or for vanilla tags which lack a vanilla decision (like Scotland). Vanilla decisions are moved to BtPLReplaceVanillaCountryFormations.txt and a couple really odd or unique new ones are going in BtPLNewCountryFormationsSpecial.txt.
+
+###################################################################################################
+################################			Kabylia			 ##############################################
+###################################################################################################
+	btpl_kabylia_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_kabylia_flag }
+			NOT = { tag = KBA }
+			OR = {
+				primary_culture = kabylian
+				AND = {
+					culture_group = berber_group
+					capital_scope = { area = kabylia_area }
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = KBA }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 339			# Bugia
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					area = kabylia_area
+				}
+				amount = 4			#All of Kabylia's 4 provinces
+			}
+		}
+		effect = {
+			change_tag = KBA
+			remove_non_electors_emperors_from_empire_effect = yes
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 3650
+			}
+			add_prestige = 25
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_andalusia_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400 #
+	}
+
+###################################################################################################
+################################			Scotland			 ##############################################
+###################################################################################################
+	btpl_scottish_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_scotland_flag_bt }
+			NOT = { tag = SCO }			#Hide this decision for Scotland... duh....
+			NOT = { tag = GBR }			#Scottish GBR shouldn't see this
+			NOT = { tag = TNA }			#Prevent any possible exploit of tag switching
+			OR = {
+				primary_culture = scottish
+				primary_culture = gallgaidheil
+				primary_culture = highland_scottish
+			}	#One of the Scottish cultures
+			any_owned_province = {
+				OR = {
+					area = lowlands_area
+					area = western_lowlands_area
+					area = highlands_area
+					area = southern_isles_area
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = SCO }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			if = {
+				limit = { primary_culture = scottish }
+				owns_core_province = 248			#Lothian
+			}
+			if = {
+				limit = { NOT = { primary_culture = scottish } }
+				owns_core_province = 250			#Fife
+			}
+			custom_trigger_tooltip = {
+				tooltip = two_thirds_of_scotland_tooltip
+				calc_true_if = {
+					all_owned_province = {
+						is_core = ROOT
+						OR = {
+							area = lowlands_area
+							area = western_lowlands_area
+							area = highlands_area
+							area = southern_isles_area
+						}
+					}
+					amount = 12			#2/3 of Scotland's 17 provinces
+				}
+			}
+			total_development = 75			#Special discount. Normal requirement for rank 2 is 300 dev, so this is 75 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = SCO
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = {
+					OR = {
+						government = irish_clann
+						government = norman_lordship
+					}
+				}
+				change_government = feudal_monarchy
+			}
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			#I decided to remove the development bonus from forming altogether. With the ability to build up provinces already there, this isn't really needed and can get out of hand quickly.
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = SCO_Ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_scotland_flag_bt
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+###################################################################################################
+################################			NEWCOUNTRY			 ##############################################
+###################################################################################################
+
+
+}

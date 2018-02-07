@@ -1,0 +1,747 @@
+﻿l_english:
+
+ 
+ #########
+ #Estates#
+ #########
+ 
+ #Dynatoi
+ EST_VAL_BYZ_ADMIN_POWER:0 "Has delegated power to the Dynatoi: §Y$VAL$%§!"
+ EST_VAL_BYZ_NOBILITY_DECADENCE:0 "Decadent nobility: §Y$VAL$%§!"
+ EST_VAL_BYZ_NOBILITY_DECADENT:0 "Decadent nobility: $VAL$"
+ byz_nobility_decadence:0 "Nobility Decadence"
+ desc_byz_nobility_decadence:0 "Our nobility has grown increasingly decadent, with them completely disregarding the commonfolk's views and opinions."
+ end_nobility_decadence_title:0 "End $ESTATE_NOBLES$ Decadence"
+ end_nobility_decadence_desc:0 "Since the rise of the Palaiologoi dynasty, the $ESTATE_NOBLES$ have become increasingly decadent as the power of the [Root.Monarch.GetTitle] kept waning over the years. The time has come for the $ESTATE_NOBLES$ to recognize who is in charge of this country, that [Root.Monarch.GetName] [Root.Monarch.Dynasty.GetName] is in fact the [Root.Monarch.GetAutokratorHimHer] of the Romans and as such, shall not have to bend their knees to some petty underlings!"
+ give_in_to_nobility_demands_title:0 "Give in to the demands of the $ESTATE_NOBLES$"
+ give_in_to_nobility_demands_desc:0 "Since the rise of the Palaiologoi dynasty, the $ESTATE_NOBLES$ have become increasingly decadent as the power of the [Root.Monarch.GetTitle] kept waning over the years. In fact, they are so powerful our government is effectively that of a feudal monarchy. So much so that we might as well embrace the fact."
+ 
+ 
+ estate_dynatoi:0 "Dynatoi"
+ #Syntechnioi
+ estate_syntekhnioi:0 "Syntechnioi"
+ #Klerikoi
+ estate_klerikoi:0 "Klerikoi"
+ 
+ #Strategoi
+ estate_strategoi:0 "Strategoi"
+ estate_strategoi_desc:0 "The Strategoi were the military generals of the Empire during the 7th and 8th century. Upon the establishment of the Theme System, which settled the Empire's field armies, their roles also ended up including provincial governance. Due to the initial size of the original themes, they held great power, often being rebellious and in conflict with the Emperor. Later on however, as the original themes were split up, as well as new Themes being established in newly conquered territories, their inidividual power waned substantially. Their responsibility as provincial governors ended up being moved to a group called the kritai, or judges. The Empire also saw the introduction of Doukes and Katepano, who governed several Themes at a time, as well as the reintroduction of the Domestikoi as senior generals. The Themata saw their end after the battle of Manzikert in 1071, when the Seljuks took over most of Anatolia. The remaining western themes were later abolished and were replaced by the Tagmata, which ended up as the main military force fielded by the Byzantines up until their fall in 1453. \n Now that the Theme System has been re-established, their position as provincial holders and leader of field armies settled in our lands have finally been revitalized. Provinces designated to the Strategoi are designated Theme capitals and will serve as seats of military governance in their respective state."
+ estate_strategoi_province_trigger:0 "No province in area has previously been assigned to the Strategoi"
+ 
+ 
+ 
+ #Wanted territory
+ EST_VAL_HAS_THEME_SYSTEM:0 "Has re-established the Theme System: $VAL$"
+ 
+ #Influence modifiers
+ EST_VAL_ESTABLISHED_THEME_SYSTEM:0 "Re-established the Theme System: §Y$VAL$%§!"
+ #EST_VAL_ESTABLISHED_THEMA_ANATOLIKON:0 "Established Thema Anatolikon: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_ONE:0 "One serving general: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_TWO:0 "Two serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_THREE:0 "Three serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_FOUR:0 "Four serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_FIVE:0 "Five serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_SIX:0 "Six serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_SEVEN:0 "Seven serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_EIGHT:0 "Eight serving generals: §Y$VAL$%§!"
+ EST_VAL_NUM_OF_GENERALS_NINE_OR_MORE:0 "Nine or more serving generals: §Y$VAL$%§!"
+ EST_VAL_HIGH_DEVELOPMENT_THEME_CAPITAL:0 "Seat of Strategos with at least 20 development: §Y$VAL$%§!"
+ EST_VAL_VERY_HIGH_DEVELOPMENT_THEME_CAPITAL:0 "Seat of Strategos with at least 30 development: §Y$VAL$%§!"
+ EST_VAL_SMALL_ARMY:0 "Has a standing army of less than half the force limit: §Y$VAL$%§!"
+ EST_VAL_VERY_SMALL_ARMY:0 "Has a standing army of less than a quarter of the force limit: §Y$VAL$%§!"
+ EST_VAL_VARANGIAN_GUARD:0 "Has reestablished the Varangian Guard: §Y$VAL$%§!"
+ EST_VAL_VERY_FEW_THEMA:0 "Has less than 10 Themata: §Y$VAL$%§!"
+ EST_VAL_FEW_THEMA:0 "Has less than 20 Themata: §Y$VAL$%§!"
+ EST_VAL_MANY_THEMA:0 "Has more than 30 Themata: §Y$VAL$%§!"
+ EST_VAL_VERY_MANY_THEMA:0 "Has more than 40 Themata: §Y$VAL$%§!"
+ 
+ #Loyalty modifiers
+ EST_VAL_FULL_QUALITY:0 "Has completed Quality Ideas: §Y$VAL$§!"
+ EST_VAL_FULL_QUANTITY:0 "Has completed Quantity Ideas: §Y$VAL$§!"
+ EST_VAL_FULL_OFFENSIVE:0 "Has completed Offensive Ideas: §Y$VAL$§!"
+ EST_VAL_FULL_DEFENSIVE:0 "Has completed Defensive Ideas: §Y$VAL$§!"
+ EST_VAL_FULL_ARISTOCRATIC:0 "Has completed Aristocratic Ideas: §Y$VAL$§!"
+ 
+ EST_VAL_VERY_GOOD_ARMY:0 "Has above 75 army tradition: §Y$VAL$§!"
+ EST_VAL_GOOD_ARMY:0 "Has above 50 army tradition: §Y$VAL$§!"
+ EST_VAL_NOT_BAD_ARMY:0 "Has above 25 army tradition: §Y$VAL$§!"
+ EST_VAL_BAD_ARMY:0 "Has below 25 army tradition: §Y$VAL$§!"
+ 
+ #Interactions & their respective influence modifiers
+ PROMOTE_STRATEGOS_TO_KATEPANO:0 "Promote Strategos to Katepano"
+ EST_VAL_PROMOTED_STRATEGOS_TO_KATEPANO:0 "Promoted Strategos to Katepano: §Y$VAL$%§!"
+ byz_katepano_rule:0 "Katepano Ruler"
+ byz_katepano_rule_desc:0 "The Strategos that governs this province has been promoted to Katepano, greatly increasing his influence in the Empire."
+ REWARD_STRATEGOI:0 "Pay Salary from State Treasury"
+ has_general_not_monarch_or_heir_tooltip:0 "Has at least one general that is not the ruler or the heir"
+ SEND_STRATEGOI_AS_VICEROYS:0 "Send Strategoi as Viceroys"
+ EST_VAL_SENT_STRATEGOI_AS_VICEROYS:0 "Sent Strategoi as Viceroys: §Y$VAL$%§!"
+ HOLD_MILITARY_PARADE:0 "Hold Military Parade"
+ #To bring in line with other estates' advisor interactions
+ BRING_STRATEGOS_TO_COURT:0 "Recruit Minister" 
+ EST_VAL_BROUGHT_STRATEGOS_TO_COURT:0 "Recruited Minister: §Y$VAL$%§!"
+ BUY_DYNASTY_SUPPORT:0 "\"Buy\" Dynasty Support"
+ EST_VAL_BOUGHT_DYNASTY_SUPPORT: "\"Bought\" Dynasty Support: §Y$VAL$%§!" 
+ RAISE_TOURMA:0 "Raise Tourma"
+ tooltip_has_theme_capital:0 "Has at least one province controlled by the Strategoi."
+ EST_VAL_RAISED_TOURMA:0 "Raised Tourma: §Y$VAL$%§!"
+ 
+ #Strategoi events and related influence modifiers
+ strategoi_estate_events.1.t:0 "The $ESTATE_NOBLES$ think the [Root.GetGeneralsName] have too much say"
+ strategoi_estate_events.1.d:0 "The current influence of the [Root.GetGeneralsName] in [Root.GetName] has gotten the $ESTATE_NOBLES$ worried that they will lose their privileges and demand that the [Root.Monarch.GetTitle] use [Root.Monarch.GetHerHim] authority to reduce the influence of the [Root.GetGeneralsName]. Doing so will surely upset the [Root.GetGeneralsName], however going against the powerful $ESTATE_NOBLES$ may not be the wisest course of action."
+ strategoi_estate_events.1.a:0 "Side with the $ESTATE_NOBLES$"
+ strategoi_estate_events.1.b:0 "Side with the [Root.GetGeneralsName]"
+ EST_VAL_AGREED_TO_DECREASE_STRATEGOI_INFLUENCE:0 "Decreased Strategoi influence: §Y$VAL$%§!"
+ EST_VAL_DISAGREED_TO_DECREASE_STRATEGOI_INFLUENCE:0 "Refused to decrease Strategoi influence: §Y$VAL$%§!"
+ strategoi_estate_events.1.c:0 "Surely we can come to an agreement here?"
+ strategoi_estate_events.1.e:0 "Promise the $ESTATE_NOBLES$ compensation"
+ 
+ strategoi_estate_events.2.t:0 "The growing influence of the Strategoi"
+ strategoi_estate_events.2.d:0 "As the time ebbs and flows, emperors come and go, factions grow and shrink in power. At this point in time, due to recent events, the [Root.GetGeneralsName] have grown more powerful and are as such exerting a higher influence on the crown of the [Root.Monarch.GetTitle]."
+ strategoi_estate_events.2.a:0 "Ok"
+ EST_VAL_STRATEGOI_GROW:0 "Strategoi on the rise: §Y$VAL$%§!"
+ 
+ strategoi_estate_events.3.t:0 "The shrinking influence of the Strategoi"
+ strategoi_estate_events.3.d:0 "As the time ebbs and flows, emperors come and go, factions grow and shrink in power. At this point in time, due to recent events, the [Root.GetGeneralsName] have declined somewhat and are as such unable to exert as much influence on the crown of the [Root.Monarch.GetTitle]."
+ strategoi_estate_events.3.a:0 "Ok" 
+ EST_VAL_STRATEGOI_SHRINK:0 "Declining Strategoi: §Y$VAL$%§!"
+ 
+ strategoi_estate_events.4.t:0 "Promising Strategos"
+ strategoi_estate_events.4.d:0 "Recent events have allowed one particular individual in our armies to quickly rise among the ranks. Showing incredible understanding of military tactics and combat, he has gained the eyes of the Mega Domestikos. Our [Root.Monarch.GetTitle] will have to decide what to do with this promising individual."
+ strategoi_estate_events.4.a:0 "Make him lead our armies"
+ strategoi_estate_events.4.b:0 "Make him commander of the fort in [supreme_commander_fort.GetName]"
+ byz_province_fort_commander:0 "Fort Commander"
+ byz_province_fort_commander_desc:0 "This province has an extraordinarily skillful fort commander assigned to it."
+ strategoi_estate_events.4.c:0 "This person deserves to be crowned by Symbasileus!"
+ 
+ strategoi_estate_events.5.t:0 "[Root.GetGeneralsName] disagree on current military plans"
+ strategoi_estate_events.5.dd:0 "The [Root.GetGeneralsName] are currently disagreeing on our current tactics that we intend to employ in the war. They suggest a more defensive mentality to fight the enemy in our own lands. We are free to disregard their suggestion, however it would create distrust between them and our great [Root.Monarch.GetTitle]."
+ strategoi_estate_events.5.do:0 "The [Root.GetGeneralsName] are currently disagreeing on our current tactics that we intend to employ in the war. They suggest a more offensive mentality that we take the fight to the enemy. We are free to disregard their suggestion, however it would create distrust between them and our great [Root.Monarch.GetTitle]."
+ strategoi_estate_events.5.ao:0 "Follow the recommendations on offensive tactics"
+ strategoi_estate_events.5.bo:0 "Reject the recommendations and use defensive tactics"
+ strategoi_estate_events.5.ad:0 "Follow the recommendations on defensive tactics"
+ strategoi_estate_events.5.bd:0 "Reject the recommendations and use offensive tactics"
+ EST_VAL_FOLLOWED_TACTICS_RECOMMENDATION:0 "Followed the recommendations of the Strategoi: §Y$VAL$%§!"
+ EST_VAL_REJECTED_TACTICS_RECOMMENDATION:0 "Rejected the recommendations of the Strategoi: §Y$VAL$%§!"
+ strategoi_estate_events.5.c:0 "Show them your clearly superior military plans"
+ byz_great_plan:0 "Great Plan"
+ desc_byz_great_plan:0 "The [Root.Monarch.GetName] has proven to be a great tactician and has shared [Root.Monarch.GetHerHim] wisdom with the [Root.GetGeneralsName]."
+ byz_not_so_great_plan:0 "Not-So-Great Plan"
+ desc_byz_great_plan:0 "The [Root.Monarch.GetName], despite clearly styling [Root.Monarch.GetHimselfHerself] as a great tactician, has not earned the trust of the [Root.GetGeneralsName] with [Root.Monarch.GetHerHim] recent sharing of [Root.Monarch.GetHerHim] battle plans."
+ 
+ 
+ strategoi_estate_events.6.t:0 "[revolting_theme_capital.GetName] revolts!"
+ strategoi_estate_events.6.d:0 "The recent disregard for the [Root.GetGeneralsName]'s interests have sparked a revolt in [revolting_theme_capital.GetName]. They've aready managed to assassinate one of our great army leaders and are intent on seizing the crown!"
+ strategoi_estate_events.6.a:0 "Those arrogant fools!"
+ 
+ strategoi_estate_events.7.t:0 "[Root.GetGeneralsName] wish to use the local Basilica"
+ strategoi_estate_events.7.d:0 "The current lack of a proper army camp in [theme_capital_no_army_camp.GetName] has had the governing Strategos demanding the local $ESTATE_CHURCH$ to use the city's Basilica for military planning. The $ESTATE_CHURCH$ have sent an envoy to our [Root.Monarch.GetTitle] to stop the [Root.GetGeneralsName] from committing sacrilege."
+ strategoi_estate_events.7.a:0 "Disregard the act"
+ strategoi_estate_events.7.b:0 "Reprimand them for attempting such an act of desecration!"
+ EST_VAL_ALLOWED_TO_USE_BASILICA:0 "Allowed Basilica to be used for military operations: §Y$VAL$%§!"
+ EST_VAL_DISALLOWED_TO_USE_BASILICA:0 "Disallowed the use of religious buildings for military purposes: §Y$VAL$%§!"
+ strategoi_estate_events.7.c:0 "Reprimand? They deserve to be replaced for committing such an act!"
+ 
+ strategoi_estate_events.8.t:0 "The [Root.GetGeneralsName] suggest building a Foundry"
+ strategoi_estate_events.8.d:0 "With the advent of cannons on the battlefield, the local Strategos in [cannon_factory_province.GetName] has asked us to invest in building a foundry in the city. Doing so would please the [Root.GetGeneralsName] and could lead to great advancements in bombard technology."
+ strategoi_estate_events.8.a:0 "Build the foundry"
+ strategoi_estate_events.8.b:0 "Do not"
+ EST_VAL_AGREED_TO_BUILD_CANNON_FACTORY:0 "Agreed to build cannon factory: §Y$VAL$%§!"
+ EST_VAL_DISAGREED_TO_BUILD_CANNON_FACTORY:0 "Rejected the construction of a cannon factory: §Y$VAL$%§!"
+ byz_cannon_factory:0 "Foundry"
+ desc_byz_cannon_factory:0 "A Foundry has been built in this province."
+ 
+ strategoi_estate_events.9.t:0 "The Themata don't want to fight"
+ strategoi_estate_events.9.d:0 "With the current disloyalty of the [Root.GetGeneralsName], they have managed to convince some of our soldiers not to take up arms."
+ strategoi_estate_events.9.a:0 "Bastards!"
+ byz_disloyal_themata:0 "Disloyal Themata"
+ 
+ strategoi_estate_events.10.t:0 "No taxes to be collected in [failed_taxing_province.GetName]"
+ strategoi_estate_events.10.d:0 "The Strategos in [failed_taxing_province.GetName] has failed in collecting the tax that is to imburse him and his Tourmarches in his Theme. He now pleads our [Root.Monarch.GetTitle] for subsidies. Helping him would allow us to ask for later concessions, should we choose to do so."
+ strategoi_estate_events.10.a:0 "Reimburse from the state treasury"
+ strategoi_estate_events.10.b:0 "Refrain from helping"
+ strategoi_estate_events.10.c:0 "How about... a little more?"
+ 
+ strategoi_estate_events.11.t:0 "The [Root.GetGeneralsName] renounce the [Root.Monarch.GetTitle]!"
+ strategoi_estate_events.11.d:0 "The displeased [Root.GetGeneralsName] have taken advantage of our recent, perhaps shady, attempts to legitimize the [Root.Monarch.Dynasty.GetName] claim to the throne and have openly renounced us! This surely will have a lasting impact on our rule."
+ strategoi_estate_events.11.a:0 "The [Root.Monarch.Dynasty.GetName] dynasty will stand strong no matter what!"
+ strategoi_estate_events.11.b:0 "Keep calm, no one's going to notice"
+ strategoi_estate_events.11.c:0 "Put this up for trial in legislative court"
+ 
+ strategoi_estate_events.12.t:0 "The [Root.GetGeneralsName] demand higher status"
+ strategoi_estate_events.12.d:0 "With the recent advancements of the [Root.GetGeneralsName], they have felt that they are in such a position of power that they deserve an even higher status than they already have. If we choose to grant additional privileges, the $ESTATE_NOBLES$ surely would not appreciate it."
+ strategoi_estate_events.12.a:0 "Increase privileges"
+ strategoi_estate_events.12.b:0 "Keep the status quo"
+ EST_VAL_AGREED_TO_INCREASE_STRATEGOI_STATUS:0 "Granted Strategoi higher status: §Y$VAL$%§!"
+ EST_VAL_DISAGREED_TO_INCREASE_STRATEGOI_STATUS:0 "Did not grant Strategoi higher status: §Y$VAL$%§!"
+ 
+ strategoi_estate_events.13.t:0 "Conflicts between the $ESTATE_NOBLES$ & the [Root.GetGeneralsName]"
+ strategoi_estate_events.13.d:0 "With the recent title grants of Katepano, the $ESTATE_NOBLES$ have become increasingly worried about their own land grants. So much so that they recently have come into territorial conflict, especially as the position as Katepano has had the [Root.GetGeneralsName] claim hereditary succession of the title, something otherwise exclusive to the $ESTATE_NOBLES$. Our [Root.Monarch.GetTitle] needs to take a stance on this issue. Which one shall it be?"
+ strategoi_estate_events.13.a:0 "Side with the [Root.GetGeneralsName]"
+ strategoi_estate_events.13.b:0 "Side with the $ESTATE_NOBLES$"
+ EST_VAL_SIDED_WITH_THE_STRATEGOI:0 "Sided with the Strategoi: §Y$VAL$%§!"
+ EST_VAL_SIDED_WITH_THE_NOBLES:0 "Sided with the Dynatoi: §Y$VAL$%§!"
+ 
+ strategoi_estate_events.14.t:0 "The inclusion of the $ESTATE_BURGHERS$ in the Themata"
+ strategoi_estate_events.14.d:0 "The $ESTATE_BURGHERS$ have come before you to tell of how the [Root.GetGeneralsName] are currently attempting to draft them into the armies as if there were mere peasantfolk. While the idea that any citizen shall serve its nation is sound, perhaps the $ESTATE_BURGHERS$ may be better serving as merchants rather than cannon fodder. Either way, they expect the [Root.Monarch.GetTitle] to take a stance in the issue at hand."
+ strategoi_estate_events.14.a:0 "Don't exempt the $ESTATE_BURGHERS$ from military service"
+ strategoi_estate_events.14.b:0 "Make an exception for the $ESTATE_BURGHERS$"
+ EST_VAL_ALLOWED_INCLUSION_OF_BURGHERS_IN_ARMY:0 "Allowed the drafting of Syntechnoi: §Y$VAL$%§!"
+ EST_VAL_DISALLOWED_INCLUSION_OF_BURGHERS_IN_ARMY:0 "Disallowed the drafting of Syntechnoi: §Y$VAL$%§!"
+ 
+ 
+ strategoi_estate_events.21.t:0 "The [Root.GetGeneralsName] are rebelling against the [Root.Monarch.GetTitle]!"
+ strategoi_estate_events.21.d:0 "The great influence of the [Root.GetGeneralsName] have lead to them having had enough of the current state of affairs. They have decided to rally against the [Root.Monarch.GetTitle] in an attempt to seize the throne for themselves! One of our trusted generals have already been felled and they are now marching towards [Root.Capital.GetName]!"
+ strategoi_estate_events.21.a:0 "Dark times are ahead of us..."
+ byz_deposed_ruler:0 "Current ruler has not been deposed"
+ 
+ strategoi_estate_events.22.t:0 "The [Root.GetGeneralsName] have been pacified"
+ strategoi_estate_events.22.da:0 "The upstart [Root.GetGeneralsName] have been eliminated and their sympathizers pacified. [Root.Monarch.GetName] is still on the throne and the [Root.Monarch.Dynasty.GetName] dynasty stands strong. The uprisings have lead to the [Root.Monarch.GetTitle] contemplating whether disbandment of the Themes is the proper way going forward."
+ strategoi_estate_events.22.db:0 "The Strategoi have seized the throne and installed a pretender. Only time will tell whether [Root.Monarch.GetName] [Root.Monarch.Dynasty.GetName] will have the support to be declared [Root.GetAutokratorHimHer] of the Romans."
+ strategoi_estate_events.22.a:0 "Finally we may get this country back on its legs!"
+ strategoi_estate_events.22.b:0 "Disband the Themes so that this never happens again!"
+ strategoi_estate_events.22.c:0 "[Root.Monarch.GetName] [Root.Monarch.Dynasty.GetName], the new [Root.GetAutokratorHimHer] of the Romans!"
+ EST_VAL_REPLACED_STRATEGOI:0 "Replaced Strategoi: §Y$VAL$%§!"
+ 
+ strategoi_estate_events.42.t:0 "Rise of the [Root.GetName] [Root.GetGeneralsName]"
+ strategoi_estate_events.42.d:0 "The [Root.GetGeneralsName] are violently refuting the redaction that [Root.Owner.Monarch.GetName] has carried out on the city of [Root.GetName] and have revolted in response to the actions of the [Root.Owner.Monarch.GetTitle]!"
+ strategoi_estate_events.42.a:0 "Ok."
+ 
+ 
+ ##################################
+ #New disasters and related events#
+ ##################################
+ 
+ #roman_monarchy_succession:0 "Succession Crisis"
+ estate_strategoi_disaster:0 "Military Coup"
+ 
+ 
+ ######################
+ #Exarch-related stuff#
+ ###################### 
+ 
+ 
+ #Exarchate government names
+ EXARCHATE:0 "Exarchate"
+ EXARCH:0 "Exarchos"
+ EXARCHISSA:0 "Exarchissa"
+ 
+ 
+ #Dacia
+ establish_march_of_dacia_title:0 "Establish the March of Dacia"
+ establish_march_of_dacia_desc:0 "The region of Dacia has since the Roman times been important for its natural resources, such as iron and plenty of arable land. We must make sure that this area and its inhabitants are subordinate to us!"
+ DAC:0 "Dacia"
+ DAC_ADJ:0 "Dacian"
+ DAC_ideas:0 "Dacian Ideas"
+ DAC_ideas_start:0 "Dacian Traditions"
+ DAC_ideas_bonus:0 "Dacian Ambition"
+ establish_march_of_dacia_tooltip:0 "Have either Wallachia, Moldavia or Transylvania as a vassal or march, or two out of these three"
+ 
+ 
+ 
+ ######
+ #Rome#
+ ######
+ 
+ #Byzantine ideas taken fromm Renovatio Imperii:
+ bureau_of_barbarians:0 "Reestablish the Bureau of Barbarians"
+ bureau_of_barbarians_desc:0 "The Bureau of Barbarians was an office designed to facilitate relations between the Byzantine Empire and her neighbors. By reestablishing this office, we can regain our diplomatic capabilities and maintain a healthy number of relationships needed to strengthen the Empire."
+ autocrat_of_romans:0 "Autocrat of the Romans"
+ autocrat_of_romans_desc:0 "Our great ruler is the Autocrat and Emperor of the Romans. The barbaric idea that the ministers of the Empire are owed legal power by the Emperor is absurd, and will lead to a civil war yet again. Let us remind the aristocracy of their place in the Empire, before their ambitions began to outweigh their patriotism."
+ 
+ #The dirty way of adjusting byzantine ideas without toying with 00_country_ideas.txt:
+ new_BYZ_ideas:0 "Byzantine Ideas"
+ new_BYZ_ideas_start:0 "Byzantine Traditions"
+ new_BYZ_ideas_bonus:0 "Byzantine Ambition"
+ 
+ 
+ #Basileia ton Rhomaion
+ byz_move_capital_to_rome_title:0 "Move capital to Rome"
+ byz_move_capital_to_rome_desc:0 "The city of Rome sure is a prestigious and historically important city, not only in terms of the Empire with it being its birthplace and capital, but also the entirety of Europe and the middle ages as the seat of the backwards, power-hungry bishop that seceded. That said, ever since the founding of Constantinople, the Empire's ambitions have been turned east towards their main rivals in Persia. Now that we face a much greater threat in Europe, it would be nothing more than right to turn our ambitions back towards the West and make the once great and prosperous city a proper capital once more!"
+ byz_rival:0 "Has at least one rival whose capital is located in Europe that also is rivalling [Root.GetName]."
+ byzantine_claims_tooltip:0 "Grants claims on traditional Byzantine holdings in Balkans, Anatolia & Magna Graecia. Also allows the designation of Themes in owned areas by assigning provinces to the [Root.GetGeneralsName] as Theme Capitals."
+ restore_roman_empire_byzantium_land_tooltip:0 "Has restored all themes while having established and ruling over the three exarches of Karchidoniaka, Hesperia & Galatia respectively, each one owning all of their rightful provinces."
+ restore_roman_empire_byzantium_pentarchy_tooltip:0 "Has restored the Pentarchy"
+ restore_roman_empire_byzantium_dismantle_hre_tooltip:0 "Has disbanded the HRE"
+ 
+ #Decisions
+ restore_roman_empire_byzantium_title:0 "Renovatio Imperii"
+ restore_roman_empire_byzantium_desc:0 "The great Justinian I, together with with his friend and general Belisarius, once proved that the Roman Empire could rise once more and defeat the petty barbarians that felled our western brethren. While his successors could not hold the vast lands that he conquered, we have now managed to prove our legitimacy as true successors by mending the schism, recovered the lands of old and obliterated the horrible mess that is neither holy, roman nor an empire. As such we shall finally reclaim the title as the one true Rome, or as we always have called ourselves - Basileia Rhomaion!"
+ 
+ #Decisions taken directly from Renovatio Imperii:
+ reform_varangian_guard_title:0 "Reform the Varangian Guard"
+ reform_varangian_guard_desc:0 "The Varangian Guard was an elite military unit of the Imperial Army who served as the personal bodyguards of the Emperor. The Varangian Guard consisted of mercenaries from the Scandinavian and Russian regions, as well as Englishmen in later eras, who were all known for their trememdous fighting power. If we can reform this mercenary unit, we will have a core of dedicated soldiers capable of destroying the enemy on the battlefield, as well as protecting our Emperor from political intrigues in Constantinople. Incidentally, it is also a good way for mercenaries to earn Byzantine citizenship, and bind them closer to the Empire."
+ varangian_guard:0 "The Varangian Guard"
+ desc_varangian_guard:0 "The Varangian Guard is an elite mercenary unit feared for their fighting strength in the Imperial Army."
+ varangians:0 "Varangian Quarters"
+ desc_varangians:0 "The Varangian Guard are quartered in the capital theme of the Empire. Unfortunately, they tend to be rather rowdy, and the locals are upset with the Varangians and the government over it."
+ sole_autocrat_of_romans_title:0 "The Autocrat and Sole Emperor of the Romans"
+ sole_autocrat_of_romans_desc:0 "Our Great [Root.Monarch.GetTitle] is the [Root.GetAutokratorHimHer] of the Romans, a title that extends back to the founding of our Empire. Unfortunately, the arrogance of the Patriarch of the West and the German Reich have stolen our legitimacy from us. Now that we have Rome and the Patriarch of the West under our control once more, let us remind the German barbarians who is the true Emperor of the Romans. While we are at it, let us remind the ambitious citizens of our empire as well."
+ 
+ #Decisions inspired by Renovatio Imperii:
+ establish_exarch_of_italy_title:0 "Establish Exarch of Italy"
+ establish_exarch_of_italy_desc:0 "Our Empire is known for its excellent administrative system that has developed over centuries. By expanding the bureaucracy and introducing Exarches into our domains in Italy, we can install proper administration in these lands, allowing their incorporation into the Theme System."
+ byz_exarch_of_italy:0 "Exarch of Italy"
+ desc_byz_exarch_of_italy:0 "The establishment of the Exarch of Italy has allowed greater administrative reach, at the expense of expanded bureaucracy"
+ 
+ establish_exarch_of_syria_title:0 "Establish Exarch of Syria"
+ establish_exarch_of_syria_desc:0 "Our Empire is known for its excellent administrative system that has developed over centuries. By expanding the bureaucracy and introducing Exarches into our domains in Syria, we can install proper administration in these lands, allowing their incorporation into the Theme System."
+ byz_exarch_of_syria:0 "Exarch of Syria"
+ desc_byz_exarch_of_syria:0 "The establishment of the Exarch of Syria has allowed greater administrative reach, at the expense of expanded bureaucracy"
+ 
+ establish_exarch_of_egypt_title:0 "Establish Exarch of Egypt"
+ establish_exarch_of_egypt_desc:0 "Our Empire is known for its excellent administrative system that has developed over centuries. By expanding the bureaucracy and introducing Exarches into our domains in Egypt, we can install proper administration in these lands, allowing their incorporation into the Theme System."
+ byz_exarch_of_egypt:0 "Exarch of Egypt"
+ desc_byz_exarch_of_egypt:0 "The establishment of the Exarch of Egypt has allowed greater administrative reach, at the expense of expanded bureaucracy"
+ 
+ establish_exarch_of_africa_title:0 "Establish Exarch of Africa"
+ establish_exarch_of_africa_desc:0 "Our Empire is known for its excellent administrative system that has developed over centuries. By expanding the bureaucracy and introducing Exarches into our domains in Africa, we can install proper administration in these lands, allowing their incorporation into the Theme System."
+ byz_exarch_of_africa:0 "Exarch of Africa"
+ desc_byz_exarch_of_africa:0 "The establishment of the Exarch of Africa has allowed greater administrative reach, at the expense of expanded bureaucracy"
+ 
+ #Factions taken from Renovatio Imperii:
+ logothete_military:0 "The Domestikoi"
+ logothete_military_influence:0 "Domestikoi Influence"
+ logothete_military_FACTION_DESC:0 "The Domestikoi were the senior generals of the Empire. This faction is charged with commanding the Imperial Army, and believes in a robust militaristic policy towards all who threaten Constantinople."
+ logothete_postal:0 "The Magistroi"
+ logothete_postal_influence:0 "Magistroi Influence"
+ logothete_postal_FACTION_DESC:0 "The Magistroi were the diplomats and statesmen of the Empire. This faction is charged with maintaining relations with the neighbors of the Empire, and believes that diplomacy is just as effective as the sword in settling matters at hand."
+ logothete_general:0 "The Sakellarioi"
+ logothete_general_influence:0 "Sakellarioi Influence"
+ logothete_general_FACTION_DESC:0 "The Sakellarioi were the bureaucrats of the Empire. This faction is charged with maintaining and expanding the bureaucracy of the Empire, and believe that a stable empire is necessary for achieving a strong empire."
+ 
+ 
+ #Roman monarchy
+ roman_monarchy:0 "Roman Monarchy"
+ roman_monarchy_desc:0 "A government form backed by ruthlessly effective administration and bureaucracy where the monarch is the absolute ruler of the country, an autocracy, with hereditary succession being a custom rather than inviolable."
+ 
+ #Roman monarchy events
+ romanMonarchy.1.t:0 "The succession of [Root.Monarch.GetName] [Root.Monarch.Dynasty.GetName]"
+ romanMonarchy.1.d:0 "[Root.Monarch.GetName] [Root.Monarch.Dynasty.GetName], [Root.Monarch.GetTitle], [Root.GetAutokratorHimHer] of the Romans, is currently in [Root.Monarch.GetHerHim] best years. However, as much as one may wish, no monarch lives forever. The time has come to crown a co-emperor that will succeed to the throne. While others may attempt to ursurp the throne, it will hopefully stop the worst succession struggles that might follow if our [Root.Monarch.GetTitle] should meet [Root.Monarch.GetHerHim] maker without having picked a clear successor."
+ romanMonarchy.1.f:0 "[Root.Monarch.GetTitle] will live on forever more!"
+ romanMonarchy.1.a:0 "Let us now proclaim the first purple-born as heir"
+ romanMonarchy.1.ba:0 "I shall name my younger brother Symbasileus!"
+ romanMonarchy.1.bb:0 "I shall name my younger sister Symbasilissa!"
+ 
+ romanMonarchy.2.t:0 "A [Root.GetPorphyrogennetosHimHer] has been brought to this world!"
+ romanMonarchy.2.d:0 "Our [Root.Monarch.GetTitle] has received a child! [Root.Heir.GetSheHeCap] was born within the palace walls and as such will have the right to bear the title of [Root.GetPorphyrogennetosHimHer], meaning \"purple-born\". Co-emperors were typically not named upon birth, but rather later on in life when they would come of age. However, should we name [Root.Heir.GetHerHim] [Root.GetSymbasileusHimHer] at this point in time, it most definitely would assert [Root.Heir.GetHerHim] claim to the throne in the eyes of the officials."
+ romanMonarchy.2.a:0 "[Root.GetPorphyrogennetosHimHer] [Root.Heir.GetName] [Root.Heir.Dynasty.GetName], [Root.GetSymbasileiusHimHer] of the Romans!"
+ romanMonarchy.2.b:0 "There is no way someone can be designated [Root.GetSymbasileiusHimHer] at such an early age!"
+ 
+ 
+ #Customizable localisation
+ string_symbasileus:0 "Symbasileus"
+ string_symbasilissa:0 "Symbasilissa"
+ string_porphyrogennetos:0 "Porphyrogennetos"
+ string_porphyrogennete:0 "Porphyrogennete"
+ string_autokrator:0 "Autokrator"
+ string_autokrateira:0 "Autokrateira"
+ 
+ 
+ #New CBs
+ cb_recover_balkans:0 "Byzantine Resurgence"
+ cb_recover_balkans_desc:0 "We must free the Balkans from the Turk!"
+ cb_recover_anatolia:0 "Byzantine Resurgence"
+ cb_recover_anatolia_desc:0 "We must free our Anatolian heartland from the Turk!"
+  
+ ALL_BALKAN_CARPARTHIA_PROV:0 "All provinces owned by the Turk in the Balkans & Carpathia"
+ BALKAN_WAR_NAME:0 "$ORDER$$FIRST$ Reconquest of the Turkish Balkans & Carpathia"
+ 
+ ALL_ANATOLIAN_PROV:0 "All provinces owned by the Turk in Anatolia"
+ ANATOLIAN_WAR_NAME:0 "$ORDER$$FIRST$ Reconquest of the Turkish Anatolia"
+ 
+ #Validator claimed these needed to be localized, so here ya go.
+ take_balkan_provinces:0 "Take Turkish provinces in the Balkans & Carpathia"
+ take_balkan_provinces_desc:0 ""
+ take_anatolia_provinces:0 "Take Turkish provinces in Anatolia"
+ take_anatolia_provinces_desc:0 ""
+ 
+ 
+ #Religious stuff#
+ #################
+ 
+ #Religious decisions
+ establish_the_patriarch_of_mecca_medina_title:0 "Establish the Patriarch of Mecca & Medina"
+ establish_the_patriarch_of_mecca_medina_desc:0 "As we have pushed back the Muslims so far as to even having conquered their holy cities, it would be nothing more fitting to establish them as a seat of a Patriarch."
+ 
+ patriarch_mecca_medina:0 "The Patriarch of Mecca"
+ desc_patriarch_mecca_medina:0 "The muslim holy city of Mecca has been conquered in the name of Christ and is now the seat of an Orthodox Patriarch."
+ 
+ #Religious events
+ mending_east_oriental_schism_title:0 "Mend the East-Oriental Schism"
+ mending_east_oriental_schism_desc:0 "In the Council of Chalcedon in 451, when it was declared that Christ was indeed a single person but existed \"in two complete natures\" as human and divine, the Patriarchs of Antioch and Alexandria saw the council as a concession to Nestorianism that 20 years earlier in the Council of Ephesus had been rejected. Referring to themselves as miaphysites, believeing that Christ has one nature that is both human and divine, they gradually separated from the then Chalcedonian belief to form their own branch of christendom. Through our conquests, we now have a chance to undo their secession from the one true faith, by mending the East-Oriental Schism."
+ 
+ convert_to_orthodox_title:0 "Convert to Orthodox"
+ convert_to_orthodox_desc:0 "The Orthodox christians have shown their authority and mended the wound that had our faith split off from theirs. At this point, our church heads are no more and our religion is seen as a mere heresy to theirs. It might be in our best interest to peacefully convert in order to maintain the legitimacy of our faith."
+ 
+ flavor_BYZ.1.t:0 "The End of the East-Oriental Schism"
+ flavor_BYZ.1.d:0 "Having brought all holy sees of miaphysitism back into the Christian - Orthodox - fold, we have effectively mended the East-Oriental Schism. While some countries might continue to cling to their ideas of miaphysitism, the patriarchs that they look up to hold no power any longer."
+ flavor_BYZ.1.a:0 "The wound has finally been healed!"
+ 
+ flavor_BYZ.15.t:0 "The Restoration of the Ecumenical Patriach"
+ flavor_BYZ.15.d:0 "The Ecumenical Patriarch was the archbishop of Constantinople and has been to this day been bestowed with the honorary title as \"first among equals\" among all of the archbishopric of the Orthodox church. Made an archbishop back in the times of emperor Constantine I once Constantinople became the successor to Rome, it has been the head of Eastern Orthodoxy ever since the original patriarch in Rome split off in the Great Schism. As the christian influence grew in the Roman Empire, there came to be three more seats of patriarchs; Antioch, Jerusalem & Alexandria, all who after the Muslim conquests were never reinstated. As the Ottomans centuries later conquered Constantinople, The Ecumenical Patriarch became defunct. He was however quickly reinstated by Mehmed II whose ambitions were to proclaim himself emperor of the Romans. 	Now that we have restored the Ecumenical Patriarch of Constantinople, we shall prove the world that eastern Orthodoxy is still going strong!"
+ flavor_BYZ.15.a:0 "The Orthodox Church shall forever be the one true Church!"
+ 
+ flavor_BYZ.32.t:0 "The city of Ailia and the Jews"
+ flavor_BYZ.32.d:0 "The city of Jerusalem, or Hierosolyma in greek tongue, has since the founding of Judaism been the holy city in its theos. Once the city fell to the Roman Empire after a disastrous siege, however, the city was left in such a poor state that it was considered uninhabitable. Emperor Hadrian in year 130 vowed to rebuild the city of Jerusalem as a gift to the Jewish people and restore the Second Temple that had been so thoroughly destroyed. When visiting the ruins, however, he was advised that rebuilding it would cause the Jews to rebel against the Empire. As such, Jerusalem instead was rebuilt into a Roman colony, including temples for Roman paganism. Perhaps ironically, this sparked an event known as the Bar Kokhba revolt, one of three conflicts conducted between the Roman Emperors and the Jews. This uprising enraged Hadrian, who put down the revolt and placed a ban on the Jewish people, prohibiting them from ever setting foot in the city except on the day of Tisha B'Av. Entering the city on any other day as a Jew was punishable by death. The city was renamed Aelia Capitolina and the roman province changed from Judea to Syria Palestina. As such, the city was transformed into a soldier camp up until Emperor Constantine I, when the Church of the Holy Sepulchre was built and the city's See was granted special honour, to later on become the seat of a Patriarch. These events resulted in the city becoming completely depopulated of Jews, which remained the case for the remainder of Roman rule. The Arabs later conquered the city, but the Jewish people would not return to their city until much later (Aside from a brief period under Saladin and the Ottomans). \n As the city once more is in Roman hands, our [Root.Monarch.GetTitle] will get to decide its future."
+ flavor_BYZ.32.a:0 "Let's keep the ban on the Jews"
+ flavor_BYZ.32.b:0 "We shall lift the harsh ban and build a Third Temple as compensation!"
+ 
+ #Help from Catholics event chain
+ flavor_BYZ.27.t:0 "Seeking help from Europe"
+ flavor_BYZ.27.d:0 "The war against the heathen that we are currently embroiled in is one that we may not be able to win on our own. We may attempt to ask the Pope in Rome if they wish to help us out in our time of need. However, given past events and such, unless we've converted to catholicism, they are unlikely to offer us any, and if they actually do, they may demand concessions later on. What shall we do?"
+ flavor_BYZ.27.a:0 "Ask for help from the Pope"
+ flavor_BYZ.27.b:0 "We don't need any help from those stinking Schismatics!"
+ 
+ flavor_BYZ.28.t:0 "The Greeks ask for help"
+ flavor_BYZ.28.d:0 "It seems like the [BYZ.Monarch.GetTitle] of the Greeks has sent a diplomat to us, asking for help against the heathen. While they certainly are a backward bunch, this may be a perfect opportunity for us to mend the schism, as we may demand them converting to the true faith should we beat back the muslims."
+ flavor_BYZ.28.a:0 "Grant help"
+ flavor_BYZ.28.b:0 "Deny help"
+  
+ flavor_BYZ.29.t:0 "The Pope has granted help!"
+ flavor_BYZ.29.d:0 "Our diplomat has returned from the [PAP.Monarch.GetTitle] to tell us that they have accepted our plead for help. They have now brought in the Holy Roman Emperor to help us in our war!"
+ flavor_BYZ.29.a:0 "We are saved!"
+ 
+ flavor_BYZ.30.t:0 "The Pope denied our plead for help..."
+ flavor_BYZ.30.d:0 "Our diplomat has returned from the [PAP.Monarch.GetTitle] to tell us that they deny us any help in our time of need."
+ flavor_BYZ.30.a:0 "I guess we're on our own..."
+ flavor_BYZ.30.b:0 "Dire times are ahead of us..."
+ flavor_BYZ.30.c:0 "What do we do now?!"
+ 
+ flavor_BYZ.34.t:0 "We are the possible target of the infidel!"
+ flavor_BYZ.34.d:0 "The Greeks have decided to ask the infidel for help against us. We may be having a greater war on our hands soon."
+ flavor_BYZ.34.a:0 "Should we be scared?"
+ 
+ flavor_BYZ.35.t:0 "The Pope demands concessions for their help"
+ flavor_BYZ.35.d:0 "With the war now over and our state still intact, the [PAP.Monarch.GetTitle] has gotten the idea that they are the sole reason why we're still independent. They have thus made the unreasonable demand that we convert to Catholicism, or face the consequences..."
+ flavor_BYZ.35.a:0 "We have to accept it..."
+ flavor_BYZ.35.b:0 "We will never abandon our true faith!"
+ 
+ #Related modifiers
+ byz_resurgence_refused_help:0 "Refused to help"
+ byz_resurgence_converted_catholicism:0 "Converted to Catholicism"
+ byz_resurgence_refused_catholicism:0 "Refused to convert"
+ byz_converted_catholicism:0 "Converted to Catholicism"
+ byz_pope_will_consider:0 "The [PAP.Monarch.GetTitle] will consider whether he'll come to our aid."
+ 
+ #Flavor for Byzantium#
+ ######################
+ 
+ flavor_BYZ.2.t:0 "The Genoese merchants"
+ flavor_BYZ.2.d:0 "The Black Sea trade has historically been a great source of income for the Empire. However, as the Empire's influence and power waned after the battle of Mantzikert when the Seljuks settled in Anatolia, the area saw the arrival of Latin merchants in the Black Sea, which was expanded greatly after the events of the 4th Crusade. In return for the Genoese helping in recovering Constantinople, the then Emperor of Nicaea Michael VIII Palaiologos would expel the Venetians from the Black Sea in favor of the Genoese. While Michael did indeed expel the Venetians from the Black Sea strait, the Empire would never recover and its power would keep waning as the encroaching turks conquered more and more of the Empire. \n Considering that the Empire has now risen from the ashes, we have reason to offer a treaty to the Genoese merchants that greatly increases their trade potential, in exchange for placing their Black Sea trading posts directly under our rule."
+ flavor_BYZ.2.a:0 "Sign the treaty!"
+ flavor_BYZ.2.b:0 "We'll conquer their lands instead!"
+ granted_black_sea_trade_privileges:0 "Granted Black Sea Trade Privileges"
+ byz_genoese_merchants:0 "Genoese Merchants in Empire"
+ desc_byz_genoese_merchants:0 "We have allowed Genoese merchants free access to our trade goods, heavily increasing our exports."
+ byz_granted_trade:0 "Granted Trade Privileges"
+ byz_denied_trade:0 "Denied Trade Privileges"
+ 
+ flavor_BYZ.3.t:0 "The Cimmerian Bosporus"
+ flavor_BYZ.3.d:0 "By controlling the cities on both sides of the Cimmerian Bosporus, merchants are forced to go through [Root.GetAdjective] waters. Our advisors tell us that establishing a sound toll in the area will benefit us greatly."
+ flavor_BYZ.3.a:0 "Let's use this to our advantage!"
+ flavor_BYZ.3.b:0 "Let's not"
+ byz_established_sound_toll:0 "Established Sound Toll"
+ 
+ #Cataphracts
+ flavor_BYZ.4.t:0 "The reintroduction of the Cataphract"
+ flavor_BYZ.4.d:0 "The Cataphract, taking its name from greek \"Kataphraktos\", meaning completely armoured, was an elite unit of the Byzantine army. With both horse and horseman being fully clad in armour, armed with either a lance and small shield or a bow, when the unit would charge in line formation against the enemy there were few that would dare to even face them. Some historians revere them as the counterpart of the Legionnaires of Rome as a symbol of their military might. While their glory days definitely are a thing of the past, there is a chance that, through military reformation in the age of gunpowder, these iconic soldiers may return to the battlefield to serve as the almighty shock troopers that symbolized the Byzantine armies of old."
+ flavor_BYZ.4.a:0 "Bring back the Cataphract!"
+ flavor_BYZ.4.b:0 "Focus efforts on the rest of the army instead"
+ byz_cataphracts:0 "Restoration of the Cataphract"
+ desc_byz_cataphracts:0 "We have restored the heavily armoured Cataphract unit, whose mere appearance instills fear in our enemies."
+ #Once Paradox decides to allow us to make unique unit types
+ byz_cataphract_recruitment:0 "Allows for recruitment of Cataphract"
+ 
+ flavor_BYZ.5.t:0 "The Restoration of Constantinopolitan Manufactories"
+ flavor_BYZ.5.d:0 "The recent recovery of Constantinople has given rise to a great renaissance in the city. Merchants have flocked to the city for the two of Byzantium's most prized goods; glass and silk. While the silk exports were cut short during the events of the 4th Crusade, the byzantine glass industry has been attributed to the bridging of the silver-staining technique from the Arab world to Europe. As the city grows prosperous once more, the question arises whether to popularize the long-forgotten Byzantine silk, or focus on the art of glassmaking."
+ flavor_BYZ.5.a:0 "Favor the glassmakers!"
+ flavor_BYZ.5.b:0 "Let's reintroduce the Byzantine Silk!"
+ byz_byzantine_silk:0 "Byzantine Silk"
+ byz_byzantine_glass:0 "Byzantine Glass"
+ 
+ flavor_BYZ.6.t:0 "Rebuilding the Great Palace"
+ flavor_BYZ.6.d:0 "The Great Palace of Constantinople has since the sacking of the city during the 4th Crusade been in a state of disrepair. While the imperial residence had already been moved to the palace of Blachernae by Alexios I Komnenos, the Great Palace continued to be used for administrative and ceremonial purposes. After the recapture of Constantinople by the Palaiologoi, the building was used mainly as a prison vault. \n Now come the recovery of Constantinople, there's a call to rebuild the Great Palace and reinstate its former function."
+ flavor_BYZ.6.a:0 "Rebuild the Great Palace!"
+ flavor_BYZ.6.b:0 "Continue using the Blachernae palace"
+ 
+ flavor_BYZ.7.t:0 "The Loss of Constantinople"
+ flavor_BYZ.7.d:0 "Constantinople has been lost to the Turk. As the ancient capital of Romans has fallen out of our hands, so too have our claims to the Empire..."
+ flavor_BYZ.7.a:0 "We'll rule from Mystras instead, waiting for our time to strike... or our doom."
+ flavor_BYZ.7.b:0 "We'll rule from [Root.Capital.GetName] instead, waiting for our time to strike... or our doom."
+ 
+ flavor_BYZ.8.t:0 "Reestablishing the Tyrian Purple"
+ flavor_BYZ.8.d:0 "Tyrian Purple was the name given to the dye that the Romans and later the Byzantines used for their Imperial gowns. Said to have been extracted from rock snails known as Murex in the city of Colophon not far from $PROVINCENAME$, the dye was deemed extremely valuable for this reason and was used as the main colouring agent of the imperial Byzantine silks. The dye is credited to giving rise to the term \"Porphyrogennetos\", meaning \"purple-born\". The Byzantines however stopped producing the dye shortly after the events of the 4th Crusade for economical reasons. Now, considering that $PROVINCENAME$ has been ravaged by war and countless of raids, it may prove to be difficult, however since the reintroduction of Byzantine Silk, the Imperial court deems it no more than right to reestablish this luxurious symbol of the Byzantine Empire, no matter its costs."
+ flavor_BYZ.8.a:0 "Settle the land to bring back the Tyrian Purple!"
+ flavor_BYZ.8.b:0 "Do not"
+ byz_tyrian_purple:0 "Tyrian Purple"
+ 
+ 
+ #Theme capital development
+ flavor_BYZ.36.t:0 "[byz_immigration_province.GetName] attracts the countryside populace"
+ flavor_BYZ.36.d:0 "The city of [byz_immigration_province.GetName] is prospering. In fact, it is doing so well that people from other cities in our Empire wish to relocate. The influx of people is so great that the local [Root.GetGeneralsName] has asked us for advice in what to do in this situation. If we don't let them relocate, the people will most certainly not appreciate it."
+ flavor_BYZ.36.a:0 "Let them move to [byz_immigration_province.GetName]"
+ flavor_BYZ.36.b:0 "Stop the relocation attempt"
+ 
+ byz_disallowed_migration:0 "Disallowed Relocation of Populace"
+ desc_byz_disallowed_migration:0 "The populace has been prohibited from moving to one of our Theme capitals and are as such very unhappy."
+ 
+ #Greek Fire
+ flavor_BYZ.37.t:0 "The Rediscovery of Greek Fire"
+ flavor_BYZ.37.d:0 "Greek Fire was the name given to the substance deployed by the Greeks, both on water with their Dromons and later on land with catapults. The more famous ship variant was deployed by method of a \"siphon\", a tube-shaped projector, whereas the land version on catapults was deployed through soaking cloth-clad caltrops in the substance. Said to be invented by Kallinikos from Heliopolis in Phoenice when he arrived to Constantinople in 672, it was used with great success in combating the Arabs, supposedly playing an integral part in repelling them from the 1st (674-678) and 2nd (717-718) siege of Constantinople. It later on also played a part in some decisive victories against the Saracens under the resurgence of the Macedonian dynasty, civil wars as well as during wars against the Bulgars and the Rus'. Said to not be extinguished by water, it was revered highly among the Byzantines. In the famous book called De Administrando Imperio, it was described as a gift from the heavens, a divine intervention, claimed to have been \"shown and revealed by an angel to the great and holy first Christian emperor Constantine\". The recipe was guarded heavily in an attempt to make sure it never fell into enemy hands. Despite this, the substance itself was successfully acquired by the Empire's enemies, such as the Bulgars and the Arabs, however they never replicated the method of deployment used by the Byzantines. Instead, in the case of the Arabs, similar incendiary substances were deployed with catapults and grenades instead of \"by siphon\". There is however one account where the Crusaders claim to have seen the Saracens use \"Greek Fire\" in the 13th century. What the substance itself consisted of was never known; some early accounts claim it to be based on niter or phosphide, however most scholars today claim it to be based on naphta, crude oil, perhaps gathered from the wells in the Black Sea around Tamatarcha (Today called Taman) or the Middle East. This in part may explain the sudden disappearance of Greek Fire following the sack of Constantinople in the 4th crusade, never to be used by the Byzantines again."
+ flavor_BYZ.37.a:0 "Let's use this against our enemies once more!"
+ flavor_BYZ.37.b:0 "Let's sell it to one of our allies"
+ flavor_BYZ.37.c:0 "Let's burn the documents and refrain from using it"
+ 
+ #Greek fire modifier
+ byz_greek_fire:0 "Greek Fire"
+ desc_byz_greek_fire:0 "The rediscovery of Greek Fire has allowed us to improve our galleys and artillery. However, due to the nature of this substance, the costs of fabricating the equipment to use it make these units more expensive to build and maintain."
+ 
+ #The Cimmerian Bosporus toll
+ cimmerian_bosporus_sound_toll:0 "Cimmerian Bosporus Sound Toll"
+ desc_cimmerian_bosporus_sound_toll:0 "We control the trade going through the Cimmerian Bosporus and as such all foreign cargo ships shall pay a sound toll."
+ 
+ 
+ #Missions#
+ ##########
+ 
+ #Regular conquests
+ byz_reconquer_mainland_greece_title:0 "Recover Mainland Greece"
+ byz_reconquer_mainland_greece_desc:0 "The greek mainland needs to be retaken if we are to have any chance of survival. Should we not, we run the risk of losing our capital once again!"
+ byz_reconquer_greek_islands_title:0 "Recover the Greek Islands"
+ byz_reconquer_greek_islands_desc:0 "The Greek islands have been an integral part to our naval supremacy in the olden days, but has since been conquered by arabs and crusaders alike. It is time for us to reclaim them!"
+ byz_reconquer_anatolian_coast_title:0 "Recover the West Anatolian Coast"
+ byz_reconquer_anatolian_coast_desc:0 "The western coast of Asia Minor has, like much of our Anatolian heartland, been an integral part of the Empire. As such it needs to be reclaimed from the heathen Turk!"
+ byz_reconquer_south_anatolia_title:0 "Recover Southern Anatolia"
+ byz_reconquer_south_anatolia_desc:0 "We have now reclaimed the western part of Asia Minor. We need to continue our push to southern Anatolia if we wish to reclaim our heritage!"
+ byz_reconquer_north_anatolia_title:0 "Recover Northern Anatolia"
+ byz_reconquer_north_anatolia_desc:0 "The Turks are on the run! Let us continue by pushing them back from North Anatolia!"
+ byz_reconquer_east_anatolia_title:0 "Recover East Anatolia"
+ byz_reconquer_east_anatolia_desc:0 "Let us finalize our reconquest of the Anatolian heartland by taking back the last of it from the heathen Turk!"
+ byz_reconquer_pontus_title:0 "Recover Pontus"
+ byz_reconquer_pontus_desc:0 "Pontus was since the fall of Constantinople during the 4th crusade the heartland of the Empire of Trebizond. It has since fallen to the Turk. Let us reclaim it in the name of the Empire!"
+ byz_safeguard_balkan_border_title:0 "Safeguard the Balkan Border"
+ byz_safeguard_balkan_border_desc:0 "We have recovered all of our Greek mainland, however there is little distance between our glorious capital of Constantinople and the invading slavs. We need to extend our borders in the Balkans as to create a buffer between Constantinople and our enemies. "
+ byz_reconquer_albania_title:0 "Recover Albania"
+ byz_reconquer_albania_desc:0 "Albania has since before the 4th crusade been an integral part of the Empire. It was since then wrestled from us by the Latins. We need to undo this and reclaim our Thema of Dyrrachium!"
+ byz_reconquer_armenia_minor_title:0 "Recover Lesser Armenia"
+ byz_reconquer_armenia_minor_desc:0 "In the times before the Seljuks, Lesser Armenia had been an integral part of our empire, being home to many of our later themas. We need to undo the muslim conquests and bring these lands under our rule!"
+ byz_conquer_syria_title:0 "Conquer Syria"
+ byz_conquer_syria_desc:0 "Syria has since before the Arab uprising been part of our empire. Let us retake it from the muslims once more!"
+ byz_conquer_tripoli_title:0 "Conquer Tripoli"
+ byz_conquer_tripoli_desc:0 "Let us further drive back the muslims by conquering the lands around Tripoli!"
+ byz_conquer_palestine_title:0 "Conquer Palestine"
+ byz_conquer_palestine_desc:0 "Let us finalize our crusade of the Levant by taking back Palestine from the heathens!"
+ byz_reconquer_crimea_title:0 "Recover Crimea"
+ byz_reconquer_crimea_desc:0 "Crimea has been a key area for conducting diplomacy with our northern neighbours. Let us reclaim the peninsula so that we can claim a window to the North!"
+ byz_conquer_bulgaria_title:0 "Conquer Bulgaria"
+ byz_conquer_bulgaria_desc:0 "The bulgarian Khanate and later Tsardom has been a constant thorn in our side, preying on us at every sign of weakness. It is time we put them under our rule!"
+ byz_conquer_serbia_title:0 "Conquer Serbia"
+ byz_conquer_serbia_desc:0 "The Serbs themselves claimed they had an empire upon them conquering northern Macedonia. Let us show them that they are mere peoples under our Emperor's banner!"
+ byz_conquer_bosnia_title:0 "Conquer Bosnia"
+ byz_conquer_bosnia_desc:0 "Bosnia was once upon a time a simple vassal state of Diokleia, the first Serbian duchy under the Basileus, containing a mere two villages called Desnek and Katera. As the Serbs once swore fealty to our Empire, so shall the bosniac!"
+ byz_conquer_croatia_title:0 "Conquer Croatia"
+ byz_conquer_croatia_desc:0 "The Duchy of Croatia was during the reign of Basil II under our banner. It is time we once more return them to the Empire's fold."
+ byz_conquer_histria_title:0 "Conquer Histria"
+ byz_conquer_histria_desc:0 "Histria has not been under control of the Empire since Justinian I after the Lombards took it from us, after which it was incorporated into the mess that is neither holy, roman nor an empire. We shall show them that we are the true Romans by reclaiming this land in our name!"
+ byz_conquer_greater_greece_title:0 "Conquer Greater Greece"
+ byz_conquer_greater_greece_desc:0 "In ancient times, the southern parts of the Italian peninsula were home of many Greek colonies, many who continue to prosper even to this day. Since then, the Empire has attempted to regain the hold of southern Italy, but never managed to defend and keep it. It is time for us to do so, for once!"
+ byz_conquer_sicily_title:0 "Conquer Sicily"
+ byz_conquer_sicily_desc:0 "The island of Sicily has, just like the main Italian peninsula, been home of many prosperous Greek colonies. The island has even been a naval Thema once upon a time, before being conquered by the muslims. It is time we reclaim this island for our glorious Empire!"
+ byz_conquer_sinai_title:0 "Conquer Sinai"
+ byz_conquer_sinai_desc:0 "If we are to regain our holdings in Egypt, we need to start by wrestling the Sinai peninsula from the muslims."
+ byz_conquer_north_nile_title:0 "Conquer the Lower Nilelands"
+ byz_conquer_north_nile_desc:0 "The Nile is a river of great importance in terms of civilization growth and has plentiful arable land around it. Let us reclaim these important lands for the Empire!"
+ byz_conquer_south_nile_title:0 "Conquer the Upper Nilelands"
+ byz_conquer_south_nile_desc:0 "Complete our conquest of the lands around the Nile by pushing our borders further up the river!"
+ byz_conquer_desert_oases_title:0 "Conquer the Desert Oases"
+ byz_conquer_desert_oases_desc:0 "Unlike the Nile, its surrounding deserts are mostly barren and inhospitable for civilization. The only thing allowing for flourishing communities are the oases in the middle of nowhere. Let us finalize our conquest of Egypt by bringing them into our fold."
+ byz_conquer_cyrenaica_title:0 "Conquer Cyrenaica"
+ byz_conquer_cyrenaica_desc:0 "The coast of Cyrenaica has been home to a fair amount of greek colonies. As such, we shall reclaim these lands for the Empire, allowing us a window to the Maghrebi lands."
+ byz_conquer_tripolitania_title:0 "Conquer Tripolitana"
+ byz_conquer_tripolitania_desc:0 "Tripolitana, the land of the three cities Oea, Leptis & Sabratha, was lost to the Arabs in the 7th century in same vein as Egypt. It is now time we reconquer it!"
+ byz_conquer_africa_title:0 "Conquer Africa"
+ byz_conquer_africa_desc:0 "Justinian I established an Exarchate centered on the city of Carthage, or in Greek, Karchidon. We must reclaim these lands for the Empire!"
+ byz_conquer_numidia_title:0 "Conquer Numidia"
+ byz_conquer_numidia_desc:0 "The expansion of our influence in the mediterranean necessitates that we conquer the lands further west towards the Iberian peninsula. Let us take back what was once called Numidia!"
+ byz_conquer_east_mauretania_title:0 "Conquer East Mauretania"
+ byz_conquer_east_mauretania_desc:0 "There once was a Berber kingdom in the area known as Mauretania, from the greek word Mauri, or Moors. Our mediterranean ambitions require us to once more put these lands under the Empire!"
+ byz_conquer_west_mauretania_title:0 "Conquer West Mauretania"
+ byz_conquer_west_mauretania_desc:0 "Let us finalize our conquest of the lands of the Moors by taking back western Mauretania!"
+ byz_conquer_armenia_major_title:0 "Conquer Greater Armenia"
+ byz_conquer_armenia_major_desc:0 "To liberate the eastern orthodox people from their muslim oppressors, the heartlands of Armenia need to be brought under our wings!"
+ byz_conquer_georgia_title:0 "Conquer Georgia"
+ byz_conquer_georgia_desc:0 "As our historical allies, it is our duty to bring the Georgian lands back from their muslim oppressors!"
+ byz_conquer_north_mesopotamia_title:0 "Conquer Upper Mesopotamia"
+ byz_conquer_north_mesopotamia_desc:0 "If we are to be able to control the spice trade, we need to bring the lands of Mesopotamia under our Empire's wings!"
+ byz_conquer_south_mesopotamia_title:0 "Conquer Lower Mesopotamia"
+ byz_conquer_south_mesopotamia_desc:0 "Finish off our conquests of Mesopotamia by taking the lower lands!"
+ byz_conquer_central_italy_title:0 "Conquer Central Italy"
+ byz_conquer_central_italy_desc:0 "Let us continue our push into Italy by taking the central parts!"
+ byz_conquer_north_italy_title:0 "Conquer Northern Italy"
+ byz_conquer_north_italy_desc:0 "We need to push against Northern Italy if we wish to complete our conquest of the region!"
+ byz_conquer_lombardy_title:0 "Conquer Lombardy"
+ byz_conquer_lombardy_desc:0 "Let us exact our revenge on the Lombards that undid our Italian conquests by bringing them under our banner!"
+ byz_conquer_sardinia_corsica_title:0 "Conquer Sardinia & Corsica"
+ byz_conquer_sardinia_corsica_desc:0 "The italian islands of Sardinia & Corsica are important stepping stones to further expansion into the mediterranean coast. Let us conquer them for the Empire!"
+ 
+ #Georgia Conquest opinion modifier:
+ helped_regain_georgia:0 "Liberated Georgian lands"
+ 
+ #Exarch conquests
+ byz_establish_exarch_lands_karchidoniaka_title:0 "Establish Exarchate lands in Karchidoniaka"
+ byz_establish_exarch_lands_karchidoniaka_desc:0 "While the lands of the Maghreb are far away from Constantinople, they are still highly valuable to the Empire. Maybe if we conquer them, we may establish a local governor in the region, a so-called exarch."
+ byz_establish_exarch_lands_hesperia_title:0 "Establish Exarchate lands in Hesperia"
+ byz_establish_exarch_lands_hesperia_desc:0 "While the lands of Iberia are far away from Constantinople, they are still highly valuable to the Empire. Maybe if we conquer them, we may establish a local governor in the region, a so-called exarch."
+ byz_establish_exarch_lands_galatia_title:0 "Establish Exarchate lands in Galatia"
+ byz_establish_exarch_lands_galatia_desc:0 "While the lands of Gallia are far away from Constantinople, they are still highly valuable to the Empire. Maybe if we conquer them, we may establish a local governor in the region, a so-called exarch."
+ 
+ #Vassalizations
+ byz_vassalize_bulgaria_title:0 "Vassalize Bulgaria"
+ byz_vassalize_bulgaria_desc:0 "The Bulgars have proven a certain annoyance in the past in their attempts to establish their tsardom. It is time they accept our overlordship."
+ byz_vassalize_serbia_title:0 "Vassalize Serbia"
+ byz_vassalize_serbia_desc:0 "The Serbs must accept our overlordship once more, as if the Hungarians conquer them we'll face extreme difficulties fulfiling our Balkan ambitions."
+ byz_vassalize_bosnia_title:0 "Vassalize Bosnia"
+ byz_vassalize_bosnia_desc:0 "The once tiny vassal of Dioclea has grown large in the absence of the Empire. We shall make them swear fealty to our [BYZ.Monarch.GetTitle] once more!"
+ byz_vassalize_croatia_title:0 "Vassalize Croatia"
+ byz_vassalize_croatia_desc:0 "Croatia has broken free from their Hungarian overlords. However, for our ambitions to be fulfilled, we cannot let them remain independent."
+ byz_vassalize_carniola_title:0 "Vassalize Carniola"
+ byz_vassalize_carniola_desc:0 "The duchy of Carniola has broken free from the Habsburgs. We need to bring them under our rule if we are to gain a land passage to Italy."
+ byz_vassalize_wallachia_title:0 "Vassalize Wallachia"
+ byz_vassalize_wallachia_desc:0 "The duchy of Wallachia is one of the three duchies of the Dacian region. We need to vassalize them if we are to extend our influence past the Danube."
+ byz_vassalize_moldavia_title:0 "Vassalize Moldavia"
+ byz_vassalize_moldavia_desc:0 "The duchy of Moldavia has broken free from the Commonwealth. Their Dacian heritage however necessitates them swearing fealty to our [BYZ.Monarch.GetTitle]."
+ byz_vassalize_transylvania_title:0 "Vassalize Transylvania"
+ byz_vassalize_transylvania_desc:0 "The duchy of Transylvania has broken free from Hungary. As Dacia is an ever-important region in terms of resources, this means they need to accept our overlordship."
+ byz_vassalize_naples_title:0 "Vassalize Naples"
+ byz_vassalize_naples_desc:0 "The Napolitan duchy has broken free from the crown of Aragon. Their posession of Greater Greece means they need to be part of our Empire, however."
+ byz_vassalize_sicily_title:0 "Vassalize Sicily"
+ byz_vassalize_sicily_desc:0 "Sicily is no longer under the Aragonese crown. We must ensure that their lands do not fall into muslim hands once again!"
+ byz_vassalize_sardinia_title:0 "Vassalize Sardinia"
+ byz_vassalize_sardinia_desc:0 "Sardinia has escaped Aragon's rule. We must now ensure their rulers fall under us."
+ byz_vassalize_pope_title:0 "Vassalize the Pope"
+ byz_vassalize_pope_desc:0 "The upstart papacy that is responsible for the Great schism has even decided to establish a sovereign state. This insolence must not continue. It is time to reprimand [PAP.Monarch.GetTitle] [PAP.Monarch.GetName] and bring [PAP.Monarch.GetHerHim] under our rule."
+ byz_vassalize_armenia_title:0 "Vassalize Armenia"
+ byz_vassalize_armenia_desc:0 "The state of Armenia has broken free from the turk. We must now protect them from further threats by bringing them under our protection!"
+ byz_vassalize_georgia_title:0 "Vassalize Georgia"
+ byz_vassalize_georgia_desc:0 "The state of Georgia has since long been our ally, however they are now weak and require protection. We shall move to make sure they don't fall into muslim hands!"
+ wayward_epirus_btpl_title:0 "Vassalize Epirus"
+ wayward_epirus_btpl_desc:0 "The Depsotate of Epirus was one of the three successor states established by Greek nobles after the events of the 4th crusade. Since then, the latins have seized the rule of the Despotate. This is a threat to our Empire. We need to make sure they swear fealty to our Basileus and not the Latins!"
+ 
+ #Recovering Patriarch seats
+ byz_recover_antioch_title:0 "Recover Antioch"
+ byz_recover_antioch_desc:0 "The City of God, or Antioch, as perhaps more famously known since the times of the Crusades, is right on our very borders. We need to conquer the city once more if we wish for our theos to prosper!"
+ byz_recover_jerusalem_title:0 "Recover Jerusalem"
+ byz_recover_jerusalem_desc:0 "Our borders are pushing close to the city of Jerusalem. Let us reclaim the city and establish its Patriarch once more!"
+ byz_recover_alexandria_title:0 "Recover Alexandria"
+ byz_recover_alexandria_desc:0 "Alexandria lies right on the edge of our borders. Let us reclaim this great centre of Orthodoxy for the Empire!"
+ convert_anatolia_title:0 "Convert Anatolia"
+ convert_anatolia_desc:0 "The people of Anatolia once proudly followed the Christian Orthodox faith, however have since the conquests by the Turk been forced into heathenism. We need to undo this and bring them back to the true faith if these lands are to remain in our hands!"
+ 
+ 
+ #Development missions
+ develop_theme_province_mil_I_title:0 "Build a Regimental Camp in $PROVINCENAME$"
+ develop_theme_province_mil_I_desc:0 "Our supposed theme capital of $PROVINCENAME$ doesn't even have a regimental camp. We need to build one there right away, else there is no way we can even consider it worthy of the title."
+ develop_theme_province_mil_II_title:0 "Build a Conscription Center in $PROVINCENAME$"
+ develop_theme_province_mil_II_desc:0 "While the province of $PROVINCENAME$ already has a regimental camp, it is now time we upgrade it to a full fledged conscription center."
+ develop_theme_province_dip_I_title:0 "Build a Shipyard in $PROVINCENAME$"
+ develop_theme_province_dip_I_desc:0 "The city of $PROVINCENAME$ claims to be the seat of a [Root.GetGeneralsName], however while it has a port, it doesn't even have a proper shipyard. We need to do something about that on the double."
+ develop_theme_province_dip_II_title:0 "Upgrade to a Grand Shipyard in $PROVINCENAME$"
+ develop_theme_province_dip_II_desc:0 "A shipyard is all good for a normal city, but for a Theme capital such as $PROVINCENAME$, nothing but the grandest will do. We must construct a Grand Shipyard in $PROVINCENAME$ right away."
+ develop_theme_province_adm_I_title:0 "Build a Courthouse in $PROVINCENAME$"
+ develop_theme_province_adm_I_desc:0 "If the [Root.GetGeneralsName] is to rule in the Theme capital of $PROVINCENAME$, there needs to be a house of court in the city. We must construct such a building in $PROVINCENAME$ right away."
+ develop_theme_province_adm_II_title:0 "Upgrade to a Town Hall in $PROVINCENAME$"
+ develop_theme_province_adm_II_desc:0 "If we want proper administration of the Theme in $PROVINCENAME$, we need to upgrade the courthouse to a proper Town Hall."
+ develop_theme_province_uni_title:0 "Build a University in $PROVINCENAME$"
+ develop_theme_province_uni_desc:0 "The city of $PROVINCENAME$ has grown very prestigious and populous in our Empire. It is time we please our scholarly people and establish a University in the city."
+ protect_theme_province_I_title:0 "Build basic fortifications in $PROVINCENAME$"
+ protect_theme_province_I_desc:0 "Our glorious Theme capital $PROVINCENAME$ is standing defenseless against the enemy. We need to ensure its safety on the double!"
+ protect_theme_province_II_title:0 "Upgrade to a Bastion in $PROVINCENAME$"
+ protect_theme_province_II_desc:0 "With the advent of bombards, the fortifications in $PROVINCENAME$ stand no chance against the enemy besiegers. We need to improve the fortifications right now!"
+ protect_theme_province_III_title:0 "Update to a Star Fort in $PROVINCENAME$"
+ protect_theme_province_III_desc:0 "While the Bastion certainly holds up better than that of a basic Castle, a Star Fort would be an even better fit for a glorious Theme capital such as $PROVINCENAME$. Let us construct one immediately."
+ protect_theme_province_IV_title:0 "Construct a Fortress in $PROVINCENAME$"
+ protect_theme_province_IV_desc:0 "A glorious city such as $PROVINCENAME$ must not fall into enemy hands. As such it is of utmost importance that we construct the mightiest of castles there!"
+ 
+ 
+ #Mission modifiers
+ byz_crusade:0 "Roman Crusade"
+ desc_byz_crusade:0 "Our recent conquest against the muslims have people flock to our banner."
+ byz_balkan_ambition:0 "Balkan Ambitions"
+ desc_byz_balkan_ambition:0 "Our ambitions in the Balkans make our newly conquered lands easier to integrate."
+ byz_greek_ambition:0 "Greek Ambitions"
+ desc_byz_greek_ambition:0 "Our ambitions in Greece make our newly conquered lands easier to integrate."
+ byz_armenian_ambition:0 "Armenian Ambitions" 
+ desc_byz_armenian_ambition:0 "Our ambitions in restoring our rule to the Armenian people make our troops fight harder."
+ byz_diplomatic:0 "Diplomatic Rome"
+ desc_byz_diplomatic:0 "Our recent conquests in Crimea have grown our reputation."
+ byz_italian_ambition:0 "Italian Ambitions"
+ desc_byz_italian_ambition:0 "Our ambitions in returning Italy to our fold make our missionaries work harder to convert them."
+ byz_egyptian_ambition:0 "Egyptian Ambitions"
+ desc_byz_egyptian_ambition:0 "Our ambitions in Egypt have made integration much easier."
+ byz_georgian_ambition:0 "Georgian Ambitions"
+ desc_byz_georgian_ambition:0 "Our recent conquests in Georgia has grown our reputation in the eyes of other countries and our people."
+ byz_flowing_spice:0 "Flowing Spice"
+ desc_byz_flowing_spice:0 "Our recent conquests have ensured that the spice keeps flowing, making our envoys able to travel extraordinary distances."
+ byz_patriarch_blessing:0 "Patriarch's Blessing"
+ desc_byz_patriarch_blessing:0 "Our conquest of a Holy City has given us the blessing of the Ecumenical Patriarch of Constantinople."
+ built_third_temple:0 "Built Third Temple"
+ desc_built_third_temple:0 "Our actions against the jewish people have made them much more accepting of our rule."
+ ruler_kept_jewish_ban:0 "Kept the ban on Jews"
+ desc_ruler_kept_jewish_ban:0 "The Patriarchs appreciate the decision to keep the ban on Jews entering Jerusalem. The religious minorities in the empire, not so much."
+ ruler_lifted_jewish_ban:0 "Lifted the ban on Jews"
+ desc_ruler_lifted_jewish_ban:0 "The Jews (And other religious minorities) look up the benevolence of our ruler, however our Patriarchs are severely disappointed."
+ developed_theme_capital:0 "Developed Theme Capital"
+ desc_developed_theme_capital:0 "Our recent developments in a Theme Capital have made further improvements cheaper."
+ fortified_theme_capital:0 "Fortified Theme Capital"
+ desc_fortified_theme_capital:0 "Our recent fortifications of a Theme Capital has made our troops fight harder."
+ 
+ #Missions for other countries to stop Byzantium
+ restore_the_latin_empire_title:0 "Restore the Latin Empire"
+ restore_the_latin_empire_desc:0 "The Byzantines seem to have recovered from the brink of destruction and have pushed back the Turk. Now that they've done the heavy lifting, we shall reclaim Constantinople and reform the Latin Empire!"
+ push_back_the_byzantines_title:0 "Push back the Greeks"
+ push_back_the_byzantines_desc:0 "The somehow magically resurrected empire of the Greeks have become the main threat to us and have pushed up to our very borders. We must defeat them and push them out of Europe. Only then can we truly be the successors of Rome."
+ 
+ #Renovatio Imperii incorporated units for Eastern tech, only slightly altered certain text to remove some present tense, as well as slightly altering the description of Themata Infantry as the Theme System is re-established differently in this mod.
+ #Three units were skipped: Preobrazhensky Infantry, Eastern Jaegers and Russian Reformed Mass Infantry. The reason being that the mod makes it so that Eastern units are on par with Western, giving the Russian Mass Infantry at tech 28 instead of 30, which I don't necessarily agree with.
+ #The Jaeger is skipped because all Eastern units adapted from Western usually appear a tier later than they do in Western. Since Jaegers are the final tier, I argue there is no way they can appear at the same time, unless you add another unit tier after tech 30, which I'm not ready to do. If I would, then the Reformed Mass Infantry could exist as well.
+ #The Preobrazhensky is skipped because this is already represented in the Petrine infantry, which is both the Preobrazhensky and the Semyonovsky, meaning it should've been a tier earlier.
+ #Besides, the mod also introduces the reformed Petrine to work beside the Green Coat as a more defensive alternative. Giving 3 different Russian infantry is a bit too much in my opinion. Since I also moved Reformed Varangians to this spot, I think that's fair.
+ eastern_guard:0 "Eastern Guard"
+ eastern_guardDESCR:0 "The Eastern Guard were soldiers trained with pikes and employed as guards of important nobility in Eastern Europe."
+ eastern_raiders:0 "Eastern Raiders"
+ eastern_raidersDESCR:0 "These were powerful offensive infantry designed to blitz the enemy line before they fully organize."
+ varangian_infantry:0 "Varangian Infantry"
+ varangian_infantryDESCR:0 "The Varangian Guard was an elite unit of the Byzantine Empire during the era of the Makedon dynasty through the early Palaiologan Dynasty. Recruited from the Scandinavians, Russians, and later Englishmen, the Varangians were feared for their tremendous fighting strength. Due to their status as foreigners in the Empire, they were largely kept out of the many political intrigues preventing them from being used against the Emperor. The Varangian Guard was disbanded during the 14th century due to the decline of the Empire, but was reconstituted by Emperor Constantine XI Palaiologos in the mid 15th century. The reformed Varangian Guard not only consisted of mercenaries from the Russian region, but also were recruited from the Balkans and Anatolia as well. Serving in the Varangian Guard not only paid well for these mercenaries, but was also a chance to attain Byzantine citizenship as well, which bound the new Varangians to the Empire more tightly then other mercenary companies were to other states in the renaissance era."
+ balanced_eastern_musketeers:0 "Balanced Eastern Musketeers"
+ balanced_eastern_musketeersDESCR:0 "With gunpowder becoming the central focus of warfare in the early modern era, new tactics and formations were created to take advantage of these new weapons. In Byzantium, a new school of thought arose that the musketeers should be adaptable for any situation, whether it was to press the attack or entrench themselves."
+ reformed_eastern_tercio:0 "Reformed Eastern Tercio"
+ reformed_eastern_tercioDESCR:0 "Much like how the tercio formation in Western Europe kept evolving with the advancements in warfare, the tercio formations in Eastern European countries kepting evolving as well."
+ themata_infantry:0 "Themata Infantry"
+ themata_infantryDESCR:0 "With the Byzantine Empire surviving the Ottoman onslaught and reconquering their lands, Emperor Demetrios III restored the imperial provincial administration known as the Theme System. Much like how the Theme System operated in previous eras, soldiers in the Imperial Army were given parcels of land in reward for serving in the military. These were not permanent land grants, as the lands officially belonged to the Emperor. As long as the family kept working the land, they and their kin were expected to serve in the Imperial Army. This served to provide manpower to the Imperial Army without resorting to conscription, a process that was very unpopular with the citizens of the Empire. What is noticably different about the troops that were raised under the restored system is that rather than being local defensive militias, the infantry were professional troops that were heavily trained and disciplined. Each theme was reorganized as a self-contained army, and soon begin to reflect the same characteristics as the earlier Legionary system had. Only Byzantine citizens were allowed to join a theme, and each theme had a single area in the Empire that they were associated with. This created a bond between the theme, and the locality that it was recruited from, as well as promoting traditions in the military. Some of the most famous themes to serve the Empire in the early modern era was Thema Thrakes, who finally put an end to the Ottoman Sultanate in 1573, Thema Optimaton who was instrumental in the reconquests of Antioch and Jerusalem as well as leading the seige of Mecca, and Thema Makedonikon, who along with the Varangian Guard and the Palatines were responsible for the rout of the Papal Coalition in 1661." 
+ palatine_cavalry:0 "Palatine Cavalry"
+ palatine_cavalryDESCR:0 "The Palatines were an elite cavalry unit in the Byzantine Imperial Army. Riding far ahead of the Imperial Army, the Palatines would engage in raids and irregular warfare designed to disrupt the enemies organizational capabilities and infrastructure before the main army advanced into the region. The Palatines were one of the earliest examples of a special operations unit in the early modern early. Known for operating far behind enemy lines, the Palatines had an uncanny knack for forming a shock force and attacking the enemy army from behind when they could least expect it. The greatest example was the routing of the Papal Coalition in 1661, in which a coalition of the Spaniards, French, Austrians, and the various Italian city-states were fighting the Empire on the outskirts of Rome. The Palatines, back from raiding in Ancona, accidently happened upon the main supply post for the coalition in Tusculum. Taking advantage of the opportunity, the Palatines burned the outpost, which set confusion of the coalition. The timely arrival of reinforcements in the form of the Varangian Guard and the Greek themes broke the back of resistance, and the coalition was defeated."
+ hajduk_infantry:0 "Hadjuk Infantry"
+ hajduk_infantryDESCR:0 "Footsoldiers inspired by the Balkan and Carpathian militaries that formed the backbone of the Polish infantry from the 1570s until about the 1630s. Unusually for this period, Polish-Lithuanian hajduks wore uniforms, typically of grey-blue woolen cloth, with red collar and cuffs. Their principal weapon was an arquebus. For close combat they also carried a heavy variety of sabres."
+ scholarian_infantry:0 "Scholarian Infantry"
+ scholarian_infantryDESCR:0 "The Scholarians were the infantry of the Byzantine Empire that was established in the military reforms by Constantine XII Palaiologos in the mid 17th century. The themata infantry had previously began adopting practices from the Legions, including creating a professional fighting force backed by highly disciplined troops. The military reforms not only increased support of the professionalization of the Imperial Army, the Emperor also enacted into Law the Military Education Act. Citizens joining the military were not only expected to be able to read and write, they were also schooled in tactics, drills, techniques, and formations as well. This typically took a total of three years to complete. Once a soldier graduated from the military school, he would become a full-fledged member of the Imperial Army. The heavy focus of education not only on the officers, but also on the rank and file caused other nations to began referring to these soldiers as Scholarians. This emphasis on quality meant that the Imperial Army was not able to maintain a massive army, as many potential recruits would not be able to pass the schooling. However, the quality resulting from the graduates far outstripped the drawbacks from not having a large pool of recruitments. It was not uncommon to see a single theme of Scholarians beat back a force three times their own size, as was demonstrated in the Papal Wars in the 1660's. The uniforms of the Scholarian took on an heavy emphasis on Eastern fashions, wearing red fez caps, red jackets, yellow shirts, and red Bracca, a type of light breeches. Rather than carry western style arms, the Scholarians sported arms from the Middle East, preferring their simplicity compared to more western arms."
+ #preobrazhensky_infantry:0 "Preobrazhensky Infantry"
+ #preobrazhensky_infantryDESCR:0 "Elite Russian infantry forces that recruited from boyars and their retainers and were fiercely loyal to the Russian Empire."
+ reformed_petrine_infantry:0 "Reformed Petrine Infantry"
+ reformed_petrine_infantryDESCR:0 "The evolution of earlier Petrine infantry forces with better equipment and tactics, offering an alternative to the offensive Green Coats."
+ reformed_palatine_cavalry:0 "Reformed Palatine Cavalry"
+ reformed_palatine_cavalryDESCR:0 "The reformation of the Palatine cavalry unit was pretty necessary given the Palatine's popularity and the continued advancements within the military. Not only was the Palatine used in irregular warfare, they were also used in shock attacks against enemy formations much more frequently. Therefore, they had to adapt to becoming a heavy cavalry force."
+ reformed_varangian_infantry:0 "Reformed Varangian Infantry"
+ reformed_varangian_infantryDESCR:0 "The evolution of the Byzantine Imperial Army, especially with the establishment of the Theme System and the creation of the Scholarians meant that the Varangian Guard was slowly losing their place as the shock troops of the Empire. In addition, the professionalization of militaries in Europe led to a decline in military companies, as less and less nations were willing to hire mercenaries when they had their own, much more loyal forces to count on. This lead to military reforms which addressed the issue of the declining utility of the Varangians."
+ eastern_square_infantry:0 "Eastern Square Infantry"
+ eastern_square_infantryDESCR:0 "The success of the Square Infantry formations in Western Europe meant that they would be inevitably adopted byt the nations of Eastern Europe as well."
+ palatine_lancers:0 "Palatine Lancers"
+ palatine_lancersDESCR:0 "As the Palatines diversified their abilites in the Byzantine Army, a special unit of Lancers were created. These Palatines, fanatical in their loyalty to the Emperor, and regarded as suicidal by their enemies and even fellow soldiers in the Imperial Army, were given long lances and were used as the shock force designed to disrupt and destroy enemy formations. The Palatine Lancers could be regarded as one of the last examples of heavy cavalry in the Empire."
+ #eastern_jaeger_infantry:0 " Eastern Jaeger Infantry"
+ #eastern_jaeger_infantryDESCR:0 "As the Austrian Empire used jaegar infantry to great effect in their infantries, so too did nations in Eastern Europe adopt these light infantry. The Byzantine Empire, in classical Roman fashion, adopted Jaegar infantry right alongside the Scholarians, and used them against the Austrians in the Roman Crown wars."
+ reformed_scholarian_infantry:0 "Reformed Scholarian Infantry"
+ reformed_scholarian_infantryDESCR:0 "The Scholarians continued to learn and adopt new techniques and formations from the enemies they fought, and employed them against said enemies. Napoleon Bonaparte, Supreme Commander of the Allied forces, one remarked that it would better to kill a Scholarian rather than just wounding him, as the Scholarian would return using your own abilities against you."
+ #russian_reformed_mass:0 "Reformed Mass Infantry"
+ #russian_reformed_massDESCR:0 "Much like their allies in the Byzantine Empire, the Russians continued to evolve their miitary capabilities, and tactics in using their infantry. A Greek traveler, when observing a Russian mass charge, commented that it looked like a wave of ants carpeting the landscape, stripping any enemy clean right down to the bone."
+ 
+ 

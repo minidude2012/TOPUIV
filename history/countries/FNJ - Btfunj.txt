@@ -1,0 +1,12 @@
+government_rank = 1
+government = tribal_federation
+primary_culture = luo_culture
+religion = shamanism
+technology_group = east_african
+unit_type = sub_saharan
+capital = 5290
+historical_rival = ALO
+historical_rival = ABD
+
+
+#No good historical information

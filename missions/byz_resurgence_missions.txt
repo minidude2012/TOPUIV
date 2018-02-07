@@ -1,0 +1,7613 @@
+#Written by Dub
+#Note to user: If anyone complains about the ridiculously high factors,
+#I'll refer to the coders at Paradox who decided to code a bunch of missions at 3000 factor regarding conquering CoTs in Africa if you've discovered the provinces. 
+#Without requiring either exploration nor expansion ideas. As in: HAVING NO REASON TO HEAD OUTSIDE OF EUROPE.
+
+#######
+#First#
+#######
+byz_reconquer_mainland_greece = { #15000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = western_aegean_area
+			area = northern_greece_area
+			area = morea_area
+			area = macedonia_area
+			area = thrace_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_mainland_greece }
+		NOT = { has_country_modifier = byz_greek_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = western_aegean_area
+				area = northern_greece_area
+				area = morea_area
+				area = macedonia_area
+				area = thrace_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 15000			#After Turn the Tide in BtPL @ 20 000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_mainland_greece
+		add_country_modifier = {
+			name = "byz_greek_ambition"
+			duration = 1825
+		}
+	}
+}
+
+#######################################
+#Second, require mainland Greece owned#
+#######################################
+
+byz_reconquer_greek_islands = { #14000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = aegean_archipelago_area #Damn renaming.
+			area = eastern_mediterrenean_islands_area
+			area = cyprus_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_greek_islands }
+		NOT = { has_country_modifier = byz_greek_ambition }
+		NOT = {
+			any_province = {
+				OR = {
+					area = western_aegean_area
+					area = northern_greece_area
+					area = morea_area
+					area = macedonia_area
+					area = thrace_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = aegean_archipelago_area #Damn renaming.
+				area = eastern_mediterrenean_islands_area
+				area = cyprus_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 14000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_greek_islands
+		add_country_modifier = {
+			name = "byz_greek_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_reconquer_anatolian_coast = { #14000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = hudavendigar_area
+			area = aydin_area
+			area = karasi_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_anatolian_coast }
+		NOT = { has_country_modifier = byz_crusade }
+		NOT = {
+			any_province = {
+				OR = {
+					area = western_aegean_area
+					area = northern_greece_area
+					area = morea_area
+					area = macedonia_area
+					area = thrace_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = hudavendigar_area
+				area = aydin_area
+				area = karasi_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 14000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_anatolian_coast
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+######################################
+#Third, require anatolian coast owned#
+######################################
+
+#Anatolia
+byz_reconquer_south_anatolia = { #13000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = karaman_area
+			area = germiyan_area #Changed from phrygia_area to germiyan_area in 1.24 BT 8.0
+			area = pamphylia_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_south_anatolia }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = pamphylia_area
+				area = germiyan_area
+				area = phrygia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 13000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_south_anatolia
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_reconquer_north_anatolia = { #13000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = kastamonu_area
+			area = ankara_area	 #Was galatia_area pre BT 8.0 for 1.24
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_north_anatolia }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = kastamonu_area
+				area = ankara_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 13000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_north_anatolia
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_reconquer_east_anatolia = { #12000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = dulkadir_area
+			area = cukurova_area #Was cilicia_area pre BT 8.0 1.24
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_east_anatolia }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		OR = {
+			has_country_flag = byz_took_south_anatolia
+			has_country_flag = byz_took_middle_anatolia
+			has_country_flag = byz_took_north_anatolia
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		NOT = { exists = CAP }
+		any_province = {
+			OR = {
+				area = dulkadir_area
+				area = cukurova_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 12000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_east_anatolia
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_reconquer_pontus = { #10000, bumpable to 12000 if any province here is not owned by Trebizond
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = pontus_area
+			area = rum_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_pontus }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_greek_ambition }
+		owns_core_province = 151
+		NOT = { exists = TRE }
+		any_province = {
+			OR = {
+				area = pontus_area
+				area = rum_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.2
+			any_province = {
+				OR = {
+					area = pontus_area
+					area = rum_area
+				}
+				NOT = { owned_by = TRE }
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_pontus
+		add_country_modifier = {
+			name = "byz_greek_ambition"
+			duration = 1825
+		}
+	}
+}
+
+#Extra Greek
+byz_safeguard_balkan_border = { #13000, bumpable to 13650 if any province here is owned by Ottomans
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = northern_macedonia_area
+			area = upper_thrace_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_balkan_border }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = northern_macedonia_area
+				area = upper_thrace_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 13000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.1
+				any_province = {
+					OR = {
+						area = northern_macedonia_area
+						area = upper_thrace_area
+					}
+					owned_by = TUR
+				}
+			}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_balkan_border
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_reconquer_albania = { #12000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		area = albania_area
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_albania }
+		NOT = {
+			any_province = {
+				OR = {
+					area = hudavendigar_area
+					area = aydin_area
+					area = karasi_area
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			area = albania_area
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 12000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_albania
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+#Fourth, require Theme System established
+
+#Lesser Armenia
+byz_reconquer_armenia_minor = { #10000, bumpable to 11000 if owning either pontus or east anatolia
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = erzurum_area
+			area = north_kurdistan_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_armenia_minor }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_armenian_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = erzurum_area
+				area = north_kurdistan_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.1
+			OR = {
+				NOT = {
+					any_province = {
+						OR = {
+							area = pontus_area
+							area = rum_area
+						}
+						NOT = { owned_by = ROOT }
+					}
+				}
+				NOT = {
+					any_province = {
+						OR = {
+							area = hudavendigar_area
+							area = aydin_area
+							area = karasi_area
+						}
+						NOT = { owned_by = ROOT }
+					}
+				}
+			}
+			
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_armenia_minor
+		add_country_modifier = {
+			name = "byz_armenian_ambition"
+			duration = 1825
+		}
+	}
+}
+
+#Levant
+byz_conquer_syria = { #10000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = aleppo_area
+			area = rakka_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_syria }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = aleppo_area
+				area = rakka_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_syria
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_tripoli = { #9500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = tripoli_area
+			area = syria_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_tripoli }
+		has_country_modifier = the_theme_system
+		has_country_flag = byz_took_syria
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = tripoli_area
+				area = syria_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_tripoli
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_palestine = { #9000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = palestine_area
+			area = trans_jordan_area
+		}
+		NOT = { province_id = 5204 }
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_palestine }
+		has_country_modifier = the_theme_system
+		has_country_flag = byz_took_tripoli
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = palestine_area
+				area = trans_jordan_area
+			}
+			NOT = { province_id = 5204 }
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_palestine
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+#Cherson
+byz_reconquer_crimea = { #10000, bumpable to 12000 if alliance with any east slavic culture group country. Bumpable with factor 1.1 if DIP > 4
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		area = crimea_area
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_crimea }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_diplomatic }
+		owns_core_province = 151
+		any_province = {
+			area = crimea_area
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.1
+			dip = 4
+		}
+		modifier = {
+			factor = 1.2
+			any_country = {
+				alliance_with = BYZ
+				culture_group = east_slavic
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_crimea
+		add_country_modifier = {
+			name = "byz_diplomatic"
+			duration = 1825
+		}
+	}
+}
+
+#Balkans
+byz_conquer_bulgaria = { #10000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = bulgaria_area
+			area = lower_danube_area
+		}
+		NOT = { province_id = 1756 }
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_bulgaria }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		NOT = { BUL = { alliance_with = ROOT } }
+		any_province = {
+			OR = {
+				area = bulgaria_area
+				area = lower_danube_area
+			}
+			NOT = { province_id = 1756 }
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_bulgaria
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_serbia = { #10000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = serbia_area
+			area = rascia_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_serbia }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = serbia_area
+				area = rascia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 10000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_serbia
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_bosnia = { #9500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		area = bosnia_area
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_bosnia }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			area = bosnia_area
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_bosnia
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_croatia = { #9500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = croatia_area
+			area = slavonia_area
+			area = east_adriatic_coast_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_croatia }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = croatia_area
+				area = slavonia_area
+				area = east_adriatic_coast_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_croatia
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_histria = { #9000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = carinthia_area
+			province_id = 3050
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_histria }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_balkan_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = carinthia_area
+				province_id = 3050
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_histria
+		add_country_modifier = {
+			name = "byz_balkan_ambition"
+			duration = 1825
+		}
+	}
+}
+
+#Southern Italy
+byz_conquer_greater_greece = { #8000, bumpable to 10000 if owning Albania
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = calabria_area
+			area = apulia_area
+			area = naples_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_greater_greece }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_italian_ambition }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = calabria_area
+				area = apulia_area
+				area = naples_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 8000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.25
+			NOT = {
+				any_province = {
+					area = albania_area
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_greater_greece
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_sicily = { #8000, bumpable to 10000 if owning Greater Greece
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		area = sicily_area
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_sicily }
+		has_country_modifier = the_theme_system
+		NOT = { has_country_modifier = byz_italian_ambition }
+		owns_core_province = 151
+		any_province = {
+			area = sicily_area
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 8000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.25
+			NOT = {
+				any_province = {
+					OR = {
+						area = calabria_area
+						area = apulia_area
+						area = naples_area
+					}
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_sicily
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 1825
+		}
+	}
+}
+
+###################################################
+#Fifth, require owning all of Balkans and Anatolia#
+###################################################
+
+#Egypt
+byz_conquer_sinai = { #9000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = syrian_desert_area
+			area = gulf_of_arabia_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_sinai }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = syrian_desert_area
+				area = gulf_of_arabia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 9000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_sinai
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_north_nile = { #8500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = delta_area
+			area = bahari_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_north_nile }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = delta_area
+				area = bahari_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 8500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_north_nile
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_south_nile = { #8000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = said_area
+			area = lower_nubia_area
+		}
+		NOT = { province_id = 2322 }
+		NOT = { province_id = 5277 }
+		NOT = { province_id = 5279 }
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_south_nile }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = said_area
+				area = lower_nubia_area
+			}
+			NOT = { province_id = 2322 }
+			NOT = { province_id = 5277 }
+			NOT = { province_id = 5279 }
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 8000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_south_nile
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_desert_oases = { #7500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = vostani_area
+			area = al_wahat_area
+			province_id = 4322
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_desert_oases }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = vostani_area
+				area = al_wahat_area
+				province_id = 4322
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_desert_oases
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_cyrenaica = { #7500, bumpable to 9000 if owning Desert oases
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		area = cyrenaica_area
+		NOT = { owned_by = ROOT }
+		NOT = { is_empty = yes } #Because apparently missions can target non-colonized provinces?!
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_cyrenaica }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			area = cyrenaica_area
+			NOT = { owned_by = ROOT }
+			NOT = { is_empty = yes }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.2
+			NOT = {
+				any_province = {
+					OR = {
+						area = vostani_area
+						area = al_wahat_area
+						province_id = 5276
+					}
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_cyrenaica
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+#Maghreb
+byz_conquer_tripolitania = { #7500, bumpable to 9000 if owning Cyrenaica
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = tripolitania_area
+			area = djerba_area
+			province_id = 5309 #Thenteos
+			province_id = 352 #Kapsa
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_tripolitania }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = tripolitania_area
+				area = djerba_area
+				province_id = 5309 #Thenteos
+				province_id = 352 #Kapsa
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.2
+			NOT = {
+				any_province = {
+					area = cyrenaica_area
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_tripolitania
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_africa = { #7500, bumpable to 9000 if owning Sicily
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = tunisia_area
+			area = east_aures_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_africa }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = tunisia_area
+				area = east_aures_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.2
+			NOT = {
+				any_province = {
+					area = sicily_area
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_africa
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+#Technically eurocentricism missions
+byz_conquer_numidia = { #7000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = west_aures_area
+			area = constantine_area
+			area = kabylia_area
+			province_id = 2458 #Just to look nicer border-wise
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_numidia }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = west_aures_area
+				area = constantine_area
+				area = kabylia_area
+				province_id = 2458 #Just to look nicer border-wise
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_numidia
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_east_mauretania = { #6500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = oran_area
+			area = algiers_area
+			area = hautes_plaines_area
+		}
+		NOT = { province_id = 2458 } #Just to look nicer border-wise
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_east_mauretania }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = oran_area
+				area = algiers_area
+				area = hautes_plaines_area
+			}
+			NOT = { province_id = 2458 } #Just to look nicer border-wise
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 6500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_east_mauretania
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_west_mauretania = { #6000, bumpable to 7500 if owning east mauretania
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = western_morocco_area
+			area = northern_morocco_area
+			province_id = 2465
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_west_mauretania }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_crusade }
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = western_morocco_area
+				area = northern_morocco_area
+				province_id = 2465
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 6000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.25
+			NOT = {
+				any_province = {
+					OR = {
+						area = oran_area
+						area = algiers_area
+						area = hautes_plaines_area
+					}
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_west_mauretania
+		add_country_modifier = {
+			name = "byz_crusade"
+			duration = 3650
+		}
+	}
+}
+
+#Caucasus
+byz_conquer_armenia_major = { #8000, bumpable to 10000 if owning armenia minor
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = armenia_area
+			area = shirvan_area
+			area = tabriz_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_armenia_major }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_armenian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = armenia_area
+				area = shirvan_area
+				area = tabriz_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 8000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.25
+			NOT = {
+				any_province = {
+					OR = {
+						area = erzurum_area
+						area = north_kurdistan_area
+					}
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_armenia_major
+		add_country_modifier = {
+			name = "byz_armenian_ambition"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_georgia = { #6000, bumpable to 9000 if any provinces in Georgia not owned by Georgia
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = odishi_area
+			area = georgia_area
+		}
+		NOT = { 
+			owned_by = ROOT
+			owned_by = GEO
+		}
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_georgia }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_georgian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = odishi_area
+				area = georgia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			OR = {
+				owned_by = ROOT
+				owned_by = GEO
+			}
+			
+		}
+	}
+	chance = {
+		factor = 6000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.5
+			any_province = {
+				OR = {
+					area = odishi_area
+					area = georgia_area
+				}
+				NOT = { owned_by = GEO }
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_georgia
+		add_country_modifier = {
+			name = "byz_georgian_ambition"
+			duration = 1825
+		}
+		GEO = {
+			add_opinion = { who = BYZ modifier = helped_regain_georgia }
+		}
+	}
+}
+
+#Mesopotamia
+byz_conquer_north_mesopotamia = { #7500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = al_jazira_area
+			area = mardin_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_north_mesopotamia }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_flowing_spice }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = al_jazira_area
+				area = mardin_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_north_mesopotamia
+		add_country_modifier = {
+			name = "byz_flowing_spice"
+			duration = 1825
+		}
+	}
+}
+
+byz_conquer_south_mesopotamia = { #7000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = iraq_arabi_area
+			area = basra_area
+			AND = {
+				area = shahrizor_area
+				NOT = { province_id = 2211 }
+			}
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = ROOT
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_south_mesopotamia }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_flowing_spice }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = iraq_arabi_area
+				area = basra_area
+				AND = {
+					area = shahrizor_area
+					NOT = { province_id = 2211 }
+				}
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_south_mesopotamia
+		add_country_modifier = {
+			name = "byz_flowing_spice"
+			duration = 1825
+		}
+	}
+}
+
+#Northern Italy
+byz_conquer_central_italy = { #7500, bumpable to 9000 if owning Greater Greece
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = emilia_romagna_area
+			area = tuscany_area
+			area = central_italy_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_central_italy }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_italian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = emilia_romagna_area
+				area = tuscany_area
+				area = central_italy_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 3000			#After Everything Else
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 1.2
+			NOT = {
+				any_province = {
+					OR = {
+						area = calabria_area
+						area = apulia_area
+						area = naples_area
+					}
+					NOT = { owned_by = ROOT }
+				}
+			}
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_central_italy
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_north_italy = { #7500
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = emilia_area
+			area = venetia_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_north_italy }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_italian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = emilia_area
+				area = venetia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7500
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_north_italy
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_lombardy = { #7000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = lombardy_area
+			area = piedmont_area
+			province_id = 3054
+			area = liguria_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_lombardy }
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_italian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = lombardy_area
+				area = piedmont_area
+				province_id = 3054
+				area = liguria_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_lombardy
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 3650
+		}
+	}
+}
+
+byz_conquer_sardinia_corsica = { #7000
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	target_provinces = {
+		OR = {
+			area = corsica_sardinia_area
+			area = sardinia_area
+		}
+		NOT = { owned_by = ROOT }
+		NOT = { owner = { alliance_with = ROOT } }
+		NOT = { owner = { is_subject_of = ROOT } }
+		NOT = { owner = { overlord_of = ROOT } }
+	}
+	allow = {
+		normal_or_historical_nations = yes
+		OR = {
+			tag = BYZ
+			AND = {
+				tag = ROM
+				culture_group = byzantine
+			}
+		}
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_sardinia_corsica}
+		NOT = {
+			any_province = {
+				OR = {
+					region = balkan_region
+					region = anatolia_region
+				}
+				NOT = { owned_by = ROOT }
+				NOT = { owner = { is_subject_of = ROOT } }
+			}
+		}
+		NOT = { has_country_modifier = byz_italian_ambition }
+		
+		owns_core_province = 151
+		any_province = {
+			OR = {
+				area = corsica_sardinia_area
+				area = sardinia_area
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		all_target_province = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 7000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		every_target_province = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		every_target_province = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		set_country_flag = byz_took_sardinia_corsica
+		add_country_modifier = {
+			name = "byz_italian_ambition"
+			duration = 3650
+		}
+	}
+}
+
+
+########################################################################################
+#Sixth A, require all of Italy to be conquered and Rome being the Capital of the Empire#
+#This is to represent the eurocentricism of the Empire at this point.				   #
+########################################################################################
+
+#Iberia, done but not localized, commented for now because the others are not done yet
+
+# byz_conquer_baetica = { #6000
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# area = lower_andalucia_area
+			# area = upper_andalucia_area
+		# }
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_baetica }
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_western_ambition }
+		# capital = 118		
+		# owns_core_province = 151
+		# any_province = {
+			# OR = {
+				# area = lower_andalucia_area
+				# area = upper_andalucia_area
+			# }
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 6000
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_took_baetica
+		# add_country_modifier = {
+			# name = "byz_western_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+# byz_conquer_tarraconia = { #6000
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# area = catalonia_area
+			# area = aragon_area
+			# area = basque_area
+			# province_id = 3094 #To make nicer borders
+			# province_id = 2989 #To make nicer borders
+			# province_id = 2755 #To make nicer borders
+		# }
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_tarraconia }
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_western_ambition }
+		# capital = 118		
+		# owns_core_province = 151
+		# any_province = {
+			# OR = {
+				# area = catalonia_area
+				# area = aragon_area
+				# area = basque_area
+				# province_id = 3094 #To make nicer borders
+				# province_id = 2989 #To make nicer borders
+				# province_id = 2755 #To make nicer borders
+			# }
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 6000
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_took_tarraconia
+		# add_country_modifier = {
+			# name = "byz_western_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+# byz_conquer_karchidonia = { #6000
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# area = valencia_area
+			# area = toledo_area
+			# area = murcia_area
+		# }
+		# NOT = { province_id = 3094 } #To make nicer borders
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_karchidonia }
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_western_ambition }
+		# capital = 118		
+		# owns_core_province = 151
+		# any_province = {
+			# OR = {
+				# area = valencia_area
+				# area = toledo_area
+				# area = murcia_area
+			# }
+			# NOT = { province_id = 3094 } #To make nicer borders
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 6000
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_conquer_karchidonia
+		# add_country_modifier = {
+			# name = "byz_western_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+# byz_conquer_galicia = { #5500
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# area = spanish_galicia_area
+			# area = leon_area
+			# area = asturias_area
+			# area = castille_area
+		# }
+		# NOT = { province_id = 2989 } #To make nicer borders
+		# NOT = { province_id = 2755 } #To make nicer borders
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_galicia }
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_western_ambition }
+		# capital = 118		
+		# owns_core_province = 151
+		# any_province = {
+			# OR = {
+				# area = spanish_galicia_area
+				# area = leon_area
+				# area = asturias_area
+				# area = castille_area
+			# }
+			# NOT = { province_id = 2989 } #To make nicer borders
+			# NOT = { province_id = 2755 } #To make nicer borders
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 5500
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_took_galicia
+		# add_country_modifier = {
+			# name = "byz_western_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+# byz_conquer_lusitania = { #5500
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# OR = {
+			# area = beieras_area
+			# area = alentejo_area
+			# area = extremadura_area
+		# }
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_lusitania }
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_western_ambition }
+		# capital = 118		
+		# owns_core_province = 151
+		# any_province = {
+			# OR = {
+				# area = beieras_area
+				# area = alentejo_area
+				# area = extremadura_area
+			# }
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 5500
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_took_lusitania
+		# add_country_modifier = {
+			# name = "byz_western_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+# byz_conquer_baleares = { #7000
+	
+	# type = country
+
+	# category = MIL
+	# ai_mission = yes
+	
+	# target_provinces = {
+		# area = balearic_islands_area
+		# NOT = { owned_by = ROOT }
+		# NOT = { owner = { alliance_with = ROOT } }
+		# NOT = { owner = { is_subject_of = ROOT } }
+		# NOT = { owner = { overlord_of = ROOT } }
+	# }
+	# allow = {
+		# normal_or_historical_nations = yes
+		# OR = {
+			# tag = BYZ
+			# AND = {
+				# tag = ROM
+				# culture_group = byzantine
+			# }
+		# }
+		# is_free_or_tributary_trigger = yes
+		# NOT = { has_country_flag = byz_took_sardinia_corsica}
+		# NOT = {
+			# any_province = {
+				# OR = {
+					# region = italy_region
+				# }
+				# NOT = { owned_by = ROOT }
+				# NOT = { owner = { is_subject_of = ROOT } }
+			# }
+		# }
+		# NOT = { has_country_modifier = byz_italian_ambition }
+		# capital = 118
+		# owns_core_province = 151
+		# any_province = {
+			# area = balearic_islands_area
+			# NOT = { owned_by = ROOT }
+			# NOT = { owner = { alliance_with = ROOT } }
+			# NOT = { owner = { is_subject_of = ROOT } }
+			# NOT = { owner = { overlord_of = ROOT } }
+		# }
+	# }
+	# abort = {
+		# is_subject_other_than_tributary_trigger = yes
+	# }
+	# success = {
+		# all_target_province = {
+			# owned_by = ROOT
+		# }
+	# }
+	# chance = {
+		# factor = 7000
+		# modifier = {
+			# factor = 2
+			# mil = 4
+		# }
+		# modifier = {
+			# factor = 2
+			# mil = 6
+		# }
+	# }
+	# immediate = {
+		# every_target_province = {
+			# add_claim = ROOT
+		# }
+	# }
+	# abort_effect = {
+		# every_target_province = {
+			# if = {
+				# limit = {
+					# NOT = {
+						# is_permanent_claim = ROOT
+					# }
+				# }
+				# remove_claim = ROOT
+			# }
+		# }
+	# }
+	# effect = {
+		# add_prestige = 10
+		# set_country_flag = byz_took_sardinia_corsica
+		# add_country_modifier = {
+			# name = "byz_italian_ambition"
+			# duration = 3650
+		# }
+	# }
+# }
+
+#France
+
+#Britain
+
+#Germania (Going to add Greater Germania as well, probably. We'll see)
+
+############################################################################################################
+#Sixth B, require the Mesopotamia region to be conquered and Constantinople being the Capital of the Empire#
+#This is to represent the focus on Persia as the main rival of the Empire, as it wishes to head East.	   #
+############################################################################################################
+
+#Persia
+
+#Arabia
+
+#Nubia
+
+
+######################
+#All Possible Vassals#
+######################
+#Moved them to DIP category to make them more visible as they normally are not.
+
+#Balkan vassals
+byz_vassalize_bulgaria = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = BUL
+		is_free_or_tributary_trigger = yes
+		BUL = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = BUL }
+			BUL = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = BUL
+				}
+			}
+		}
+	}
+	success = {
+		BUL = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = BUL value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = BUL
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = BUL
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = BUL
+			}
+		}
+	}
+}
+
+byz_vassalize_serbia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = SER
+		is_free_or_tributary_trigger = yes
+		SER = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = SER }
+			SER = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = SER
+				}
+			}
+		}
+	}
+	success = {
+		SER = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = SER value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = SER
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = SER
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = SER
+			}
+		}
+	}
+}
+
+byz_vassalize_bosnia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = BOS
+		is_free_or_tributary_trigger = yes
+		BOS = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = BOS }
+			BOS = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = BOS
+				}
+			}
+		}
+	}
+	success = {
+		BOS = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = BOS value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = BOS
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = BOS
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = BOS
+			}
+		}
+	}
+}
+
+byz_vassalize_croatia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = CRO
+		is_free_or_tributary_trigger = yes
+		CRO = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = CRO }
+			CRO = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = CRO
+				}
+			}
+		}
+	}
+	success = {
+		CRO = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = CRO value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = CRO
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = CRO
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = CRO
+			}
+		}
+	}
+}
+
+byz_vassalize_carniola = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = CNL
+		is_free_or_tributary_trigger = yes
+		CNL = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = CNL }
+			CNL = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = CNL
+				}
+			}
+		}
+	}
+	success = {
+		CNL = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = CNL value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = CNL
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = CNL
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = CNL
+			}
+		}
+	}
+}
+
+#Carpathian Romanians
+byz_vassalize_wallachia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = WAL
+		is_free_or_tributary_trigger = yes
+		WAL = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = WAL }
+			WAL = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = WAL
+				}
+			}
+		}
+	}
+	success = {
+		WAL = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = WAL value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = WAL
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = WAL
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = WAL
+			}
+		}
+	}
+}
+
+byz_vassalize_moldavia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = MOL
+		is_free_or_tributary_trigger = yes
+		MOL = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = MOL }
+			MOL = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = MOL
+				}
+			}
+		}
+	}
+	success = {
+		MOL = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = MOL value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = MOL
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = MOL
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = MOL
+			}
+		}
+	}
+}
+
+byz_vassalize_transylvania = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = TRA
+		is_free_or_tributary_trigger = yes
+		TRA = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = TRA }
+			TRA = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = TRA
+				}
+			}
+		}
+	}
+	success = {
+		TRA = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = TRA value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = TRA
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = TRA
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = TRA
+			}
+		}
+	}
+}
+
+#Aragonese subjects
+byz_vassalize_naples = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = NAP
+		is_free_or_tributary_trigger = yes
+		NAP = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = NAP }
+			NAP = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = NAP
+				}
+			}
+		}
+	}
+	success = {
+		NAP = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = NAP value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = NAP
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = NAP
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = NAP
+			}
+		}
+	}
+}
+
+byz_vassalize_sicily = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = SIC
+		is_free_or_tributary_trigger = yes
+		SIC = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = SIC }
+			SIC = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = SIC
+				}
+			}
+		}
+	}
+	success = {
+		SIC = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = SIC value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = SIC
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = SIC
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = SIC
+			}
+		}
+	}
+}
+
+byz_vassalize_sardinia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = SAR
+		is_free_or_tributary_trigger = yes
+		SAR = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = SAR }
+			SAR = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = SAR
+				}
+			}
+		}
+	}
+	success = {
+		SAR = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = SAR value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = SAR
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = SAR
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = SAR
+			}
+		}
+	}
+}
+
+#Vassalize the pope
+byz_vassalize_pope = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = PAP
+		is_free_or_tributary_trigger = yes
+		PAP = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = PAP }
+			PAP = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = PAP
+				}
+			}
+		}
+	}
+	success = {
+		PAP = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = PAP value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = PAP
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = PAP
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = PAP
+			}
+		}
+	}
+}
+
+#Vassalize Armenia & Georgia
+byz_vassalize_armenia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = ARM
+		is_free_or_tributary_trigger = yes
+		ARM = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = ARM }
+			ARM = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = ARM
+				}
+			}
+		}
+	}
+	success = {
+		ARM = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = ARM value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = ARM
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = ARM
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = ARM
+			}
+		}
+	}
+}
+
+byz_vassalize_georgia = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = GEO
+		is_free_or_tributary_trigger = yes
+		GEO = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = GEO }
+			GEO = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = GEO
+				}
+			}
+		}
+	}
+	success = {
+		GEO = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = GEO value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = GEO
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = GEO
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = GEO
+			}
+		}
+	}
+}
+
+#Added Epirus to the list of vassalized greek nations found in BtPL/BT
+wayward_epirus_btpl = {
+	
+	type = country
+
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = EPI
+		is_free_or_tributary_trigger = yes
+		EPI = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = EPI }
+			EPI = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = EPI
+				}
+			}
+		}
+	}
+	success = {
+		EPI = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = EPI value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = EPI
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = EPI
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = EPI
+			}
+		}
+	}
+}
+
+#Other BtPL missions:
+wayward_trebizond_btpl = {
+	
+	type = country
+	#Byz_resurgence changed: From MIL to DIP to make it more likely to appear in the abundance of Purple Phoenix missions
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = TRE
+		is_free_or_tributary_trigger = yes
+		TRE = {
+			is_free_or_tributary_trigger = yes
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = TRE }
+			TRE = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = TRE
+				}
+			}
+		}
+	}
+	success = {
+		TRE = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = TRE value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = TRE
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = TRE
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = TRE
+			}
+		}
+	}
+}
+
+wayward_cappadocia_btpl = {
+	
+	type = country
+	#Byz_resurgence changed: From MIL to DIP to make it more likely to appear in the abundance of Purple Phoenix missions
+	category = DIP
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		NOT = { has_country_modifier = military_vassalization }
+		tag = BYZ
+		exists = CAP
+		is_free_or_tributary_trigger = yes
+		CAP = {
+			is_subject = no
+			is_neighbor_of = ROOT
+			NOT = { num_of_cities = ROOT }
+			NOT = { total_development = 100 }
+			NOT = { government = imperial_city }
+		}
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { exists = CAP }
+			CAP = { is_subject_other_than_tributary_trigger = yes }
+			NOT = {
+				has_casus_belli = {
+					type = cb_vassalize_mission
+					target = CAP
+				}
+			}
+		}
+	}
+	success = {
+		CAP = { vassal_of = BYZ }
+	}
+	chance = {
+		factor = 2000
+		modifier = {
+			factor = 2
+			NOT = { has_opinion = { who = CAP value = 0 } }
+		}
+	}
+	immediate = {
+		add_casus_belli = {
+			type = cb_vassalize_mission
+			months = 300
+			target = CAP
+		}
+	}
+	abort_effect = {
+		remove_casus_belli = {
+			type = cb_vassalize_mission
+			target = CAP
+		}
+	}
+	effect = {
+		add_country_modifier = {
+			name = military_vassalization
+			duration = 3650
+		}
+		hidden_effect = {
+			remove_casus_belli = {
+				type = cb_vassalize_mission
+				target = CAP
+			}
+		}
+	}
+}
+
+####################
+#Religious Missions#
+####################
+
+#Unchanged
+convert_asia_minor = {
+	
+	type = country
+
+	category = ADM
+	
+	allow = {
+		normal_or_historical_nations = yes
+		tag = BYZ
+		religion = orthodox
+		is_at_war = no
+		OR = {
+			aydin_area = {
+				owned_by = ROOT
+				NOT = { religion = orthodox }
+			}
+			hudavendigar_area = {
+				owned_by = ROOT
+				NOT = { religion = orthodox }
+			}
+			karasi_area = {
+				owned_by = ROOT
+				NOT = { religion = orthodox }
+			}
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { religion = orthodox }
+			AND = {
+				NOT = { aydin_area = { owned_by = ROOT } }
+				NOT = { hudavendigar_area = { owned_by = ROOT } }
+				NOT = { karasi_area = { owned_by = ROOT } }
+			}
+		}
+	}
+	success = {
+		aydin_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+		hudavendigar_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+		karasi_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+	}
+	chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	effect = {
+		add_prestige = 10
+		add_patriarch_authority = 0.1
+	}
+}
+
+#Added a mission to convert Anatolia as well
+convert_anatolia = {
+	
+	type = country
+
+	category = ADM
+	
+	allow = {
+		normal_or_historical_nations = yes
+		tag = BYZ
+		religion = orthodox
+		is_at_war = no
+		anatolia_region = {
+			owned_by = ROOT
+			NOT = { religion = orthodox }
+		}
+		aydin_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+		hudavendigar_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+		karasi_area = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+	}
+	abort = {
+		OR = {
+			NOT = { religion = orthodox }
+			NOT = { anatolia_region = { owned_by = ROOT } }
+		}
+	}
+	success = {
+		anatolia_region = {
+			type = all
+			owned_by = ROOT
+			religion = orthodox
+		}
+	}
+	chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	effect = {
+		add_prestige = 10
+		add_patriarch_authority = 0.1
+	}
+}
+
+#Changed modifier to Patriarch's Blessing, halved duration & added patriarch authority & orthodox requirement. Also only requires to be Orthodox
+recover_rome = { #This one does not care who the current owner is. #Bumped to 5000 to make sure they appear. Requirements altered to match that of the other seats of patriarch missions.
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		religion = orthodox
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		118 = {
+			any_neighbor_province = {
+				owned_by = ROOT
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+		NOT = { has_country_flag = BYZ_recovered_rome }
+		NOT = { has_country_modifier = byz_patriarch_blessing }
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		owns = 118 # Rome
+	}
+	chance = {
+		factor = 5000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	immediate = {
+		add_claim = 118
+	}
+	abort_effect = {
+		118 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		set_country_flag = BYZ_recovered_rome
+		add_prestige = 25
+		add_patriarch_authority = 0.1
+		add_country_modifier = {
+			name = "byz_patriarch_blessing"
+			duration = 1825
+		}
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 10
+		}
+	}
+}
+
+#Added the other seats of Patriarchs. Same here only requiring to be Orthodox, meaning a rampant Russia can do this mission
+byz_recover_antioch = { #Bumped to 5000 to make sure they appear.
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+
+	allow = {
+		normal_or_historical_nations = yes
+		religion = orthodox
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_antioch }
+		NOT = { has_country_modifier = byz_patriarch_blessing }
+		owns_core_province = 151
+		2313 = {
+			any_neighbor_province = {
+				owned_by = ROOT
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		2313 = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 5000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	immediate = {
+		2313 = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		2313 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		add_patriarch_authority = 10
+		set_country_flag = byz_took_antioch
+		add_country_modifier = {
+			name = "byz_patriarch_blessing"
+			duration = 1825
+		}
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 10
+		}
+	}
+}
+
+byz_recover_jerusalem = { #Bumped to 5000 to make sure they appear.
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+
+	allow = {
+		normal_or_historical_nations = yes
+		religion = orthodox
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_jerusalem }
+		NOT = { has_country_modifier = byz_patriarch_blessing }
+		owns_core_province = 151
+		379 = {
+			any_neighbor_province = {
+				owned_by = ROOT
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		379 = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 5000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	immediate = {
+		379 = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		379 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		add_patriarch_authority = 10
+		set_country_flag = byz_took_jerusalem
+		add_country_modifier = {
+			name = "byz_patriarch_blessing"
+			duration = 1825
+		}
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 10
+		}
+	}
+}
+
+byz_recover_alexandria = { #Bumped to 5000 to make sure they appear.
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+
+	allow = {
+		normal_or_historical_nations = yes
+		religion = orthodox
+		is_free_or_tributary_trigger = yes
+		NOT = { has_country_flag = byz_took_alexandria }
+		NOT = { has_country_modifier = byz_patriarch_blessing }
+		owns_core_province = 151
+		358 = {
+			any_neighbor_province = {
+				owned_by = ROOT
+			}
+			NOT = { owned_by = ROOT }
+			NOT = { owner = { alliance_with = ROOT } }
+			NOT = { owner = { is_subject_of = ROOT } }
+			NOT = { owner = { overlord_of = ROOT } }
+		}
+	}
+	abort = {
+		is_subject_other_than_tributary_trigger = yes
+	}
+	success = {
+		358 = {
+			owned_by = ROOT
+		}
+	}
+	chance = {
+		factor = 5000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+		modifier = {
+			factor = 2
+			adm = 3
+		}
+		modifier = {
+			factor = 2
+			advisor = theologian
+		}
+	}
+	immediate = {
+		358 = {
+			add_claim = ROOT
+		}
+	}
+	abort_effect = {
+		358 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		add_prestige = 10
+		add_patriarch_authority = 10
+		set_country_flag = byz_took_alexandria
+		add_country_modifier = {
+			name = "byz_patriarch_blessing"
+			duration = 1825
+		}
+		add_estate_loyalty = {
+			estate = estate_church
+			loyalty = 10
+		}
+	}
+}
+
+#Moved Pentarchy mission to a decision available to anyone that fulfils the original prerequisites. Removed Aleppo, though. It made no sense.
+
+#Unchanged
+destroy_venice = {
+	
+	type = country
+
+	category = MIL
+	ai_mission = yes
+	
+	allow = {
+		normal_or_historical_nations = yes
+		tag = BYZ
+		is_free_or_tributary_trigger = yes
+		is_at_war = no
+		owns = 151
+		owns = 146 # Athens
+		owns = 149 # Edirne
+		owns = 163 # Crete
+		112 = { owned_by = VEN }
+		OR = {
+			army_size = VEN
+			navy_size = VEN
+		}
+		NOT = { alliance_with = VEN }
+		NOT = { overlord_of = VEN }
+		NOT = { has_country_flag = BYZ_destroyed_venice }
+		NOT = { has_country_modifier = byzantium_resurgent }
+	}
+	abort = {
+		OR = {
+			is_subject_other_than_tributary_trigger = yes
+			112 = {
+				NOT = { owned_by = VEN }  
+			}
+		}
+	}
+	success = {
+		owns = 112	# Venice
+	}
+	chance = {
+		factor = 3000
+		modifier = {
+			factor = 2
+			mil = 4
+		}
+		modifier = {
+			factor = 2
+			mil = 6
+		}
+	}
+	immediate = {
+		add_claim = 112
+	}
+	abort_effect = {
+		112 = {
+			if = {
+				limit = {
+					NOT = {
+						is_permanent_claim = ROOT
+					}
+				}
+				remove_claim = ROOT
+			}
+		}
+	}
+	effect = {
+		set_country_flag = BYZ_destroyed_venice
+		add_country_modifier = {
+			name = "byzantium_resurgent"
+			duration = 3650
+		}
+	}
+}
+
+###########################
+#Developing theme capitals#
+###########################
+
+develop_theme_province_mil_I = { #Build Regimental Camp in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = conscription_center }
+		NOT = { has_building = regimental_camp }
+		can_build = regimental_camp
+		num_free_building_slots = 1
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = regimental_camp }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = regimental_camp
+	}
+	chance = {
+		factor = 1250
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			has_building = barracks
+		}
+		modifier = {
+			factor = 1.5
+			has_building = training_fields
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		add_base_manpower = 1
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 5
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+develop_theme_province_mil_II = { #Build Conscription Center in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = conscription_center }
+		has_building = regimental_camp
+		can_build = conscription_center
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = conscription_center }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+		}
+	}
+	success = {
+		has_building = conscription_center
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			has_building = barracks
+		}
+		modifier = {
+			factor = 1.5
+			has_building = training_fields
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		add_base_manpower = 1
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 10
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}		
+		}
+	}
+}
+
+develop_theme_province_dip_I = { #Build Shipyard in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = DIP
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		has_port = yes
+		NOT = { has_building = grand_shipyard }
+		NOT = { has_building = shipyard }
+		can_build = shipyard
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = shipyard }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = shipyard
+	}
+	chance = {
+		factor = 1250
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			has_building = dock
+		}
+		modifier = {
+			factor = 1.5
+			has_building = drydock
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			40 = {
+				add_base_tax = 1
+			}
+			40 = {
+				add_base_production = 1
+			}
+			20 = {
+				add_base_tax = 1
+				add_base_production = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 5
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+develop_theme_province_dip_II = { #Build Grand Shipyard in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = DIP
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		has_port = yes
+		NOT = { has_building = grand_shipyard }
+		has_building = shipyard
+		can_build = grand_shipyard
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = grand_shipyard }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+		}
+	}
+	success = {
+		has_building = grand_shipyard
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			has_building = dock
+		}
+		modifier = {
+			factor = 1.5
+			has_building = drydock
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			40 = {
+				add_base_tax = 1
+			}
+			40 = {
+				add_base_production = 1
+			}
+			20 = {
+				add_base_tax = 1
+				add_base_production = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 10
+			}	
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}		
+		}
+	}
+}
+
+develop_theme_province_adm_I = { #Build Courthouse in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = ADM
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = town_hall }
+		NOT = { has_building = courthouse }
+		can_build = courthouse
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = courthouse }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = courthouse
+	}
+	chance = {
+		factor = 1250
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.25
+			has_building = temple
+		}
+		modifier = {
+			factor = 1.25
+			has_building = cathedral
+		}
+		modifier = {
+			factor = 1.25
+			has_building = workshop
+		}
+		modifier = {
+			factor = 1.25
+			has_building = counting_house
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			40 = {
+				add_base_tax = 1
+			}
+			40 = {
+				add_base_production = 1
+			}
+			20 = {
+				add_base_tax = 1
+				add_base_production = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 5
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+develop_theme_province_adm_II = { #Build Town Hall in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = ADM
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system 
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = town_hall }
+		has_building = courthouse
+		can_build = town_hall
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = town_hall }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+		}
+	}
+	success = {
+		has_building = town_hall
+	}
+	chance = {
+		factor = 1000
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.25
+			has_building = temple
+		}
+		modifier = {
+			factor = 1.25
+			has_building = cathedral
+		}
+		modifier = {
+			factor = 1.25
+			has_building = workshop
+		}
+		modifier = {
+			factor = 1.25
+			has_building = counting_house
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 2
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			40 = {
+				add_base_tax = 1
+			}
+			40 = {
+				add_base_production = 1
+			}
+			20 = {
+				add_base_tax = 1
+				add_base_production = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 10
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+develop_theme_province_uni = { #Build University in X
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = ADM
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = developed_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = university }
+		can_build = university
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = university }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = university
+	}
+	chance = {
+		factor = 750
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			development = 25
+		}
+		modifier = {
+			factor = 1.5
+			development = 30
+		}
+		modifier = {
+			factor = 1.5
+			development = 35
+		}
+		modifier = {
+			factor = 1.5
+			development = 40
+		}
+		modifier = {
+			factor = 1.25
+			has_building = temple
+		}
+		modifier = {
+			factor = 1.25
+			has_building = cathedral
+		}
+		modifier = {
+			factor = 1.25
+			has_building = workshop
+		}
+		modifier = {
+			factor = 1.25
+			has_building = counting_house
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				has_idea_group = aristocracy_ideas
+			}
+		}
+		modifier = {
+			factor = 4
+			owner = {
+				has_idea_group = innovativeness_ideas
+			}
+		}
+		modifier = {
+			factor = 3
+			owner = {
+				has_idea_group = economic_ideas
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			35 = {
+				add_base_tax = 2
+			}
+			35 = {
+				add_base_production = 2
+			}
+			25 = {
+				add_base_tax = 2
+				add_base_production = 2
+			}
+			5 = {
+				add_base_tax = 3
+				add_base_production = 3
+				add_base_manpower = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 15
+			}
+			add_country_modifier = {
+				name = "developed_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+protect_theme_province_I = { #Build a Castle in X!
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = fortified_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = fort_18th }
+		NOT = { has_building = fort_17th }
+		NOT = { has_building = fort_16th }
+		NOT = { has_building = fort_15th }
+		can_build = fort_15th
+		
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = fort_15th }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = fort_15th
+	}
+	chance = {
+		factor = 1000
+		#The more well-developed a theme capital is, the more likely it is to want protection
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = temple
+				has_building = cathedral
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = workshop
+				has_building = counting_house
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = barracks
+				has_building = training_fields
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = regimental_camp
+				has_building = conscription_center
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = dock
+				has_building = drydock
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = shipyard
+				has_building = grand_shipyard
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = counting_house
+				has_building = town_hall
+			}
+		}
+		modifier = {
+			factor = 4
+			has_building = university
+		}
+		modifier = {
+			factor = 2.5
+			OR = {
+				has_building = wharf
+				has_building = weapons
+				has_building = textile
+				has_building = plantations
+				has_building = tradecompany
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			33 = {
+				add_base_tax = 1
+			}
+			33 = {
+				add_base_production = 1
+			}
+			33 = {
+				add_base_manpower = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 5
+			}
+			add_country_modifier = {
+				name = "fortified_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+protect_theme_province_II = { #Upgrade to a Bastion in X!
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = fortified_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = fort_18th }
+		NOT = { has_building = fort_17th }
+		NOT = { has_building = fort_16th }
+		has_building = fort_15th
+		can_build = fort_16th
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = fort_16th }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = fort_16th
+	}
+	chance = {
+		factor = 900
+		#The more well-developed a theme capital is, the more likely it is to want protection
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = temple
+				has_building = cathedral
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = workshop
+				has_building = counting_house
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = barracks
+				has_building = training_fields
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = regimental_camp
+				has_building = conscription_center
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = dock
+				has_building = drydock
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = shipyard
+				has_building = grand_shipyard
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = counting_house
+				has_building = town_hall
+			}
+		}
+		modifier = {
+			factor = 4
+			has_building = university
+		}
+		modifier = {
+			factor = 2.5
+			OR = {
+				has_building = wharf
+				has_building = weapons
+				has_building = textile
+				has_building = plantations
+				has_building = tradecompany
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			33 = {
+				add_base_tax = 1
+			}
+			33 = {
+				add_base_production = 1
+			}
+			33 = {
+				add_base_manpower = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 10
+			}
+			add_country_modifier = {
+				name = "fortified_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+protect_theme_province_III = { #Update to a Star Fort in X!
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = fortified_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = fort_18th }
+		NOT = { has_building = fort_17th }
+		has_building = fort_16th
+		can_build = fort_17th
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = fort_17th }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = fort_17th
+	}
+	chance = {
+		factor = 800
+		#The more well-developed a theme capital is, the more likely it is to want protection
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = temple
+				has_building = cathedral
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = workshop
+				has_building = counting_house
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = barracks
+				has_building = training_fields
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = regimental_camp
+				has_building = conscription_center
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = dock
+				has_building = drydock
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = shipyard
+				has_building = grand_shipyard
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = counting_house
+				has_building = town_hall
+			}
+		}
+		modifier = {
+			factor = 4
+			has_building = university
+		}
+		modifier = {
+			factor = 2.5
+			OR = {
+				has_building = wharf
+				has_building = weapons
+				has_building = textile
+				has_building = plantations
+				has_building = tradecompany
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			33 = {
+				add_base_tax = 1
+			}
+			33 = {
+				add_base_production = 1
+			}
+			33 = {
+				add_base_manpower = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 15
+			}
+			add_country_modifier = {
+				name = "fortified_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}
+
+protect_theme_province_IV = { #Establish a Fortress in X!
+
+	type = our_provinces
+	
+	ai_mission = yes
+	
+	category = MIL
+	
+	allow = {
+		owner = {
+			has_country_modifier = the_theme_system
+			NOT = { num_of_loans = 5 }
+			NOT = { has_country_modifier = fortified_theme_capital }
+			NOT = { is_at_war = yes }
+		}
+		has_estate = estate_strategoi
+		NOT = { has_building = fort_18th }
+		has_building = fort_17th
+		can_build = fort_18th
+		is_core = owner
+		is_state = yes
+	}
+	abort = {
+		OR = {
+			AND = {
+				NOT = { can_build = fort_18th }
+				NOT = { has_construction = building }
+			}
+			NOT = {	owned_by = FROM }
+			NOT = { num_free_building_slots = 1 }
+		}
+	}
+	success = {
+		has_building = fort_18th
+	}
+	chance = {
+		factor = 700
+		#The more well-developed a theme capital is, the more likely it is to want protection
+		modifier = {
+			factor = 1.25
+			development = 10
+		}
+		modifier = {
+			factor = 1.25
+			development = 15
+		}
+		modifier = {
+			factor = 1.25
+			development = 20
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = temple
+				has_building = cathedral
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = workshop
+				has_building = counting_house
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = barracks
+				has_building = training_fields
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = regimental_camp
+				has_building = conscription_center
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_building = dock
+				has_building = drydock
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = shipyard
+				has_building = grand_shipyard
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_building = counting_house
+				has_building = town_hall
+			}
+		}
+		modifier = {
+			factor = 4
+			has_building = university
+		}
+		modifier = {
+			factor = 2.5
+			OR = {
+				has_building = wharf
+				has_building = weapons
+				has_building = textile
+				has_building = plantations
+				has_building = tradecompany
+			}
+		}
+	}
+	effect = {
+		random_list = {
+			33 = {
+				add_base_tax = 1
+			}
+			33 = {
+				add_base_production = 1
+			}
+			33 = {
+				add_base_manpower = 1
+			}
+		}
+		owner = {
+			add_estate_loyalty = {
+				estate = estate_strategoi
+				loyalty = 20
+			}
+			add_country_modifier = {
+				name = "fortified_theme_capital"
+				duration = 3650
+			}
+		}
+	}
+}

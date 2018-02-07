@@ -1,0 +1,1093 @@
+country_decisions = {
+
+#Moving the 1001 different files into this one, mostly for my sanity, easier ctrl-f, and because I'm slowly overhauling them all anyway to a hopefully more dynamic system with fewer assumptions, limitations, and more dynamic possibilities. Playing checkers to get that one required province to form a country 
+#really isn't the point, I think, so in general I'm moving away from specific provinces requirments and moving towards percentage of the provinces in the general area.
+#Note that, as a general rule, I'm removing religion requirements, most capital switching, most non-specific culture flipping, most government type switching, and most anything else that limits the decision to a certain historical path. With the current system of primary tags and cultures,
+#Everything is far too linked with culture for some of this clutter, and I don't want to establish a precedent of making a new, different religion or differnt gov type versions for every tag in the game. If people want a new capital, they can set it themselves, if people want to change culture, unless
+#it is a very logical switch, they can do so manually, if people want to reform their gov type and it isn't prevented by the tag's starting type, they can also do that manually.
+#I'm also making allow requirements more consistant and stable. General 1 to 3 specific provinces for the main capitals of the tag and 2/3rds of the kingdom's traditional territory, plus 150 dev (50% discount from default 300 to achieve rank 2), and 25 prestige (also 50% discount).
+#For empires, I'm typically going for 1 to 5 specific provinces and 3/4ths of the empire's traditional territory, as well as 500 dev (50% discount from default 1000 to achieve rank 3) and 40 prestige (default 75). Note I am making a few exceptions to all these rules on a case by case basis.
+
+#Note this is the file specifically for vanilla decisions which are replaced in BT. New tags and vanilla tags which lack a vanilla decision are instead moved to BtPLNewCountryFormations.txt and a couple really odd or unique new ones are going in BtPLNewCountryFormationsSpecial.txt.
+
+###################################################################################################
+################################			Algeria			 ##############################################
+###################################################################################################
+	algiers_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_algiers_flag }
+			NOT = { tag = MOR }
+			NOT = { tag = TUN }
+			NOT = { tag = TLC }
+			NOT = { tag = ALG }
+			NOT = { tag = TRP }
+			NOT = { tag = OTN }
+			OR = {
+				primary_culture = tunisian
+				AND = {
+					OR = {
+						culture_group = turko_semitic
+						culture_group = berber_group
+					}
+					OR = {
+						capital_scope = { area = algiers_area }
+						capital_scope = { area = hautes_plaines_area }
+						capital_scope = { area = ouled_nail_area }
+						capital_scope = { area = kabylia_area }
+						capital_scope = { area = north_saharan_area }
+						capital_scope = { area = west_aures_area }
+						capital_scope = { area = constantine_area }
+						capital_scope = { area = oran_area }
+					}
+				}
+			}
+			any_owned_province = {
+				OR = {
+					area = algiers_area
+					area = hautes_plaines_area
+					area = ouled_nail_area
+					area = kabylia_area
+					area = north_saharan_area
+					area = west_aures_area
+					area = constantine_area
+					area = oran_area
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = ALG }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 338			# Algiers
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					OR = {
+						area = algiers_area
+						area = hautes_plaines_area
+						area = ouled_nail_area
+						area = kabylia_area
+						area = north_saharan_area
+						area = west_aures_area
+						area = constantine_area
+						area = oran_area
+					}
+				}
+				amount = 19			#At least 2/3 of Algeria's 28 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = ALG
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 7300
+			}
+			algiers_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			north_saharan_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			hautes_plaines_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			ouled_nail_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			kabylia_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			west_aures_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			constantine_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			oran_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = ALG
+			}
+			if = {
+				limit = {
+					OR = {
+						government = tribal_kingdom
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				change_government = despotic_monarchy #Desert tribes settling down, theocracies become monarchies.
+			}
+			add_prestige = 25
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_algiers_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+
+###################################################################################################
+################################			Andalusia			 ##############################################
+###################################################################################################
+	andalusian_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_andalusia_flag }
+			NOT = { tag = ADU }
+			OR = {
+				primary_culture = andalusi_culture
+				AND = {
+					culture_group = maghrebi
+					any_owned_province = { region = iberia_region }
+				}
+				AND = {
+					culture_group = turko_semitic
+					any_owned_province = { region = iberia_region }
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = ADU }
+			is_nomad = no
+			is_free_or_tributary_trigger = yes
+			is_at_war = no
+			#religion_group = muslim
+			owns_core_province = 223			# Granada
+			owns_core_province = 224			# Andalucia
+			owns_core_province = 225			# Cordoba
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					region = iberia_region
+				}
+				amount = 42			#At least 2/3 of Iberia's 63 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = ADU
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 7300
+			}
+			add_prestige = 25
+			iberia_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ADU
+			}
+			if = {
+				limit = {
+					culture_group = turko_semitic
+					NOT = { primary_culture = andalusi_culture }
+				}
+				change_primary_culture = andalusi_culture
+			}
+			if = {
+				limit = {
+					OR = {
+						government = tribal_kingdom
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				change_government = despotic_monarchy #Desert tribes settling down, theocracies become monarchies.
+			}
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = GRA_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_andalusia_flag
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_owned_provinces_with = {				#Will not form if already owns over half of North Africa's 93 provinces
+					value = 47
+					region = maghreb_region
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = { capital_scope = { region = iberia_region } }			#Capital not in Iberia
+			}
+		}
+		ai_importance = 400 #
+	}
+	
+###################################################################################################
+################################			Arabia			 ##############################################
+###################################################################################################
+	arab_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_arabia_flag }
+			NOT = { tag = ARB }
+			culture_group = turko_semitic
+			any_owned_province = { region = arabia_region }
+		}
+		allow = {
+			NOT = { exists = ARB }
+			is_free_or_tributary_trigger = yes
+			is_at_war = no
+			owns_core_province = 384			#Medina
+			owns_core_province = 385			#Mecca
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					region = arabia_region
+				}
+				amount = 50			#At least 2/3 of Arabia's 74 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = ARB
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			arabia_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ARB
+			}
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = arabian_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_arabia_flag
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { capital_scope = { region = arabia_region } }			#Capital not in Iberia
+			}
+		}
+		ai_importance = 400 #
+	}
+
+###################################################################################################
+################################			Armenia			 ##############################################
+###################################################################################################
+	armenia_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_armenia_flag }
+			NOT = { tag = ARM }
+			primary_culture = armenian
+		}
+		allow = {
+			NOT = { exists = ARM }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			#religion_group = christian
+			owns_core_province = 419			#Yerivan
+			owns_core_province = 3254			#Ararat 
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					OR = {
+					area = armenia_area
+					area = north_kurdistan_area
+					area = erzurum_area
+					}
+				}
+				amount = 12			#At least 2/3 of Greater Armenia's 18 provinces (approximate)
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted. Note base in Greater Armenia alone is about 84.
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = ARM
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			armenia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ARM
+			}
+			north_kurdistan_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ARM
+			}
+			erzurum_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ARM
+			}
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = ARM_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_armenia_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400 #
+	}
+	
+###################################################################################################
+################################		Britain (miltary)			 ##############################################
+###################################################################################################
+	british_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_great_britain_flag }
+			NOT = { tag = GBR }
+			OR = {
+				tag = ENG
+				tag = SCO
+				AND = {
+					culture_group = british
+					num_of_cities = 25			#At least 1/2 of Britain's 49 provinces to see, if not ENG or SCO
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = GBR }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 236			#London
+			owns_core_province = 241			#Glamorgan
+			owns_core_province = 248			#Lothian
+			custom_trigger_tooltip = {
+				tooltip = three_quarters_of_britain_tooltip
+				calc_true_if = {
+					all_owned_province = {
+						is_core = ROOT
+						region = british_isles_region
+					}
+					amount = 37			#At least 3/4 of Britain's 49 provinces (Note England has 26 in 1444 with 7 more under subjects, so this is rather easy)
+				}
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted.
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = GBR
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			british_isles_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GBR
+			}
+			add_prestige = 25
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			set_country_flag = formed_great_britain_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+###################################################################################################
+################################		Britain (diplomatic)		 ##############################################
+###################################################################################################
+	british_nation_diplomatically = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_great_britain_flag }
+			NOT = { tag = GBR }
+			OR = {
+				tag = ENG
+				tag = SCO
+				AND = {
+					culture_group = british
+					num_of_cities = 25			#At least 1/2 of Britain's 49 provinces to see, if not ENG or SCO
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = GBR }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			if = {
+				limit = { government = monarchy }
+				legitimacy = 100
+			}
+			adm_tech = 10
+			owns_or_vassal_of = 236		# London
+			owns_or_vassal_of = 242		# Gwynedd
+			owns_or_vassal_of = 250		# Fife
+			custom_trigger_tooltip = {
+				tooltip = hegemony_over_britain_tooltip
+				calc_true_if = {
+					all_province = {
+						region = british_isles_region
+						country_or_vassal_holds = ROOT
+						is_core = owner
+					}
+					amount = 45			#At least 90 percent of Britain's 49 provinces (Note England has 33 in 1444, anything less than this might be too easy)
+				}
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted.
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			every_subject_country = {
+				limit = { capital_scope = { region = british_isles_region } }
+				ROOT = { inherit = PREV }
+			}
+			change_tag = GBR
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			british_isles_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GBR
+			}
+			add_prestige = 25
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 200
+		do_not_integrate = ENG
+		do_not_integrate = SCO
+		do_not_integrate = WLS
+	}
+	
+###################################################################################################
+################################			England			 ##############################################
+###################################################################################################
+	english_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_england_flag }
+			NOT = { tag = ENG }
+			NOT = { tag = GBR }
+			OR = {
+				primary_culture = english
+				primary_culture = northumbrian
+				AND = {
+					primary_culture = anglo_irish
+					any_owned_province = { region = british_isles_region }
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = ENG }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 236		# London
+			owns_core_province = 234		# Wessex
+			custom_trigger_tooltip = {
+				tooltip = two_thirds_of_britain_tooltip
+				calc_true_if = {
+					all_owned_province = {
+						is_core = ROOT
+						region = british_isles_region
+					}
+					amount = 33			#2/3 of Britain's 49 provinces
+				}
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted. Note base dev in 1444 for southern Britain is around 210.
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = ENG
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			northern_england_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			mercia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			east_anglia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			wessex_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			essex_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			yorkshire_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			lancashire_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ENG
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = ENG_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_england_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+###################################################################################################
+################################			Ireland			 ##############################################
+###################################################################################################
+	irish_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_ireland_flag }
+			NOT = { tag = IRE }
+			NOT = { tag = SCO }
+			NOT = { tag = KOI }
+			NOT = { tag = TNA }
+			OR = {
+				primary_culture = irish
+				AND = {
+					culture_group = gaelic
+					any_owned_province = { region = ireland_area }
+				}
+			}
+			OR = {
+				tag = LEI
+				tag = ULS
+				tag = MNS
+				tag = CNN
+				calc_true_if = {
+					all_owned_province = {
+						region = ireland_area
+						is_core = owner
+					}
+					amount = 9			#over half of Ireland to see if not one of the four primary provincial kingdoms
+				}
+			}
+			NOT = { government = irish_clann }			#Clans and Lordships need to create provincial kingdom
+			NOT = { government = norman_lordship }			#Clans and Lordships need to create provincial kingdom
+		}
+		allow = {
+			NOT = { exists = IRE }
+			hidden_trigger = { NOT = { exists = KOI } }			#Hidden because it shows up in UI as doubled Ireland
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 4120			# Kildare, stand in for Tara
+			custom_trigger_tooltip = {
+				tooltip = two_thirds_of_ireland_tooltip
+				calc_true_if = {
+					all_owned_province = {
+						is_core = ROOT
+						region = ireland_area
+					}
+					amount = 12			#At least 2/3 of Ireland's 17 provinces
+				}	#requires roughly two thirds of Ireland to form, so KOI can be formed without the west or IRE can be formed without the Pale and the NE plantations
+			}
+			total_development = 75			#Special discount. Normal requirement for rank 2 is 300 dev, so this is 75 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = IRE
+			change_government = high_kingship
+			remove_non_electors_emperors_from_empire_effect = yes
+			hidden_effect = { country_event = { id = BeyondTypusCelticFlavour.1 days = 1 } }			#Fires new BT Tanistry succession
+			custom_tooltip = tooltip_bt_starts_tanistry_succession
+			ireland_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = IRE
+			}
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			if = {
+				limit = {
+					exists = ENG
+					NOT = { historical_friend_with = ENG }
+					NOT = { historical_rival_with = ENG }
+					NOT = { has_opinion = { who = ENG value = 0 } }
+				}
+				add_historical_rival = ENG
+			}			#Add England as a historical rival if relations are negative (and not already rivals or friends)
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			#I decided to remove the development bonus from forming altogether. With the ability to build up provinces already there, this isn't really needed and can get out of hand quickly. Plus capital should move to Dublin anyway.
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = irish_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_ireland_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+###################################################################################################
+################################			Morocco			 ##############################################
+###################################################################################################
+	moroccan_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_morocco_flag }
+			NOT = { tag = MOR }
+			NOT = { tag = TUN }
+			NOT = { tag = TLC }
+			NOT = { tag = ALG }
+			NOT = { tag = TRP }
+			NOT = { tag = OTN }
+			OR = {
+				primary_culture = moroccan
+				AND = {
+					OR = {
+						culture_group = turko_semitic
+						culture_group = berber_group
+					}
+					any_owned_province = {
+						OR = {
+							area = northern_morocco_area
+							area = western_morocco_area
+							area = southern_morocco_area
+							area = marrekesh_area
+							area = sus_area
+							area = tafilalt_area
+							area = tagmudant_area
+						}
+					}
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = MOR }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 343 #Fez
+			owns_core_province = 344 #Marrekech
+			owns_core_province = 2467 #Meknes
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					OR = {
+						area = northern_morocco_area
+						area = western_morocco_area
+						area = southern_morocco_area
+						area = marrekesh_area
+						area = sus_area
+						area = tafilalt_area
+						area = tagmudant_area
+					}
+				}
+				amount = 19			#At least 2/3 of Morocco's 28 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = MOR
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 7300
+			}
+			tafilalt_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			sus_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			marrekesh_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			southern_morocco_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			northern_morocco_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			western_morocco_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			tagmudant_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = MOR
+			}
+			add_prestige = 25
+			if = {
+				limit = {
+					OR = {
+						government = tribal_kingdom
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				change_government = despotic_monarchy #Desert tribes settling down, theocracies become monarchies.
+			}
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_morocco_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+###################################################################################################
+################################			Tripolitania			 ##############################################
+###################################################################################################
+	tripoli_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_tripoli_flag }
+			NOT = { tag = MOR }
+			NOT = { tag = TUN }
+			NOT = { tag = TLC }
+			NOT = { tag = ALG }
+			NOT = { tag = TRP }
+			NOT = { tag = OTN }
+			OR = {
+				primary_culture = tunisian
+				AND = {
+					OR = {
+						culture_group = turko_semitic
+						culture_group = berber_group
+					}
+					OR = {
+						capital_scope = { area = tripolitania_area }
+						capital_scope = { area = fezzan_area }
+						capital_scope = { area = cyrenaica_area }
+						capital_scope = { area = nafusa_mountains_area }
+					}
+				}
+			}
+			any_owned_province = {
+				OR = {
+					area = tripolitania_area
+					area = fezzan_area
+					area = cyrenaica_area
+					area = nafusa_mountains_area
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = TRP }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 354 #Tripoli
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					OR = {
+						area = tripolitania_area
+						area = fezzan_area
+						area = cyrenaica_area
+						area = nafusa_mountains_area
+					}
+				}
+				amount = 13			#At least 2/3 of Libya's 19 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = TRP
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 7300
+			}
+			tripolitania_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = TRP
+			}
+			fezzan_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = TRP
+			}
+			cyrenaica_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = TRP
+			}
+			nafusa_mountains_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = TRP
+			}
+			if = {
+				limit = {
+					OR = {
+						government = tribal_kingdom
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				change_government = despotic_monarchy #Desert tribes settling down, theocracies become monarchies.
+			}
+			add_prestige = 25
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_tripoli_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		#ai_importance = 400
+	}
+
+###################################################################################################
+################################			Tunisia			 ##############################################
+###################################################################################################
+	tunisian_nation = {
+		major = yes
+		potential = {
+			bt_generic_can_form_potential_check = yes
+			NOT = { has_country_flag = formed_tunisia_flag }
+			NOT = { tag = MOR }
+			NOT = { tag = TUN }
+			NOT = { tag = TLC }
+			NOT = { tag = ALG }
+			NOT = { tag = TRP }
+			NOT = { tag = OTN }
+			AND = {
+				primary_culture = tunisian
+				any_owned_province = {
+					OR = {
+						area = tunisia_area
+						area = djerba_area
+						area = djerid_area
+						area = east_aures_area
+					}
+				}
+			}
+		}
+		allow = {
+			NOT = { exists = OTN }
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			owns_core_province = 341 #Tunis
+			calc_true_if = {
+				all_owned_province = {
+					is_core = ROOT
+					OR = {
+						area = tunisia_area
+						area = djerba_area
+						area = djerid_area
+						area = east_aures_area
+					}
+				}
+				amount = 10			#At least 2/3 of Tunisia's 15 provinces
+			}
+			total_development = 150			#Normal requirement for rank 2 is 300 dev, so this is 50 percent discounted
+			prestige = 25			#Normal requirement for rank 2 is 50 prestige, so this is 50 percent discounted
+		}
+		effect = {
+			change_tag = OTN
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = { NOT = { government_rank = 2 } }
+				set_government_rank = 2
+			}
+			add_country_modifier = {
+				name = centralization_modifier
+				duration = 7300
+			}
+			tunisia_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = OTN
+			}
+			djerba_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = OTN
+			}
+			djerid_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = OTN
+			}
+			east_aures_area = {
+				limit = { NOT = { owned_by = ROOT } }
+				add_permanent_claim = OTN
+			}
+			if = {
+				limit = {
+					OR = {
+						government = tribal_kingdom
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				change_government = despotic_monarchy #Desert tribes settling down, theocracies become monarchies.
+			}
+			add_prestige = 25
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_tunisia_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+
+}
